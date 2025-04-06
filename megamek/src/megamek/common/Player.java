@@ -64,13 +64,8 @@ public final class Player extends TurnOrdered {
     private boolean singleBlind = false; // Bot can observe double-blind games
 
     // deployment settings
-    private int startingPos = Board.START_ANY;
-    private int startOffset = 0;
-    private int startWidth = 3;
-    private int startingAnyNWx = Entity.STARTING_ANY_NONE;
-    private int startingAnyNWy = Entity.STARTING_ANY_NONE;
-    private int startingAnySEx = Entity.STARTING_ANY_NONE;
-    private int startingAnySEy = Entity.STARTING_ANY_NONE;
+    public DeploymentConfig deploymentConfig = new DeploymentConfig(Board.START_ANY, 0, 3, Entity.STARTING_ANY_NONE,
+          Entity.STARTING_ANY_NONE, Entity.STARTING_ANY_NONE, Entity.STARTING_ANY_NONE);
 
     public PlayerMinefieldManager minefieldManager = new PlayerMinefieldManager();
 
@@ -316,72 +311,17 @@ public final class Player extends TurnOrdered {
         this.colour = Objects.requireNonNull(colour, "Colour cannot be set to null");
     }
 
-    public int getStartingPos() {
-        return startingPos;
-    }
-
-    public void setStartingPos(int startingPos) {
-        this.startingPos = startingPos;
-    }
-
-    public int getStartOffset() {
-        return startOffset;
-    }
-
-    public void setStartOffset(int startOffset) {
-        this.startOffset = startOffset;
-    }
-
-    public int getStartWidth() {
-        return startWidth;
-    }
-
-    public void setStartWidth(int startWidth) {
-        this.startWidth = startWidth;
-    }
-
-    public int getStartingAnyNWx() {
-        return startingAnyNWx;
-    }
-
-    public void setStartingAnyNWx(int i) {
-        this.startingAnyNWx = i;
-    }
-
-    public int getStartingAnyNWy() {
-        return startingAnyNWy;
-    }
-
-    public void setStartingAnyNWy(int i) {
-        this.startingAnyNWy = i;
-    }
-
-    public int getStartingAnySEx() {
-        return startingAnySEx;
-    }
-
-    public void setStartingAnySEx(int i) {
-        this.startingAnySEx = i;
-    }
-
-    public int getStartingAnySEy() {
-        return startingAnySEy;
-    }
-
-    public void setStartingAnySEy(int i) {
-        this.startingAnySEy = i;
-    }
-
     /**
      * Set deployment zone to edge of board for reinforcements
      */
     public void adjustStartingPosForReinforcements() {
+        int startingPos = deploymentConfig.getStartingPos();
         if (startingPos > 10) {
-            startingPos -= 10; // deep deploy change to standard
+            deploymentConfig.setStartingPos(startingPos-10); // deep deploy change to standard
         }
 
         if (startingPos == Board.START_CENTER) {
-            startingPos = Board.START_ANY; // center changes to any
+            deploymentConfig.setStartingPos(Board.START_ANY); // center changes to any
         }
     }
 
@@ -650,14 +590,7 @@ public final class Player extends TurnOrdered {
         copy.seeAll = seeAll;
         copy.singleBlind = singleBlind;
 
-        copy.startingPos = startingPos;
-        copy.startOffset = startOffset;
-        copy.startWidth = startWidth;
-
-        copy.startingAnyNWx = startingAnyNWx;
-        copy.startingAnyNWy = startingAnyNWy;
-        copy.startingAnySEx = startingAnySEx;
-        copy.startingAnySEy = startingAnySEy;
+        copy.deploymentConfig = deploymentConfig.copy();
 
         copy.minefieldManager = minefieldManager.copy();
 

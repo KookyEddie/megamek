@@ -63,7 +63,7 @@ public class DeployCommand extends ClientCommand {
     public String legalDeploymentZone() {
         int width = getClient().getBoard().getWidth();
         int height = getClient().getBoard().getHeight();
-        int nDir = getClient().getLocalPlayer().getStartingPos();
+        int nDir = getClient().getLocalPlayer().deploymentConfig.getStartingPos();
         int minHorizontal = 0;
         int maxHorizontal = width;
         int minVertical = 0;

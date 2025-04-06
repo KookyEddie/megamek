@@ -312,7 +312,7 @@ public class TWGameManager extends AbstractGameManager {
                 ghosts.add(p);
             } else {
                 // non-ghosts set their starting positions to any
-                p.setStartingPos(Board.START_ANY);
+                p.deploymentConfig.setStartingPos(Board.START_ANY);
                 transmitPlayerUpdate(p);
             }
         }
@@ -932,10 +932,10 @@ public class TWGameManager extends AbstractGameManager {
         var currentBoard = ServerBoardHelper.getPossibleGameBoard(game.getMapSettings(), true);
 
         for (Player player : game.getPlayersList()) {
-            if ((player.getStartingPos() > Board.NUM_ZONES_X2) &&
+            if ((player.deploymentConfig.getStartingPos() > Board.NUM_ZONES_X2) &&
                       !currentBoard.getCustomDeploymentZones()
-                             .contains(Board.decodeCustomDeploymentZoneID(player.getStartingPos()))) {
-                player.setStartingPos(Board.START_ANY); // default to "any"
+                             .contains(Board.decodeCustomDeploymentZoneID(player.deploymentConfig.getStartingPos()))) {
+                player.deploymentConfig.setStartingPos(Board.START_ANY); // default to "any"
                 transmitPlayerUpdate(player);
             }
         }

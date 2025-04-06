@@ -587,13 +587,13 @@ public class Server implements Runnable {
         Player gamePlayer = getGame().getPlayer(connId);
         if (null != gamePlayer) {
             gamePlayer.setColour(player.getColour());
-            gamePlayer.setStartingPos(player.getStartingPos());
-            gamePlayer.setStartWidth(player.getStartWidth());
-            gamePlayer.setStartOffset(player.getStartOffset());
-            gamePlayer.setStartingAnyNWx(player.getStartingAnyNWx());
-            gamePlayer.setStartingAnyNWy(player.getStartingAnyNWy());
-            gamePlayer.setStartingAnySEx(player.getStartingAnySEx());
-            gamePlayer.setStartingAnySEy(player.getStartingAnySEy());
+            gamePlayer.deploymentConfig.setStartingPos(player.deploymentConfig.getStartingPos());
+            gamePlayer.deploymentConfig.setStartWidth(player.deploymentConfig.getStartWidth());
+            gamePlayer.deploymentConfig.setStartOffset(player.deploymentConfig.getStartOffset());
+            gamePlayer.deploymentConfig.setStartingAnyNWx(player.deploymentConfig.getStartingAnyNWx());
+            gamePlayer.deploymentConfig.setStartingAnyNWy(player.deploymentConfig.getStartingAnyNWy());
+            gamePlayer.deploymentConfig.setStartingAnySEx(player.deploymentConfig.getStartingAnySEx());
+            gamePlayer.deploymentConfig.setStartingAnySEy(player.deploymentConfig.getStartingAnySEy());
             gamePlayer.setTeam(player.getTeam());
             gamePlayer.setCamouflage(player.getCamouflage().clone());
             gamePlayer.minefieldManager.setNbrMFConventional(gamePlayer.minefieldManager.getNbrMFConventional());

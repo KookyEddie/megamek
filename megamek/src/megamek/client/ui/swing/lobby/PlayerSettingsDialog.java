@@ -99,7 +99,7 @@ public class PlayerSettingsDialog extends AbstractButtonDialog {
         client = cl;
         clientgui = cg;
         this.bv = bv;
-        currentPlayerStartPos = cl.getLocalPlayer().getStartingPos();
+        currentPlayerStartPos = cl.getLocalPlayer().deploymentConfig.getStartingPos();
 
         NumberFormat numFormat = NumberFormat.getIntegerInstance();
         numFormat.setGroupingUsed(false);
@@ -620,13 +620,13 @@ public class PlayerSettingsDialog extends AbstractButtonDialog {
         }
 
         // The deployment position
-        player.setStartingPos(getStartPos());
-        player.setStartOffset(getStartOffset());
-        player.setStartWidth(getStartWidth());
-        player.setStartingAnyNWx(getStartingAnyNWx());
-        player.setStartingAnyNWy(getStartingAnyNWy());
-        player.setStartingAnySEx(getStartingAnySEx());
-        player.setStartingAnySEy(getStartingAnySEy());
+        player.deploymentConfig.setStartingPos(getStartPos());
+        player.deploymentConfig.setStartOffset(getStartOffset());
+        player.deploymentConfig.setStartWidth(getStartWidth());
+        player.deploymentConfig.setStartingAnyNWx(getStartingAnyNWx());
+        player.deploymentConfig.setStartingAnyNWy(getStartingAnyNWy());
+        player.deploymentConfig.setStartingAnySEx(getStartingAnySEx());
+        player.deploymentConfig.setStartingAnySEy(getStartingAnySEy());
         client.sendPlayerInfo();
     }
 
@@ -693,8 +693,8 @@ public class PlayerSettingsDialog extends AbstractButtonDialog {
         fldActive.setText(Integer.toString(player.minefieldManager.getNbrMFActive()));
         fldInferno.setText(Integer.toString(player.minefieldManager.getNbrMFInferno()));
         fldEmail.setText(player.getEmail());
-        txtWidth.setText(Integer.toString(player.getStartWidth()));
-        txtOffset.setText(Integer.toString(player.getStartOffset()));
+        txtWidth.setText(Integer.toString(player.deploymentConfig.getStartWidth()));
+        txtOffset.setText(Integer.toString(player.deploymentConfig.getStartOffset()));
 
         MapSettings ms = clientgui.getClient().getMapSettings();
         int bh = ms.getBoardHeight() * ms.getMapHeight();
@@ -709,13 +709,13 @@ public class PlayerSettingsDialog extends AbstractButtonDialog {
         SpinnerNumberModel mStartingAnySEy = new SpinnerNumberModel(0, -0, bh, 1);
         spinStartingAnySEy = new JSpinner(mStartingAnySEy);
 
-        int x = Math.min(player.getStartingAnyNWx() + 1, bw);
+        int x = Math.min(player.deploymentConfig.getStartingAnyNWx() + 1, bw);
         spinStartingAnyNWx.setValue(x);
-        int y = Math.min(player.getStartingAnyNWy() + 1, bh);
+        int y = Math.min(player.deploymentConfig.getStartingAnyNWy() + 1, bh);
         spinStartingAnyNWy.setValue(y);
-        x = Math.min(player.getStartingAnySEx() + 1, bw);
+        x = Math.min(player.deploymentConfig.getStartingAnySEx() + 1, bw);
         spinStartingAnySEx.setValue(x);
-        y = Math.min(player.getStartingAnySEy() + 1, bh);
+        y = Math.min(player.deploymentConfig.getStartingAnySEy() + 1, bh);
         spinStartingAnySEy.setValue(y);
     }
 
@@ -805,7 +805,7 @@ public class PlayerSettingsDialog extends AbstractButtonDialog {
         }
 
         for (Player listedPlayer : client.getGame().getPlayersList()) {
-            int pos = listedPlayer.getStartingPos();
+            int pos = listedPlayer.deploymentConfig.getStartingPos();
             if (!listedPlayer.equals(client.getLocalPlayer()) && (pos != Board.START_ANY)) {
                 butText.get(pos).append(UIUtil.fontHTML(teamColor(listedPlayer, client.getLocalPlayer())));
                 butText.get(pos).append("\u25A0</FONT>");

@@ -63,7 +63,7 @@ public class DeploymentPhase extends PhaseHandler {
 
         int startingPos;
 
-        switch (player.getStartingPos()) {
+        switch (player.deploymentConfig.getStartingPos()) {
             case START_NE:
             case START_NW:
                 startingPos = boardNorthSide - deployZone - Compute.randomInt(deployZone);

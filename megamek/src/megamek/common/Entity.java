@@ -12718,9 +12718,9 @@ public abstract class Entity extends TurnOrdered
         if (inheritFromOwner && startingPos == Board.START_NONE) {
             final var gOpts = getGame().getOptions();
             if (!getOwner().isBot() && gOpts.booleanOption(OptionsConstants.BASE_SET_PLAYER_DEPLOYMENT_TO_PLAYER_0)) {
-                return game.getPlayer(0).getStartingPos();
+                return game.getPlayer(0).deploymentConfig.getStartingPos();
             } else {
-                return getOwner().getStartingPos();
+                return getOwner().deploymentConfig.getStartingPos();
             }
         }
         return startingPos;
@@ -15172,9 +15172,9 @@ public abstract class Entity extends TurnOrdered
         if (inheritFromOwner && (startingPos == Board.START_NONE)) {
             final var gOpts = getGame().getOptions();
             if (!getOwner().isBot() && gOpts.booleanOption(OptionsConstants.BASE_SET_PLAYER_DEPLOYMENT_TO_PLAYER_0)) {
-                return game.getPlayer(0).getStartOffset();
+                return game.getPlayer(0).deploymentConfig.getStartOffset();
             } else {
-                return getOwner().getStartOffset();
+                return getOwner().deploymentConfig.getStartOffset();
             }
         }
 
@@ -15195,9 +15195,9 @@ public abstract class Entity extends TurnOrdered
         if (inheritFromOwner && (startingPos == Board.START_NONE)) {
             final var gOpts = getGame().getOptions();
             if (!getOwner().isBot() && gOpts.booleanOption(OptionsConstants.BASE_SET_PLAYER_DEPLOYMENT_TO_PLAYER_0)) {
-                return game.getPlayer(0).getStartWidth();
+                return game.getPlayer(0).deploymentConfig.getStartWidth();
             } else {
-                return getOwner().getStartWidth();
+                return getOwner().deploymentConfig.getStartWidth();
             }
         }
 
@@ -15218,9 +15218,9 @@ public abstract class Entity extends TurnOrdered
         if (inheritFromOwner && (startingPos == Board.START_NONE)) {
             final var gOpts = getGame().getOptions();
             if (!getOwner().isBot() && gOpts.booleanOption(OptionsConstants.BASE_SET_PLAYER_DEPLOYMENT_TO_PLAYER_0)) {
-                return game.getPlayer(0).getStartingAnyNWx();
+                return game.getPlayer(0).deploymentConfig.getStartingAnyNWx();
             } else {
-                return getOwner().getStartingAnyNWx();
+                return getOwner().deploymentConfig.getStartingAnyNWx();
             }
         }
 
@@ -15241,9 +15241,9 @@ public abstract class Entity extends TurnOrdered
         if (inheritFromOwner && (startingPos == Board.START_NONE)) {
             final var gOpts = getGame().getOptions();
             if (!getOwner().isBot() && gOpts.booleanOption(OptionsConstants.BASE_SET_PLAYER_DEPLOYMENT_TO_PLAYER_0)) {
-                return game.getPlayer(0).getStartingAnyNWy();
+                return game.getPlayer(0).deploymentConfig.getStartingAnyNWy();
             } else {
-                return getOwner().getStartingAnyNWy();
+                return getOwner().deploymentConfig.getStartingAnyNWy();
             }
         }
 
@@ -15264,9 +15264,9 @@ public abstract class Entity extends TurnOrdered
         if (inheritFromOwner && (startingPos == Board.START_NONE)) {
             final var gOpts = getGame().getOptions();
             if (!getOwner().isBot() && gOpts.booleanOption(OptionsConstants.BASE_SET_PLAYER_DEPLOYMENT_TO_PLAYER_0)) {
-                return game.getPlayer(0).getStartingAnySEx();
+                return game.getPlayer(0).deploymentConfig.getStartingAnySEx();
             } else {
-                return getOwner().getStartingAnySEx();
+                return getOwner().deploymentConfig.getStartingAnySEx();
             }
         }
 
@@ -15287,9 +15287,9 @@ public abstract class Entity extends TurnOrdered
         if (inheritFromOwner && (startingPos == Board.START_NONE)) {
             final var gOpts = getGame().getOptions();
             if (!getOwner().isBot() && gOpts.booleanOption(OptionsConstants.BASE_SET_PLAYER_DEPLOYMENT_TO_PLAYER_0)) {
-                return game.getPlayer(0).getStartingAnySEy();
+                return game.getPlayer(0).deploymentConfig.getStartingAnySEy();
             } else {
-                return getOwner().getStartingAnySEy();
+                return getOwner().deploymentConfig.getStartingAnySEy();
             }
         }
 

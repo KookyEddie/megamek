@@ -2759,10 +2759,10 @@ public class ChatLounge extends AbstractPhaseDisplay
                     if (lobbyActions.isSelfOrLocalBot(player)) {
                         if (client().isLocalBot(player)) {
                             // must use the bot's own player object:
-                            client().getBotClient(player).getLocalPlayer().setStartingPos(startPos);
+                            client().getBotClient(player).getLocalPlayer().deploymentConfig.setStartingPos(startPos);
                             client().getBotClient(player).sendPlayerInfo();
                         } else {
-                            player.setStartingPos(startPos);
+                            player.deploymentConfig.setStartingPos(startPos);
                             client().sendPlayerInfo();
                         }
                     }

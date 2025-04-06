@@ -898,8 +898,8 @@ public class Board implements Serializable {
      * Can the given player deploy at these coordinates?
      */
     public boolean isLegalDeployment(Coords c, Player p) {
-        return isLegalDeployment(c, p.getStartingPos(), p.getStartWidth(), p.getStartOffset(), p.getStartingAnyNWx(),
-                p.getStartingAnyNWy(), p.getStartingAnySEx(), p.getStartingAnySEy());
+        return isLegalDeployment(c, p.deploymentConfig.getStartingPos(), p.deploymentConfig.getStartWidth(), p.deploymentConfig.getStartOffset(), p.deploymentConfig.getStartingAnyNWx(),
+                p.deploymentConfig.getStartingAnyNWy(), p.deploymentConfig.getStartingAnySEx(), p.deploymentConfig.getStartingAnySEy());
     }
 
     /**

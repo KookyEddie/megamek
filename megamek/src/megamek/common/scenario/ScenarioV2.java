@@ -253,7 +253,7 @@ public class ScenarioV2 implements Scenario {
                 edge = playerNode.get(DEPLOY).textValue();
             } else if (playerNode.get(DEPLOY).has(AREA)) {
                 deploymentAreas.add(HexAreaDeserializer.parseShape(playerNode.get(DEPLOY).get(AREA)));
-                player.setStartingPos(1000 + deploymentAreas.size() - 1);
+                player.deploymentConfig.setStartingPos(1000 + deploymentAreas.size() - 1);
                 return;
             } else {
                 JsonNode deployNode = playerNode.get(DEPLOY);
@@ -261,15 +261,15 @@ public class ScenarioV2 implements Scenario {
                     edge = deployNode.get(DEPLOY_EDGE).textValue();
                 }
                 if (deployNode.has(DEPLOY_OFFSET)) {
-                    player.setStartOffset(deployNode.get(DEPLOY_OFFSET).intValue());
+                    player.deploymentConfig.setStartOffset(deployNode.get(DEPLOY_OFFSET).intValue());
                 }
                 if (deployNode.has(DEPLOY_WIDTH)) {
-                    player.setStartWidth(deployNode.get(DEPLOY_WIDTH).intValue());
+                    player.deploymentConfig.setStartWidth(deployNode.get(DEPLOY_WIDTH).intValue());
                 }
             }
         }
         int dir = Math.max(findIndex(IStartingPositions.START_LOCATION_NAMES, edge), 0);
-        player.setStartingPos(dir);
+        player.deploymentConfig.setStartingPos(dir);
     }
 
     private IGame selectGameType() {

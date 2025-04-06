@@ -72,7 +72,7 @@ public class LobbyUtility {
      * See also {@link #startPosOverlap(int, int)}
      */
     static boolean isValidStartPos(Game game, Player player) {
-        return isValidStartPos(game, player, player.getStartingPos());
+        return isValidStartPos(game, player, player.deploymentConfig.getStartingPos());
     }
 
     /**
@@ -103,10 +103,10 @@ public class LobbyUtility {
 
             if (isTeamsShareVision(game)) {
                 return players.stream().filter(p -> p.isEnemyOf(player))
-                        .noneMatch(p -> startPosOverlap(pos, p.getStartingPos()));
+                        .noneMatch(p -> startPosOverlap(pos, p.deploymentConfig.getStartingPos()));
             } else {
                 return players.stream().filter(p -> !p.equals(player))
-                        .noneMatch(p -> startPosOverlap(pos, p.getStartingPos()));
+                        .noneMatch(p -> startPosOverlap(pos, p.deploymentConfig.getStartingPos()));
             }
         }
     }

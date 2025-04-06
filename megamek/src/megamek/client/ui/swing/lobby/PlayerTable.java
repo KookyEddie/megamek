@@ -216,27 +216,27 @@ class PlayerTable extends JTable {
                     && (gOpts.booleanOption(OptionsConstants.BASE_BLIND_DROP)
                     || gOpts.booleanOption(OptionsConstants.BASE_REAL_BLIND_DROP)))) {
                 result.append(msg_start + ": " + Messages.getString("ChatLounge.Blind"));
-            } else if ((player.getStartingPos() >= 0)
-                    && (player.getStartingPos() <= IStartingPositions.START_LOCATION_NAMES.length)) {
-                result.append(msg_start + ": " + IStartingPositions.START_LOCATION_NAMES[player.getStartingPos()]);
+            } else if ((player.deploymentConfig.getStartingPos() >= 0)
+                    && (player.deploymentConfig.getStartingPos() <= IStartingPositions.START_LOCATION_NAMES.length)) {
+                result.append(msg_start + ": " + IStartingPositions.START_LOCATION_NAMES[player.deploymentConfig.getStartingPos()]);
 
-                if (player.getStartingPos() == 0) {
-                    int NWx = player.getStartingAnyNWx() + 1;
-                    int NWy = player.getStartingAnyNWy() + 1;
-                    int SEx = player.getStartingAnySEx() + 1;
-                    int SEy = player.getStartingAnySEy() + 1;
+                if (player.deploymentConfig.getStartingPos() == 0) {
+                    int NWx = player.deploymentConfig.getStartingAnyNWx() + 1;
+                    int NWy = player.deploymentConfig.getStartingAnyNWy() + 1;
+                    int SEx = player.deploymentConfig.getStartingAnySEx() + 1;
+                    int SEy = player.deploymentConfig.getStartingAnySEy() + 1;
                     if ((NWx + NWy + SEx + SEy) > 0) {
                         result.append(" (" + NWx + ", " + NWy + ")-(" + SEx + ", " + SEy + ")");
                     }
                 }
-                int so = player.getStartOffset();
-                int sw = player.getStartWidth();
+                int so = player.deploymentConfig.getStartOffset();
+                int sw = player.deploymentConfig.getStartWidth();
                 if ((so != 0) || (sw != 3)) {
                     result.append(", " + so);
                     result.append(", " + sw);
                 }
-            } else if (player.getStartingPos() > IStartingPositions.START_LOCATION_NAMES.length) {
-                result.append(msg_start + ": " + "Zone " + Board.decodeCustomDeploymentZoneID(player.getStartingPos()));
+            } else if (player.deploymentConfig.getStartingPos() > IStartingPositions.START_LOCATION_NAMES.length) {
+                result.append(msg_start + ": " + "Zone " + Board.decodeCustomDeploymentZoneID(player.deploymentConfig.getStartingPos()));
             }
 
             if (!LobbyUtility.isValidStartPos(lobby.game(), player)) {

@@ -920,7 +920,7 @@ public class ScenarioV1 extends HashMap<String, Collection<String>> implements S
             }
 
             int dir = Math.max(findIndex(IStartingPositions.START_LOCATION_NAMES, loc), 0);
-            player.setStartingPos(dir);
+            player.deploymentConfig.setStartingPos(dir);
 
             final Camouflage camouflage = parseCamouflage(scenarioV1.getString(getFactionParam(faction, PARAM_CAMO)));
             if (!camouflage.isDefault()) {
