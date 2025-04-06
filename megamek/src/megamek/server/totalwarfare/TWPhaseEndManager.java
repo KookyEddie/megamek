@@ -47,7 +47,8 @@ class TWPhaseEndManager {
             case SET_ARTILLERY_AUTOHIT_HEXES:
                 gameManager.sendSpecialHexDisplayPackets();
                 gameManager.getGame().addReports(gameManager.getMainPhaseReport());
-                boolean hasMinesToDeploy = gameManager.getGame().getPlayersList().stream().anyMatch(Player::hasMinefields);
+                boolean hasMinesToDeploy =
+                      gameManager.getGame().getPlayersList().stream().anyMatch(p -> p.minefieldManager.hasMinefields());
                 if (hasMinesToDeploy) {
                     gameManager.changePhase(GamePhase.DEPLOY_MINEFIELDS);
                 } else {

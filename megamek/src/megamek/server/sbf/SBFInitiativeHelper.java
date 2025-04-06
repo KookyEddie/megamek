@@ -57,7 +57,7 @@ public record SBFInitiativeHelper(SBFGameManager gameManager) implements SBFGame
         if (phase.isDeployMinefields()) {
             turns = game().getPlayersList()
                           .stream()
-                          .filter(Player::hasMinefields)
+                          .filter(p -> p.minefieldManager.hasMinefields())
                           .map(p -> new SBFPlayerTurn(p.getId()))
                           .collect(Collectors.toList());
 

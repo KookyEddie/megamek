@@ -1269,11 +1269,11 @@ public abstract class BotClient extends Client {
      * Reset the minefield counters for the bot and push the updated player info to the server
      */
     private void resetMinefieldCounters() {
-        getLocalPlayer().setNbrMFActive(0);
-        getLocalPlayer().setNbrMFCommand(0);
-        getLocalPlayer().setNbrMFConventional(0);
-        getLocalPlayer().setNbrMFInferno(0);
-        getLocalPlayer().setNbrMFVibra(0);
+        getLocalPlayer().minefieldManager.setNbrMFActive(0);
+        getLocalPlayer().minefieldManager.setNbrMFCommand(0);
+        getLocalPlayer().minefieldManager.setNbrMFConventional(0);
+        getLocalPlayer().minefieldManager.setNbrMFInferno(0);
+        getLocalPlayer().minefieldManager.setNbrMFVibra(0);
         sendPlayerInfo();
     }
 
@@ -1301,10 +1301,10 @@ public abstract class BotClient extends Client {
      */
     private MinefieldNumbers[] getMinefieldNumbers() {
         return new MinefieldNumbers[]{
-              new MinefieldNumbers(getLocalPlayer().getNbrMFActive(), Minefield.TYPE_ACTIVE),
-              new MinefieldNumbers(getLocalPlayer().getNbrMFInferno(), Minefield.TYPE_INFERNO),
-              new MinefieldNumbers(getLocalPlayer().getNbrMFConventional(), Minefield.TYPE_CONVENTIONAL),
-              new MinefieldNumbers(getLocalPlayer().getNbrMFVibra(), Minefield.TYPE_VIBRABOMB),
+              new MinefieldNumbers(getLocalPlayer().minefieldManager.getNbrMFActive(), Minefield.TYPE_ACTIVE),
+              new MinefieldNumbers(getLocalPlayer().minefieldManager.getNbrMFInferno(), Minefield.TYPE_INFERNO),
+              new MinefieldNumbers(getLocalPlayer().minefieldManager.getNbrMFConventional(), Minefield.TYPE_CONVENTIONAL),
+              new MinefieldNumbers(getLocalPlayer().minefieldManager.getNbrMFVibra(), Minefield.TYPE_VIBRABOMB),
               // the following are added for completeness, but are not used by the bot
               new MinefieldNumbers(0, Minefield.TYPE_COMMAND_DETONATED), // no command detonated mines
               new MinefieldNumbers(0, Minefield.TYPE_EMP), // no field for EMP mines exists

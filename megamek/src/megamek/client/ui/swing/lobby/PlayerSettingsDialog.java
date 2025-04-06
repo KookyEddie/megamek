@@ -579,10 +579,10 @@ public class PlayerSettingsDialog extends AbstractButtonDialog {
     private void apply() {
 
         player.setConstantInitBonus(getInit());
-        player.setNbrMFConventional(getCnvMines());
-        player.setNbrMFVibra(getVibMines());
-        player.setNbrMFActive(getActMines());
-        player.setNbrMFInferno(getInfMines());
+        player.minefieldManager.setNbrMFConventional(getCnvMines());
+        player.minefieldManager.setNbrMFVibra(getVibMines());
+        player.minefieldManager.setNbrMFActive(getActMines());
+        player.minefieldManager.setNbrMFInferno(getInfMines());
         getSkillGenerationOptionsPanel().updateClient();
         player.setEmail(getEmail());
 
@@ -688,10 +688,10 @@ public class PlayerSettingsDialog extends AbstractButtonDialog {
         originalMT.loadEntityList(client.getGame().getPlayerEntities(player, false));
 
         fldInit.setText(Integer.toString(player.getConstantInitBonus()));
-        fldConventional.setText(Integer.toString(player.getNbrMFConventional()));
-        fldVibrabomb.setText(Integer.toString(player.getNbrMFVibra()));
-        fldActive.setText(Integer.toString(player.getNbrMFActive()));
-        fldInferno.setText(Integer.toString(player.getNbrMFInferno()));
+        fldConventional.setText(Integer.toString(player.minefieldManager.getNbrMFConventional()));
+        fldVibrabomb.setText(Integer.toString(player.minefieldManager.getNbrMFVibra()));
+        fldActive.setText(Integer.toString(player.minefieldManager.getNbrMFActive()));
+        fldInferno.setText(Integer.toString(player.minefieldManager.getNbrMFInferno()));
         fldEmail.setText(player.getEmail());
         txtWidth.setText(Integer.toString(player.getStartWidth()));
         txtOffset.setText(Integer.toString(player.getStartOffset()));

@@ -280,7 +280,7 @@ public final class Game extends AbstractGame implements Serializable, PlanetaryC
     private void clearMinefieldsHelper() {
         minefields.clear();
         vibrabombs.removeAllElements();
-        getPlayersList().forEach(Player::removeMinefields);
+        getPlayersList().forEach(p -> p.minefieldManager.removeMinefields());
     }
 
     public Vector<Minefield> getVibrabombs() {

@@ -948,9 +948,9 @@ public class ScenarioV1 extends HashMap<String, Collection<String>> implements S
                         int minesConventional = MathUtility.parseInt(mines[0], 0);
                         int minesCommand = MathUtility.parseInt(mines[1], 0);
                         int minesVibra = MathUtility.parseInt(mines[2], 0);
-                        player.setNbrMFConventional(minesConventional);
-                        player.setNbrMFCommand(minesCommand);
-                        player.setNbrMFVibra(minesVibra);
+                        player.minefieldManager.setNbrMFConventional(minesConventional);
+                        player.minefieldManager.setNbrMFCommand(minesCommand);
+                        player.minefieldManager.setNbrMFVibra(minesVibra);
                     } catch (NumberFormatException numberFormatException) {
                         LOGGER.error("Format error with minefields string '{}' for {}", minefields, faction);
                     }

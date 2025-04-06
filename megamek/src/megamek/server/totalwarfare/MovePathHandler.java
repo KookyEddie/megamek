@@ -2749,7 +2749,7 @@ class MovePathHandler extends AbstractTWRuleHandler {
                 if (getGame().containsMinefield(curPos)) {
                     Player owner = entity.getOwner();
                     for (Minefield mf : getGame().getMinefields(curPos)) {
-                        if (!owner.containsMinefield(mf)) {
+                        if (!owner.minefieldManager.containsMinefield(mf)) {
                             r = new Report(2120);
                             r.subject = entity.getId();
                             r.add(entity.getShortName(), true);

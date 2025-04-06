@@ -610,7 +610,7 @@ public class ServerHelper {
 
                 for (Minefield minefield : game.getMinefields(potentialMineCoords)) {
                     // no need to roll for already revealed minefields
-                    if (entity.getOwner().containsMinefield(minefield)) {
+                    if (entity.getOwner().minefieldManager.containsMinefield(minefield)) {
                         continue;
                     }
 

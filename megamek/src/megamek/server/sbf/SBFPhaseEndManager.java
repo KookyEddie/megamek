@@ -42,7 +42,7 @@ public record SBFPhaseEndManager(SBFGameManager gameManager) implements SBFGameM
                 // sendSpecialHexDisplayPackets();
                 gameManager.addPendingReportsToGame();
                 boolean hasMinesToDeploy = gameManager.getGame().getPlayersList().stream()
-                        .anyMatch(Player::hasMinefields);
+                        .anyMatch(p -> p.minefieldManager.hasMinefields());
                 if (hasMinesToDeploy) {
                     gameManager.changePhase(GamePhase.DEPLOY_MINEFIELDS);
                 } else {

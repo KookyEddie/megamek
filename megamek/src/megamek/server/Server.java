@@ -596,11 +596,11 @@ public class Server implements Runnable {
             gamePlayer.setStartingAnySEy(player.getStartingAnySEy());
             gamePlayer.setTeam(player.getTeam());
             gamePlayer.setCamouflage(player.getCamouflage().clone());
-            gamePlayer.setNbrMFConventional(player.getNbrMFConventional());
-            gamePlayer.setNbrMFCommand(player.getNbrMFCommand());
-            gamePlayer.setNbrMFVibra(player.getNbrMFVibra());
-            gamePlayer.setNbrMFActive(player.getNbrMFActive());
-            gamePlayer.setNbrMFInferno(player.getNbrMFInferno());
+            gamePlayer.minefieldManager.setNbrMFConventional(gamePlayer.minefieldManager.getNbrMFConventional());
+            gamePlayer.minefieldManager.setNbrMFCommand(gamePlayer.minefieldManager.getNbrMFCommand());
+            gamePlayer.minefieldManager.setNbrMFVibra(gamePlayer.minefieldManager.getNbrMFVibra());
+            gamePlayer.minefieldManager.setNbrMFActive(gamePlayer.minefieldManager.getNbrMFActive());
+            gamePlayer.minefieldManager.setNbrMFInferno(gamePlayer.minefieldManager.getNbrMFInferno());
             if (gamePlayer.getConstantInitBonus() != player.getConstantInitBonus()) {
                 sendServerChat("Player " +
                                      gamePlayer.getName() +

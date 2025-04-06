@@ -628,7 +628,7 @@ public class Client extends AbstractClient {
         // only update information if you know about the minefield
         Vector<Minefield> newMines = new Vector<>();
         for (Minefield mf : (Vector<Minefield>) packet.getObject(0)) {
-            if (getLocalPlayer().containsMinefield(mf)) {
+            if (getLocalPlayer().minefieldManager.containsMinefield(mf)) {
                 newMines.add(mf);
             }
         }

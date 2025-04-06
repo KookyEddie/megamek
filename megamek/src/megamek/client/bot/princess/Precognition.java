@@ -797,7 +797,7 @@ public class Precognition implements Runnable {
         // only update information if you know about the minefield
         Vector<Minefield> newMines = new Vector<>();
         for (Minefield mf : (Vector<Minefield>) packet.getObject(0)) {
-            if (getOwner().getLocalPlayer().containsMinefield(mf)) {
+            if (getOwner().getLocalPlayer().minefieldManager.containsMinefield(mf)) {
                 newMines.add(mf);
             }
         }

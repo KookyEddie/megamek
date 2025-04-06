@@ -115,8 +115,8 @@ class PlayerTable extends JTable {
             result.append(msg_noinitiativemodifier);
         }
         if (lobby.game().getOptions().booleanOption(OptionsConstants.ADVANCED_MINEFIELDS)) {
-            int mines = player.getNbrMFConventional() + player.getNbrMFActive()
-            + player.getNbrMFInferno() + player.getNbrMFVibra();
+            int mines = player.minefieldManager.getNbrMFConventional() + player.minefieldManager.getNbrMFActive()
+            + player.minefieldManager.getNbrMFInferno() + player.minefieldManager.getNbrMFVibra();
             String msg_totalminefields = Messages.getString("ChatLounge.TotalMinefields");
             result.append("<BR>" + msg_totalminefields + ": ").append(mines);
         }

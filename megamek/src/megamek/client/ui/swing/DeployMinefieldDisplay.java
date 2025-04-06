@@ -197,12 +197,12 @@ public class DeployMinefieldDisplay extends StatusBarPhaseDisplay {
      */
     private void beginMyTurn() {
         p = clientgui.getClient().getLocalPlayer();// necessary to make it work after resets.
-        setConventionalEnabled(p.getNbrMFConventional());
-        setCommandEnabled(p.getNbrMFCommand());
-        setVibrabombEnabled(p.getNbrMFVibra());
-        setActiveEnabled(p.getNbrMFActive());
-        setInfernoEnabled(p.getNbrMFInferno());
-        setCarryableEnabled(p.getGroundObjectsToPlace().size());
+        setConventionalEnabled(p.minefieldManager.getNbrMFConventional());
+        setCommandEnabled(p.minefieldManager.getNbrMFCommand());
+        setVibrabombEnabled(p.minefieldManager.getNbrMFVibra());
+        setActiveEnabled(p.minefieldManager.getNbrMFActive());
+        setInfernoEnabled(p.minefieldManager.getNbrMFInferno());
+        setCarryableEnabled(p.minefieldManager.getGroundObjectsToPlace().size());
         setRemoveMineEnabled(true);
         butDone.setEnabled(true);
 
@@ -265,15 +265,15 @@ public class DeployMinefieldDisplay extends StatusBarPhaseDisplay {
                     mfRemoved.add(mf);
                     deployedMinefields.removeElement(mf);
                     if (mf.getType() == Minefield.TYPE_CONVENTIONAL) {
-                        p.setNbrMFConventional(p.getNbrMFConventional() + 1);
+                        p.minefieldManager.setNbrMFConventional(p.minefieldManager.getNbrMFConventional() + 1);
                     } else if (mf.getType() == Minefield.TYPE_COMMAND_DETONATED) {
-                        p.setNbrMFCommand(p.getNbrMFCommand() + 1);
+                        p.minefieldManager.setNbrMFCommand(p.minefieldManager.getNbrMFCommand() + 1);
                     } else if (mf.getType() == Minefield.TYPE_VIBRABOMB) {
-                        p.setNbrMFVibra(p.getNbrMFVibra() + 1);
+                        p.minefieldManager.setNbrMFVibra(p.minefieldManager.getNbrMFVibra() + 1);
                     } else if (mf.getType() == Minefield.TYPE_ACTIVE) {
-                        p.setNbrMFActive(p.getNbrMFActive() + 1);
+                        p.minefieldManager.setNbrMFActive(p.minefieldManager.getNbrMFActive() + 1);
                     } else if (mf.getType() == Minefield.TYPE_INFERNO) {
-                        p.setNbrMFInferno(p.getNbrMFInferno() + 1);
+                        p.minefieldManager.setNbrMFInferno(p.minefieldManager.getNbrMFInferno() + 1);
                     }
                 }
             }
@@ -351,9 +351,9 @@ public class DeployMinefieldDisplay extends StatusBarPhaseDisplay {
                     mf = Minefield.createMinefield(coords, p.getId(),
                             Minefield.TYPE_CONVENTIONAL, mfd.getDensity(), sea,
                             depth);
-                    p.setNbrMFConventional(p.getNbrMFConventional() - 1);
+                    p.minefieldManager.setNbrMFConventional(p.minefieldManager.getNbrMFConventional() - 1);
 
-                    if (p.getNbrMFConventional() <= 0) {
+                    if (p.minefieldManager.getNbrMFConventional() <= 0) {
                     	currentCommand = DeployMinefieldCommand.COMMAND_NONE;
                     }
                 }
@@ -365,9 +365,9 @@ public class DeployMinefieldDisplay extends StatusBarPhaseDisplay {
                     mf = Minefield.createMinefield(coords, p.getId(),
                             Minefield.TYPE_COMMAND_DETONATED, mfd.getDensity(),
                             sea, depth);
-                    p.setNbrMFCommand(p.getNbrMFCommand() - 1);
+                    p.minefieldManager.setNbrMFCommand(p.minefieldManager.getNbrMFCommand() - 1);
 
-                    if (p.getNbrMFCommand() <= 0) {
+                    if (p.minefieldManager.getNbrMFCommand() <= 0) {
                     	currentCommand = DeployMinefieldCommand.COMMAND_NONE;
                     }
                 }
@@ -378,9 +378,9 @@ public class DeployMinefieldDisplay extends StatusBarPhaseDisplay {
                 if (mfd.getDensity() > 0) {
                     mf = Minefield.createMinefield(coords, p.getId(),
                             Minefield.TYPE_ACTIVE, mfd.getDensity());
-                    p.setNbrMFActive(p.getNbrMFActive() - 1);
+                    p.minefieldManager.setNbrMFActive(p.minefieldManager.getNbrMFActive() - 1);
 
-                    if (p.getNbrMFActive() <= 0) {
+                    if (p.minefieldManager.getNbrMFActive() <= 0) {
                     	currentCommand = DeployMinefieldCommand.COMMAND_NONE;
                     }
                 }
@@ -392,9 +392,9 @@ public class DeployMinefieldDisplay extends StatusBarPhaseDisplay {
                     mf = Minefield.createMinefield(coords, p.getId(),
                             Minefield.TYPE_INFERNO, mfd.getDensity(), sea,
                             depth);
-                    p.setNbrMFInferno(p.getNbrMFInferno() - 1);
+                    p.minefieldManager.setNbrMFInferno(p.minefieldManager.getNbrMFInferno() - 1);
 
-                    if (p.getNbrMFInferno() <= 0) {
+                    if (p.minefieldManager.getNbrMFInferno() <= 0) {
                     	currentCommand = DeployMinefieldCommand.COMMAND_NONE;
                     }
                 }
@@ -410,9 +410,9 @@ public class DeployMinefieldDisplay extends StatusBarPhaseDisplay {
                     mf = Minefield.createMinefield(coords, p.getId(),
                             Minefield.TYPE_VIBRABOMB, mfd.getDensity(),
                             vsd.getSetting());
-                    p.setNbrMFVibra(p.getNbrMFVibra() - 1);
+                    p.minefieldManager.setNbrMFVibra(p.minefieldManager.getNbrMFVibra() - 1);
 
-                    if (p.getNbrMFVibra() <= 0) {
+                    if (p.minefieldManager.getNbrMFVibra() <= 0) {
                     	currentCommand = DeployMinefieldCommand.COMMAND_NONE;
                     }
                 }
@@ -427,11 +427,11 @@ public class DeployMinefieldDisplay extends StatusBarPhaseDisplay {
             clientgui.getBoardView().refreshDisplayables();
         }
 
-        setConventionalEnabled(p.getNbrMFConventional());
-        setCommandEnabled(p.getNbrMFCommand());
-        setVibrabombEnabled(p.getNbrMFVibra());
-        setActiveEnabled(p.getNbrMFActive());
-        setInfernoEnabled(p.getNbrMFInferno());
+        setConventionalEnabled(p.minefieldManager.getNbrMFConventional());
+        setCommandEnabled(p.minefieldManager.getNbrMFCommand());
+        setVibrabombEnabled(p.minefieldManager.getNbrMFVibra());
+        setActiveEnabled(p.minefieldManager.getNbrMFActive());
+        setInfernoEnabled(p.minefieldManager.getNbrMFInferno());
         setCarryableEnabled(p.getGroundObjectsToPlace().size());
     }
 

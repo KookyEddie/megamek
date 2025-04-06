@@ -614,7 +614,7 @@ public class TWGameManager extends AbstractGameManager {
 
         Player player = getGame().getPlayer(connId);
         if (null != player) {
-            send(connId, new Packet(PacketCommand.SENDING_MINEFIELDS, player.getMinefields()));
+            send(connId, new Packet(PacketCommand.SENDING_MINEFIELDS, player.minefieldManager.getMinefields()));
 
             if (getGame().getPhase().isLounge()) {
                 send(connId, createMapSettingsPacket());
@@ -7924,8 +7924,8 @@ public class TWGameManager extends AbstractGameManager {
      * @param mf     The <code>Minefield</code> to be removed
      */
     private void removeMinefield(Player player, Minefield mf) {
-        if (player.containsMinefield(mf)) {
-            player.removeMinefield(mf);
+        if (player.minefieldManager.containsMinefield(mf)) {
+            player.minefieldManager.removeMinefield(mf);
             send(player.getId(), new Packet(PacketCommand.REMOVE_MINEFIELD, mf));
         }
     }
@@ -7947,8 +7947,8 @@ public class TWGameManager extends AbstractGameManager {
      */
     public void revealMinefield(Team team, Minefield mf) {
         for (Player player : team.players()) {
-            if (!player.containsMinefield(mf)) {
-                player.addMinefield(mf);
+            if (!player.minefieldManager.containsMinefield(mf)) {
+                player.minefieldManager.addMinefield(mf);
                 send(player.getId(), new Packet(PacketCommand.REVEAL_MINEFIELD, mf));
             }
         }
@@ -7963,8 +7963,8 @@ public class TWGameManager extends AbstractGameManager {
         if (team != null) {
             revealMinefield(team, mf);
         } else {
-            if (!player.containsMinefield(mf)) {
-                player.addMinefield(mf);
+            if (!player.minefieldManager.containsMinefield(mf)) {
+                player.minefieldManager.addMinefield(mf);
                 send(player.getId(), new Packet(PacketCommand.REVEAL_MINEFIELD, mf));
             }
         }
@@ -9708,13 +9708,13 @@ public class TWGameManager extends AbstractGameManager {
                             if (teamPlayer.getId() != player.getId()) {
                                 send(teamPlayer.getId(), new Packet(PacketCommand.DEPLOY_MINEFIELDS, minefields));
                             }
-                            teamPlayer.addMinefields(minefields);
+                            teamPlayer.minefieldManager.addMinefields(minefields);
                         }
                         break;
                     }
                 }
             } else {
-                player.addMinefields(minefields);
+                player.minefieldManager.addMinefields(minefields);
             }
         }
     }

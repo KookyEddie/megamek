@@ -136,10 +136,10 @@ public class MMSetupForces extends SetupForces {
         player.setStartingAnySEx(originalPlayer.getStartingAnySEx());
         player.setStartingAnySEy(originalPlayer.getStartingAnySEy());
         player.setTeam(originalPlayer.getTeam());
-        player.setNbrMFActive(originalPlayer.getNbrMFActive());
-        player.setNbrMFConventional(originalPlayer.getNbrMFConventional());
-        player.setNbrMFInferno(originalPlayer.getNbrMFInferno());
-        player.setNbrMFVibra(originalPlayer.getNbrMFVibra());
+        player.minefieldManager.setNbrMFActive(originalPlayer.minefieldManager.getNbrMFActive());
+        player.minefieldManager.setNbrMFConventional(originalPlayer.minefieldManager.getNbrMFConventional());
+        player.minefieldManager.setNbrMFInferno(originalPlayer.minefieldManager.getNbrMFInferno());
+        player.minefieldManager.setNbrMFVibra(originalPlayer.minefieldManager.getNbrMFVibra());
         player.getTurnInitBonus();
         return player;
     }

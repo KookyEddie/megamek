@@ -72,12 +72,7 @@ public final class Player extends TurnOrdered {
     private int startingAnySEx = Entity.STARTING_ANY_NONE;
     private int startingAnySEy = Entity.STARTING_ANY_NONE;
 
-    // number of minefields
-    private int numMfConv = 0;
-    private int numMfCmd = 0;
-    private int numMfVibra = 0;
-    private int numMfActive = 0;
-    private int numMfInferno = 0;
+    public PlayerMinefieldManager minefieldManager = new PlayerMinefieldManager();
 
     // hexes that are automatically hit by artillery
     private Vector<Coords> artyAutoHitHexes = new Vector<>();
@@ -93,8 +88,6 @@ public final class Player extends TurnOrdered {
 
     private Camouflage camouflage = new Camouflage(Camouflage.COLOUR_CAMOUFLAGE, PlayerColour.BLUE.name());
     private PlayerColour colour = PlayerColour.BLUE;
-
-    private Vector<Minefield> visibleMinefields = new Vector<>();
 
     private boolean admitsDefeat = false;
 
@@ -114,83 +107,8 @@ public final class Player extends TurnOrdered {
     }
     //endregion Constructors
 
-    public Vector<Minefield> getMinefields() {
-        return visibleMinefields;
-    }
-
-    public void addMinefield(Minefield mf) {
-        visibleMinefields.addElement(mf);
-    }
-
-    public void addMinefields(Vector<Minefield> minefields) {
-        for (int i = 0; i < minefields.size(); i++) {
-            visibleMinefields.addElement(minefields.elementAt(i));
-        }
-    }
-
-    public void removeMinefield(Minefield mf) {
-        visibleMinefields.removeElement(mf);
-    }
-
-    public void removeMinefields() {
-        visibleMinefields.removeAllElements();
-    }
-
     public void removeArtyAutoHitHexes() {
         artyAutoHitHexes.removeAllElements();
-    }
-
-    public boolean containsMinefield(Minefield mf) {
-        return visibleMinefields.contains(mf);
-    }
-
-    public boolean hasMinefields() {
-        return (numMfCmd > 0) ||
-                     (numMfConv > 0) ||
-                     (numMfVibra > 0) ||
-                     (numMfActive > 0) ||
-                     (numMfInferno > 0) ||
-                     getGroundObjectsToPlace().size() > 0;
-    }
-
-    public void setNbrMFConventional(int nbrMF) {
-        numMfConv = nbrMF;
-    }
-
-    public void setNbrMFCommand(int nbrMF) {
-        numMfCmd = nbrMF;
-    }
-
-    public void setNbrMFVibra(int nbrMF) {
-        numMfVibra = nbrMF;
-    }
-
-    public void setNbrMFActive(int nbrMF) {
-        numMfActive = nbrMF;
-    }
-
-    public void setNbrMFInferno(int nbrMF) {
-        numMfInferno = nbrMF;
-    }
-
-    public int getNbrMFConventional() {
-        return numMfConv;
-    }
-
-    public int getNbrMFCommand() {
-        return numMfCmd;
-    }
-
-    public int getNbrMFVibra() {
-        return numMfVibra;
-    }
-
-    public int getNbrMFActive() {
-        return numMfActive;
-    }
-
-    public int getNbrMFInferno() {
-        return numMfInferno;
     }
 
     public Camouflage getCamouflage() {
@@ -741,11 +659,7 @@ public final class Player extends TurnOrdered {
         copy.startingAnySEx = startingAnySEx;
         copy.startingAnySEy = startingAnySEy;
 
-        copy.numMfConv = numMfConv;
-        copy.numMfCmd = numMfCmd;
-        copy.numMfVibra = numMfVibra;
-        copy.numMfActive = numMfActive;
-        copy.numMfInferno = numMfInferno;
+        copy.minefieldManager = minefieldManager.copy();
 
         copy.artyAutoHitHexes = new Vector<>(artyAutoHitHexes);
 
@@ -757,8 +671,6 @@ public final class Player extends TurnOrdered {
 
         copy.camouflage = camouflage;
         copy.colour = colour;
-
-        copy.visibleMinefields = new Vector<>(visibleMinefields);
 
         copy.admitsDefeat = admitsDefeat;
 

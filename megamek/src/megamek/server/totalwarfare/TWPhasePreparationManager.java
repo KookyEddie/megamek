@@ -112,7 +112,7 @@ public class TWPhasePreparationManager {
 
                 if (gameManager.getGame().getBoard().onGround()) {
                     gameManager.getGame().setTurnVector(gameManager.getGame().getPlayersList().stream()
-                            .filter(Player::hasMinefields)
+                            .filter(p -> p.minefieldManager.hasMinefields())
                             .map(p -> new GameTurn(p.getId()))
                             .collect(Collectors.toList()));
                 }
