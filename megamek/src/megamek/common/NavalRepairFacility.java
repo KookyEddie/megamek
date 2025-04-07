@@ -120,12 +120,12 @@ public class NavalRepairFacility extends UnitBay {
             return false;
         }
         // We can carry two dropships or one JS/WS/SS.
-        if (unit.hasETypeFlag(Entity.ETYPE_DROPSHIP)) {
+        if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_DROPSHIP)) {
             return troops.isEmpty()
                     || ((troops.size() == 1)
                             && (null != unit.getGame().getEntity(troops.get(0)))
-                            && (unit.getGame().getEntity(troops.get(0)).hasETypeFlag(Entity.ETYPE_DROPSHIP)));
-        } else if (unit.hasETypeFlag(Entity.ETYPE_JUMPSHIP)) {
+                            && (unit.getGame().getEntity(troops.get(0)).hasETypeFlag(EntityTypeConstants.ETYPE_DROPSHIP)));
+        } else if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_JUMPSHIP)) {
             return troops.isEmpty();
         } else {
             return false;

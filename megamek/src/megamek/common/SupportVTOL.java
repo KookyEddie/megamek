@@ -131,7 +131,7 @@ public class SupportVTOL extends VTOL {
     
     @Override
     public long getEntityType() {
-        return Entity.ETYPE_TANK | Entity.ETYPE_VTOL | Entity.ETYPE_SUPPORT_VTOL;
+        return EntityTypeConstants.ETYPE_TANK | EntityTypeConstants.ETYPE_VTOL | EntityTypeConstants.ETYPE_SUPPORT_VTOL;
     }
     
     @Override

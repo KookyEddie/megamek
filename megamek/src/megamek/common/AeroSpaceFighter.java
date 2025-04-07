@@ -95,7 +95,7 @@ public class AeroSpaceFighter extends Aero {
 
     @Override
     public long getEntityType() {
-        return super.getEntityType() | Entity.ETYPE_AEROSPACEFIGHTER;
+        return super.getEntityType() | EntityTypeConstants.ETYPE_AEROSPACEFIGHTER;
     }
 
     @Override

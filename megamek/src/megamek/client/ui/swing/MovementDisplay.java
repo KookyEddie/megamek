@@ -3224,7 +3224,7 @@ public class MovementDisplay extends ActionPhaseDisplay {
                 // We need to update the entity here so that the server knows
                 // about our target bay
                 clientgui.getClient().sendUpdateEntity(choice);
-            } else if (choice.hasETypeFlag(Entity.ETYPE_PROTOMEK)) {
+            } else if (choice.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK)) {
                 bayChoices = new ArrayList<>();
                 for (Transporter t : ce().getTransports()) {
                     if ((t instanceof ProtoMekClampMount)
@@ -4871,11 +4871,11 @@ public class MovementDisplay extends ActionPhaseDisplay {
             }
             adjustConvertSteps(nextMode);
         } else if (actionCmd.equals(MoveCommand.MOVE_MODE_LEG.getCmd())) {
-            if ((ce.getEntityType() & Entity.ETYPE_QUAD_MEK) == Entity.ETYPE_QUAD_MEK) {
+            if ((ce.getEntityType() & EntityTypeConstants.ETYPE_QUAD_MEK) == EntityTypeConstants.ETYPE_QUAD_MEK) {
                 adjustConvertSteps(EntityMovementMode.QUAD);
-            } else if ((ce.getEntityType() & Entity.ETYPE_TRIPOD_MEK) == Entity.ETYPE_TRIPOD_MEK) {
+            } else if ((ce.getEntityType() & EntityTypeConstants.ETYPE_TRIPOD_MEK) == EntityTypeConstants.ETYPE_TRIPOD_MEK) {
                 adjustConvertSteps(EntityMovementMode.TRIPOD);
-            } else if ((ce.getEntityType() & Entity.ETYPE_BIPED_MEK) == Entity.ETYPE_BIPED_MEK) {
+            } else if ((ce.getEntityType() & EntityTypeConstants.ETYPE_BIPED_MEK) == EntityTypeConstants.ETYPE_BIPED_MEK) {
                 adjustConvertSteps(EntityMovementMode.BIPED);
             }
         } else if (actionCmd.equals(MoveCommand.MOVE_MODE_VEE.getCmd())) {

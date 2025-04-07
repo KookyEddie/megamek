@@ -1552,7 +1552,7 @@ class BasicPathRankerTest {
         when(mockFinalHex.terrainLevel(Terrains.MAGMA)).thenReturn(1);
         when(mockFinalHex.depth()).thenReturn(0);
         // Moderate damage means moderate hazard
-        when(mockUnit.getDamageLevel()).thenReturn(Entity.DMG_MODERATE);
+        when(mockUnit.getDamageLevel()).thenReturn(DamageTypeConstants.DMG_MODERATE);
         assertEquals(589.1665, testRanker.checkPathForHazards(mockPath, mockUnit, mockGame), TOLERANCE);
         when(mockFinalHex.terrainLevel(Terrains.MAGMA)).thenReturn(2);
         when(mockFinalHex.depth()).thenReturn(1);
@@ -1560,7 +1560,7 @@ class BasicPathRankerTest {
         // Crippled should be very high hazard
         when(mockFinalHex.terrainLevel(Terrains.MAGMA)).thenReturn(1);
         when(mockFinalHex.depth()).thenReturn(0);
-        when(mockUnit.getDamageLevel()).thenReturn(Entity.DMG_CRIPPLED);
+        when(mockUnit.getDamageLevel()).thenReturn(DamageTypeConstants.DMG_CRIPPLED);
         assertEquals(589.1665, testRanker.checkPathForHazards(mockPath, mockUnit, mockGame), TOLERANCE);
         when(mockFinalHex.terrainLevel(Terrains.MAGMA)).thenReturn(2);
         when(mockFinalHex.depth()).thenReturn(1);
@@ -1785,7 +1785,7 @@ class BasicPathRankerTest {
             when(mockFinalHex.terrainLevel(Terrains.WATER)).thenReturn(1);
             when(mockFinalHex.depth()).thenReturn(1);
 
-            when(mockUnit.getDamageLevel()).thenReturn(Entity.DMG_CRIPPLED);
+            when(mockUnit.getDamageLevel()).thenReturn(DamageTypeConstants.DMG_CRIPPLED);
             assertEquals(750.0, testRanker.checkPathForHazards(mockPath, mockUnit, mockGame), TOLERANCE);
         }
 
@@ -1859,7 +1859,7 @@ class BasicPathRankerTest {
             when(mockTank.getMovementMode()).thenReturn(EntityMovementMode.HOVER);
             when(mockTank.getHeatCapacity()).thenReturn(Entity.DOES_NOT_TRACK_HEAT);
 
-            when(mockTank.getDamageLevel()).thenReturn(Entity.DMG_NONE);
+            when(mockTank.getDamageLevel()).thenReturn(DamageTypeConstants.DMG_NONE);
             assertEquals(0.0, testRanker.checkPathForHazards(mockPath, mockTank, mockGame), TOLERANCE);
 
         }
@@ -1884,7 +1884,7 @@ class BasicPathRankerTest {
             when(mockTank.getMovementMode()).thenReturn(EntityMovementMode.HOVER);
             when(mockTank.getHeatCapacity()).thenReturn(Entity.DOES_NOT_TRACK_HEAT);
 
-            when(mockTank.getDamageLevel()).thenReturn(Entity.DMG_LIGHT);
+            when(mockTank.getDamageLevel()).thenReturn(DamageTypeConstants.DMG_LIGHT);
             assertEquals(250.0, testRanker.checkPathForHazards(mockPath, mockTank, mockGame), TOLERANCE);
 
         }
@@ -1909,7 +1909,7 @@ class BasicPathRankerTest {
             when(mockTank.getMovementMode()).thenReturn(EntityMovementMode.HOVER);
             when(mockTank.getHeatCapacity()).thenReturn(Entity.DOES_NOT_TRACK_HEAT);
 
-            when(mockTank.getDamageLevel()).thenReturn(Entity.DMG_MODERATE);
+            when(mockTank.getDamageLevel()).thenReturn(DamageTypeConstants.DMG_MODERATE);
             assertEquals(500.0, testRanker.checkPathForHazards(mockPath, mockTank, mockGame), TOLERANCE);
         }
         // END - Hazardous Liquid Pools

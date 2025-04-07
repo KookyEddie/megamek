@@ -237,7 +237,7 @@ public class Princess extends BotClient {
      * @return Path ranker instance
      */
     IPathRanker getPathRanker(Entity entity) {
-        if (entity.hasETypeFlag(Entity.ETYPE_INFANTRY)) {
+        if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_INFANTRY)) {
             return pathRankers.get(PathRankerType.Infantry);
         } else if (entity.isAero() && game.useVectorMove()) {
             return pathRankers.get(PathRankerType.NewtonianAerospace);
@@ -399,7 +399,7 @@ public class Princess extends BotClient {
      * @return Instance of FireControl
      */
     FireControl getFireControl(Entity entity) {
-        if (entity.hasETypeFlag(Entity.ETYPE_INFANTRY)) {
+        if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_INFANTRY)) {
             return fireControls.get(FireControlType.Infantry);
         // some entities can shoot at multiple targets without undergoing too much penalty
         // so let's get them doing that.
@@ -587,7 +587,7 @@ public class Princess extends BotClient {
     @Override
     protected @Nullable Coords getFirstValidCoords(final Entity deployedUnit,
                                          final List<Coords> possibleDeployCoords) {
-        if (Entity.ETYPE_GUN_EMPLACEMENT == (deployedUnit.getEntityType() & Entity.ETYPE_GUN_EMPLACEMENT)) {
+        if (EntityTypeConstants.ETYPE_GUN_EMPLACEMENT == (deployedUnit.getEntityType() & EntityTypeConstants.ETYPE_GUN_EMPLACEMENT)) {
             final List<Coords> validCoords = calculateTurretDeploymentLocations(
                     (GunEmplacement) deployedUnit, possibleDeployCoords);
             if (!validCoords.isEmpty()) {
@@ -2890,7 +2890,7 @@ public class Princess extends BotClient {
     }
 
     private boolean isEnemyGunEmplacement(final Entity entity, final Coords coords) {
-        return entity.hasETypeFlag(Entity.ETYPE_GUN_EMPLACEMENT)
+        return entity.hasETypeFlag(EntityTypeConstants.ETYPE_GUN_EMPLACEMENT)
                && !getBehaviorSettings().getIgnoredUnitTargets().contains(entity.getId())
                && entity.getOwner().isEnemyOf(getLocalPlayer())
                && !getStrategicBuildingTargets().contains(coords)
@@ -2898,7 +2898,7 @@ public class Princess extends BotClient {
     }
 
     private boolean isEnemyInfantry(final Entity entity, final Coords coords) {
-        return entity.hasETypeFlag(Entity.ETYPE_INFANTRY) && !entity.hasETypeFlag(Entity.ETYPE_MEKWARRIOR)
+        return entity.hasETypeFlag(EntityTypeConstants.ETYPE_INFANTRY) && !entity.hasETypeFlag(EntityTypeConstants.ETYPE_MEKWARRIOR)
                 && !getBehaviorSettings().getIgnoredUnitTargets().contains(entity.getId())
                 && entity.getOwner().isEnemyOf(getLocalPlayer())
                 && !getStrategicBuildingTargets().contains(coords)
@@ -3524,18 +3524,18 @@ public class Princess extends BotClient {
                             // Heavily damaged units are more likely to require an active AMS than
                             // lightly damaged ones
                             switch (curEntity.getDamageLevel()) {
-                                case Entity.DMG_NONE:
+                                case DamageTypeConstants.DMG_NONE:
                                     ammoTN -= 4;
                                     break;
-                                case Entity.DMG_LIGHT:
+                                case DamageTypeConstants.DMG_LIGHT:
                                     ammoTN -= 2;
                                     break;
-                                case Entity.DMG_MODERATE:
+                                case DamageTypeConstants.DMG_MODERATE:
                                     ammoTN += 1;
                                     break;
-                                case Entity.DMG_HEAVY:
+                                case DamageTypeConstants.DMG_HEAVY:
                                     ammoTN += 4;
-                                case Entity.DMG_CRIPPLED:
+                                case DamageTypeConstants.DMG_CRIPPLED:
                                     ammoTN += 8;
                                     break;
                                 default:

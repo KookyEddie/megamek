@@ -163,7 +163,7 @@ public class SpaceStation extends Jumpship {
 
     @Override
     public long getEntityType() {
-        return Entity.ETYPE_AERO | Entity.ETYPE_JUMPSHIP | Entity.ETYPE_SPACE_STATION;
+        return EntityTypeConstants.ETYPE_AERO | EntityTypeConstants.ETYPE_JUMPSHIP | EntityTypeConstants.ETYPE_SPACE_STATION;
     }
 
     @Override

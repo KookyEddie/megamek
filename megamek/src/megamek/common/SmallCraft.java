@@ -877,7 +877,7 @@ public class SmallCraft extends Aero {
 
     @Override
     public long getEntityType() {
-        return Entity.ETYPE_AERO | Entity.ETYPE_SMALL_CRAFT;
+        return EntityTypeConstants.ETYPE_AERO | EntityTypeConstants.ETYPE_SMALL_CRAFT;
     }
 
     @Override

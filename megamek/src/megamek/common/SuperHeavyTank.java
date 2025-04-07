@@ -465,7 +465,7 @@ public class SuperHeavyTank extends Tank {
 
     @Override
     public long getEntityType() {
-        return Entity.ETYPE_TANK | Entity.ETYPE_SUPER_HEAVY_TANK;
+        return EntityTypeConstants.ETYPE_TANK | EntityTypeConstants.ETYPE_SUPER_HEAVY_TANK;
     }
 
     @Override

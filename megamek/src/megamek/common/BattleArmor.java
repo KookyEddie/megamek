@@ -1572,7 +1572,7 @@ public class BattleArmor extends Infantry {
 
     @Override
     public long getEntityType() {
-        return Entity.ETYPE_INFANTRY | Entity.ETYPE_BATTLEARMOR;
+        return EntityTypeConstants.ETYPE_INFANTRY | EntityTypeConstants.ETYPE_BATTLEARMOR;
     }
 
     public int getMaximumJumpMP() {

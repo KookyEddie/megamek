@@ -98,7 +98,7 @@ public class TestMek extends TestEntity {
         List<ArmorType> legalArmors = new ArrayList<>();
         boolean industrialOnly = industrial
                 && (techManager.getTechLevel().ordinal() < SimpleTechLevel.EXPERIMENTAL.ordinal());
-        boolean isLam = (etype & Entity.ETYPE_LAND_AIR_MEK) != 0;
+        boolean isLam = (etype & EntityTypeConstants.ETYPE_LAND_AIR_MEK) != 0;
         for (ArmorType armor : ArmorType.allArmorTypes()) {
             if ((armor.getArmorType() == EquipmentType.T_ARMOR_PATCHWORK)
                     || (isLam && (armor.getArmorType() == EquipmentType.T_ARMOR_HARDENED))) {

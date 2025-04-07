@@ -111,56 +111,6 @@ public abstract class Entity extends TurnOrdered
     public static final int DOES_NOT_TRACK_HEAT = 999;
     public static final int UNLIMITED_JUMP_DOWN = 999;
 
-    /**
-     * Entity Type Id Definitions These are used to identify the type of Entity, such as 'Mek or aero.
-     */
-    public static final long ETYPE_MEK = 1L;
-    public static final long ETYPE_BIPED_MEK = 1L << 1;
-    public static final long ETYPE_LAND_AIR_MEK = 1L << 2;
-    public static final long ETYPE_QUAD_MEK = 1L << 3;
-    public static final long ETYPE_ARMLESS_MEK = 1L << 4;
-
-    public static final long ETYPE_AERO = 1L << 5;
-
-    public static final long ETYPE_JUMPSHIP = 1L << 6;
-    public static final long ETYPE_WARSHIP = 1L << 7;
-    public static final long ETYPE_SPACE_STATION = 1L << 8;
-
-    public static final long ETYPE_CONV_FIGHTER = 1L << 9;
-    public static final long ETYPE_FIXED_WING_SUPPORT = 1L << 10;
-
-    public static final long ETYPE_FIGHTER_SQUADRON = 1L << 11;
-
-    public static final long ETYPE_SMALL_CRAFT = 1L << 12;
-    public static final long ETYPE_DROPSHIP = 1L << 13;
-
-    public static final long ETYPE_TELEMISSILE = 1L << 14;
-
-    public static final long ETYPE_INFANTRY = 1L << 15;
-    public static final long ETYPE_BATTLEARMOR = 1L << 16;
-    public static final long ETYPE_MEKWARRIOR = 1L << 17;
-
-    public static final long ETYPE_PROTOMEK = 1L << 18;
-
-    public static final long ETYPE_TANK = 1L << 19;
-
-    public static final long ETYPE_GUN_EMPLACEMENT = 1L << 20;
-
-    public static final long ETYPE_SUPER_HEAVY_TANK = 1L << 21;
-
-    public static final long ETYPE_SUPPORT_TANK = 1L << 22;
-    public static final long ETYPE_LARGE_SUPPORT_TANK = 1L << 23;
-
-    public static final long ETYPE_VTOL = 1L << 24;
-    public static final long ETYPE_SUPPORT_VTOL = 1L << 25;
-
-    public static final long ETYPE_TRIPOD_MEK = 1L << 26;
-    public static final long ETYPE_QUADVEE = 1L << 27;
-
-    public static final long ETYPE_AEROSPACEFIGHTER = 1L << 28;
-
-    public static final long ETYPE_HANDHELD_WEAPON = 1L << 29;
-
     public static final int BLOOD_STALKER_TARGET_CLEARED = -2;
 
     public static final int LOC_NONE = -1;
@@ -172,12 +122,6 @@ public abstract class Entity extends TurnOrdered
     public static final int GRAPPLE_BOTH = 0;
     public static final int GRAPPLE_RIGHT = 1;
     public static final int GRAPPLE_LEFT = 2;
-
-    public static final int DMG_NONE = 0;
-    public static final int DMG_LIGHT = 1;
-    public static final int DMG_MODERATE = 2;
-    public static final int DMG_HEAVY = 3;
-    public static final int DMG_CRIPPLED = 4;
 
     public static final int USE_STRUCTURAL_RATING = -1;
 
@@ -4510,7 +4454,7 @@ public abstract class Entity extends TurnOrdered
                       game.getBoard().inSpace()) {
                 try {
                     WeaponMounted bomb = (WeaponMounted) addEquipment(spaceBomb, m.getLocation(), false);
-                    if (hasETypeFlag(ETYPE_FIGHTER_SQUADRON)) {
+                    if (hasETypeFlag(EntityTypeConstants.ETYPE_FIGHTER_SQUADRON)) {
                         bomb.setWeaponGroup(true);
                         weaponGroupList.add(bomb);
                     }
@@ -4526,7 +4470,7 @@ public abstract class Entity extends TurnOrdered
                 if (addedBombAttacks < 1) {
                     try {
                         WeaponMounted bomb = (WeaponMounted) addEquipment(diveBomb, m.getLocation(), false);
-                        if (hasETypeFlag(ETYPE_FIGHTER_SQUADRON)) {
+                        if (hasETypeFlag(EntityTypeConstants.ETYPE_FIGHTER_SQUADRON)) {
                             bomb.setWeaponGroup(true);
                             weaponGroupList.add(bomb);
                         }
@@ -4538,7 +4482,7 @@ public abstract class Entity extends TurnOrdered
                 if ((addedBombAttacks < 10) && isBomber()) {
                     try {
                         WeaponMounted bomb = (WeaponMounted) addEquipment(altBomb, m.getLocation(), false);
-                        if (hasETypeFlag(ETYPE_FIGHTER_SQUADRON)) {
+                        if (hasETypeFlag(EntityTypeConstants.ETYPE_FIGHTER_SQUADRON)) {
                             bomb.setWeaponGroup(true);
                             weaponGroupList.add(bomb);
                         }
@@ -8181,7 +8125,7 @@ public abstract class Entity extends TurnOrdered
             boolean hasExternalBA = false;
             boolean hasExternalProtoMeks = false;
             boolean hasExternalUltraHeavy = false;
-            if (unit.hasETypeFlag(Entity.ETYPE_BATTLEARMOR) || unit.hasETypeFlag(Entity.ETYPE_PROTOMEK)) {
+            if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_BATTLEARMOR) || unit.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK)) {
                 for (Transporter t : transports) {
                     // ProtoMekClampMount is a subclass of BattleArmorHandles so we need to check it first
                     if (t instanceof ProtoMekClampMount) {
@@ -8197,10 +8141,10 @@ public abstract class Entity extends TurnOrdered
             }
             // We can't mix BA and ProtoMeks, and we can't mount an ultra heavy proto if already
             // carrying another.
-            boolean noExternalMount = (unit.hasETypeFlag(Entity.ETYPE_BATTLEARMOR) && hasExternalProtoMeks) ||
-                                            (unit.hasETypeFlag(Entity.ETYPE_PROTOMEK) && hasExternalBA);
+            boolean noExternalMount = (unit.hasETypeFlag(EntityTypeConstants.ETYPE_BATTLEARMOR) && hasExternalProtoMeks) ||
+                                            (unit.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK) && hasExternalBA);
 
-            if (unit.hasETypeFlag(Entity.ETYPE_PROTOMEK) && hasExternalProtoMeks) {
+            if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK) && hasExternalProtoMeks) {
                 noExternalMount |= hasExternalUltraHeavy ||
                                          (unit.getWeightClass() == EntityWeightClass.WEIGHT_SUPER_HEAVY);
             }
@@ -13510,18 +13454,18 @@ public abstract class Entity extends TurnOrdered
      */
     public int getDamageLevel(boolean checkCrew) {
         if (isCrippled(checkCrew)) {
-            return DMG_CRIPPLED;
+            return DamageTypeConstants.DMG_CRIPPLED;
         }
         if (isDmgHeavy()) {
-            return DMG_HEAVY;
+            return DamageTypeConstants.DMG_HEAVY;
         }
         if (isDmgModerate()) {
-            return DMG_MODERATE;
+            return DamageTypeConstants.DMG_MODERATE;
         }
         if (isDmgLight()) {
-            return DMG_LIGHT;
+            return DamageTypeConstants.DMG_LIGHT;
         }
-        return DMG_NONE;
+        return DamageTypeConstants.DMG_NONE;
     }
 
     // Make a UUID for this entity and assign it to entity's String c3UUID
@@ -13990,17 +13934,17 @@ public abstract class Entity extends TurnOrdered
      * @return The major class name for the given type id
      */
     public static String getEntityMajorTypeName(long typeId) {
-        if ((typeId & ETYPE_MEK) == ETYPE_MEK) {
+        if ((typeId & EntityTypeConstants.ETYPE_MEK) == EntityTypeConstants.ETYPE_MEK) {
             return "Mek";
-        } else if ((typeId & ETYPE_AERO) == ETYPE_AERO) {
+        } else if ((typeId & EntityTypeConstants.ETYPE_AERO) == EntityTypeConstants.ETYPE_AERO) {
             return "Aero";
-        } else if ((typeId & ETYPE_VTOL) == ETYPE_VTOL) {
+        } else if ((typeId & EntityTypeConstants.ETYPE_VTOL) == EntityTypeConstants.ETYPE_VTOL) {
             return "VTOL";
-        } else if ((typeId & ETYPE_TANK) == ETYPE_TANK) {
+        } else if ((typeId & EntityTypeConstants.ETYPE_TANK) == EntityTypeConstants.ETYPE_TANK) {
             return "Tank";
-        } else if ((typeId & ETYPE_INFANTRY) == ETYPE_INFANTRY) {
+        } else if ((typeId & EntityTypeConstants.ETYPE_INFANTRY) == EntityTypeConstants.ETYPE_INFANTRY) {
             return "Infantry";
-        } else if ((typeId & ETYPE_PROTOMEK) == ETYPE_PROTOMEK) {
+        } else if ((typeId & EntityTypeConstants.ETYPE_PROTOMEK) == EntityTypeConstants.ETYPE_PROTOMEK) {
             return "ProtoMek";
         } else {
             return "Unknown";
@@ -14015,59 +13959,59 @@ public abstract class Entity extends TurnOrdered
      * @return A String representation of the given type
      */
     public static String getEntityTypeName(long typeId) {
-        if ((typeId & ETYPE_LAND_AIR_MEK) == ETYPE_LAND_AIR_MEK) {
+        if ((typeId & EntityTypeConstants.ETYPE_LAND_AIR_MEK) == EntityTypeConstants.ETYPE_LAND_AIR_MEK) {
             return "Land Air Mek";
-        } else if ((typeId & ETYPE_BIPED_MEK) == ETYPE_BIPED_MEK) {
+        } else if ((typeId & EntityTypeConstants.ETYPE_BIPED_MEK) == EntityTypeConstants.ETYPE_BIPED_MEK) {
             return "Biped Mek";
-        } else if ((typeId & ETYPE_QUAD_MEK) == ETYPE_QUAD_MEK) {
+        } else if ((typeId & EntityTypeConstants.ETYPE_QUAD_MEK) == EntityTypeConstants.ETYPE_QUAD_MEK) {
             return "Quad Mek";
-        } else if ((typeId & ETYPE_TRIPOD_MEK) == ETYPE_TRIPOD_MEK) {
+        } else if ((typeId & EntityTypeConstants.ETYPE_TRIPOD_MEK) == EntityTypeConstants.ETYPE_TRIPOD_MEK) {
             return "Tripod Mek";
-        } else if ((typeId & ETYPE_ARMLESS_MEK) == ETYPE_ARMLESS_MEK) {
+        } else if ((typeId & EntityTypeConstants.ETYPE_ARMLESS_MEK) == EntityTypeConstants.ETYPE_ARMLESS_MEK) {
             return "Armless Mek";
-        } else if ((typeId & ETYPE_MEK) == ETYPE_MEK) {
+        } else if ((typeId & EntityTypeConstants.ETYPE_MEK) == EntityTypeConstants.ETYPE_MEK) {
             return "Mek";
-        } else if ((typeId & ETYPE_WARSHIP) == ETYPE_WARSHIP) {
+        } else if ((typeId & EntityTypeConstants.ETYPE_WARSHIP) == EntityTypeConstants.ETYPE_WARSHIP) {
             return "WarShip";
-        } else if ((typeId & ETYPE_SPACE_STATION) == ETYPE_SPACE_STATION) {
+        } else if ((typeId & EntityTypeConstants.ETYPE_SPACE_STATION) == EntityTypeConstants.ETYPE_SPACE_STATION) {
             return "Space Station";
-        } else if ((typeId & ETYPE_JUMPSHIP) == ETYPE_JUMPSHIP) {
+        } else if ((typeId & EntityTypeConstants.ETYPE_JUMPSHIP) == EntityTypeConstants.ETYPE_JUMPSHIP) {
             return "JumpShip";
-        } else if ((typeId & ETYPE_FIXED_WING_SUPPORT) == ETYPE_FIXED_WING_SUPPORT) {
+        } else if ((typeId & EntityTypeConstants.ETYPE_FIXED_WING_SUPPORT) == EntityTypeConstants.ETYPE_FIXED_WING_SUPPORT) {
             return "Fixed Wing Support";
-        } else if ((typeId & ETYPE_CONV_FIGHTER) == ETYPE_CONV_FIGHTER) {
+        } else if ((typeId & EntityTypeConstants.ETYPE_CONV_FIGHTER) == EntityTypeConstants.ETYPE_CONV_FIGHTER) {
             return "Conventional Fighter";
-        } else if ((typeId & ETYPE_FIGHTER_SQUADRON) == ETYPE_FIGHTER_SQUADRON) {
+        } else if ((typeId & EntityTypeConstants.ETYPE_FIGHTER_SQUADRON) == EntityTypeConstants.ETYPE_FIGHTER_SQUADRON) {
             return "Fighter Squadron";
-        } else if ((typeId & ETYPE_DROPSHIP) == ETYPE_DROPSHIP) {
+        } else if ((typeId & EntityTypeConstants.ETYPE_DROPSHIP) == EntityTypeConstants.ETYPE_DROPSHIP) {
             return "DropShip";
-        } else if ((typeId & ETYPE_SMALL_CRAFT) == ETYPE_SMALL_CRAFT) {
+        } else if ((typeId & EntityTypeConstants.ETYPE_SMALL_CRAFT) == EntityTypeConstants.ETYPE_SMALL_CRAFT) {
             return "Small Craft";
-        } else if ((typeId & ETYPE_TELEMISSILE) == ETYPE_TELEMISSILE) {
+        } else if ((typeId & EntityTypeConstants.ETYPE_TELEMISSILE) == EntityTypeConstants.ETYPE_TELEMISSILE) {
             return "Telemissile";
-        } else if ((typeId & ETYPE_AERO) == ETYPE_AERO) {
+        } else if ((typeId & EntityTypeConstants.ETYPE_AERO) == EntityTypeConstants.ETYPE_AERO) {
             return "Aerospace fighter";
-        } else if ((typeId & ETYPE_BATTLEARMOR) == ETYPE_BATTLEARMOR) {
+        } else if ((typeId & EntityTypeConstants.ETYPE_BATTLEARMOR) == EntityTypeConstants.ETYPE_BATTLEARMOR) {
             return "Battlearmor";
-        } else if ((typeId & ETYPE_MEKWARRIOR) == ETYPE_MEKWARRIOR) {
+        } else if ((typeId & EntityTypeConstants.ETYPE_MEKWARRIOR) == EntityTypeConstants.ETYPE_MEKWARRIOR) {
             return "MekWarrior";
-        } else if ((typeId & ETYPE_PROTOMEK) == ETYPE_PROTOMEK) {
+        } else if ((typeId & EntityTypeConstants.ETYPE_PROTOMEK) == EntityTypeConstants.ETYPE_PROTOMEK) {
             return "ProtoMek";
-        } else if ((typeId & ETYPE_INFANTRY) == ETYPE_INFANTRY) {
+        } else if ((typeId & EntityTypeConstants.ETYPE_INFANTRY) == EntityTypeConstants.ETYPE_INFANTRY) {
             return "Infantry";
-        } else if ((typeId & ETYPE_GUN_EMPLACEMENT) == ETYPE_GUN_EMPLACEMENT) {
+        } else if ((typeId & EntityTypeConstants.ETYPE_GUN_EMPLACEMENT) == EntityTypeConstants.ETYPE_GUN_EMPLACEMENT) {
             return "Gun Emplacement";
-        } else if ((typeId & ETYPE_SUPER_HEAVY_TANK) == ETYPE_SUPER_HEAVY_TANK) {
+        } else if ((typeId & EntityTypeConstants.ETYPE_SUPER_HEAVY_TANK) == EntityTypeConstants.ETYPE_SUPER_HEAVY_TANK) {
             return "Superheavy Tank";
-        } else if ((typeId & ETYPE_LARGE_SUPPORT_TANK) == ETYPE_LARGE_SUPPORT_TANK) {
+        } else if ((typeId & EntityTypeConstants.ETYPE_LARGE_SUPPORT_TANK) == EntityTypeConstants.ETYPE_LARGE_SUPPORT_TANK) {
             return "Large Support Tank";
-        } else if ((typeId & ETYPE_SUPPORT_TANK) == ETYPE_SUPPORT_TANK) {
+        } else if ((typeId & EntityTypeConstants.ETYPE_SUPPORT_TANK) == EntityTypeConstants.ETYPE_SUPPORT_TANK) {
             return "Support Tank";
-        } else if ((typeId & ETYPE_SUPPORT_VTOL) == ETYPE_SUPPORT_VTOL) {
+        } else if ((typeId & EntityTypeConstants.ETYPE_SUPPORT_VTOL) == EntityTypeConstants.ETYPE_SUPPORT_VTOL) {
             return "Support VTOL";
-        } else if ((typeId & ETYPE_VTOL) == ETYPE_VTOL) {
+        } else if ((typeId & EntityTypeConstants.ETYPE_VTOL) == EntityTypeConstants.ETYPE_VTOL) {
             return "VTOL";
-        } else if ((typeId & ETYPE_TANK) == ETYPE_TANK) {
+        } else if ((typeId & EntityTypeConstants.ETYPE_TANK) == EntityTypeConstants.ETYPE_TANK) {
             return "Tank";
         } else {
             return "Unknown";
@@ -14148,9 +14092,9 @@ public abstract class Entity extends TurnOrdered
         }
 
         int maxRange = 0;
-        if ((ETYPE_MEK == getEntityType()) ||
-                  (ETYPE_INFANTRY == getEntityType()) ||
-                  (ETYPE_PROTOMEK == getEntityType())) {
+        if ((EntityTypeConstants.ETYPE_MEK == getEntityType()) ||
+                  (EntityTypeConstants.ETYPE_INFANTRY == getEntityType()) ||
+                  (EntityTypeConstants.ETYPE_PROTOMEK == getEntityType())) {
             // account for physical attacks.
             maxRange = 1;
         }

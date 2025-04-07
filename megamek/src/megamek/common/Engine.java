@@ -362,7 +362,7 @@ public class Engine implements Serializable, ITechnology {
             }
 
             return roundWeight.round(weight, entity);
-        } else if (entity.hasETypeFlag(Entity.ETYPE_PROTOMEK) && (engineRating < 40)) {
+        } else if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK) && (engineRating < 40)) {
             // ProtoMek engines with rating < 40 use a special calculation
             return roundWeight.round(engineRating * 0.025, entity);
         }

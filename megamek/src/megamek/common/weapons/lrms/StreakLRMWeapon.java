@@ -13,13 +13,8 @@
  */
 package megamek.common.weapons.lrms;
 
-import megamek.common.AmmoType;
+import megamek.common.*;
 import megamek.common.alphaStrike.AlphaStrikeElement;
-import megamek.common.Entity;
-import megamek.common.Game;
-import megamek.common.SimpleTechLevel;
-import megamek.common.Mounted;
-import megamek.common.ToHitData;
 import megamek.common.actions.WeaponAttackAction;
 import megamek.common.weapons.AttackHandler;
 import megamek.common.weapons.StreakLRMHandler;
@@ -48,7 +43,7 @@ public abstract class StreakLRMWeapon extends LRMWeapon {
 
     @Override
     public double getTonnage(Entity entity, int location, double size) {
-        if ((entity != null) && entity.hasETypeFlag(Entity.ETYPE_PROTOMEK)) {
+        if ((entity != null) && entity.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK)) {
             return getRackSize() * 0.4;
         } else {
             return super.getTonnage(entity, location, size);

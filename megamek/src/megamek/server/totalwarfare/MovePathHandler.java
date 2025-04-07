@@ -786,7 +786,7 @@ class MovePathHandler extends AbstractTWRuleHandler {
                         addReport(r);
                         // check for quicksand
                         addReport(gameManager.checkQuickSand(curPos));
-                    } else if (!entity.hasETypeFlag(Entity.ETYPE_INFANTRY)) {
+                    } else if (!entity.hasETypeFlag(EntityTypeConstants.ETYPE_INFANTRY)) {
                         rollTarget = new PilotingRollData(entity.getId(),
                                 5, "entering boggy terrain");
                         rollTarget.append(new PilotingRollData(entity.getId(),
@@ -999,10 +999,10 @@ class MovePathHandler extends AbstractTWRuleHandler {
                     // try to land safely; LAMs require a psr when landing with gyro or leg actuator
                     // damage and ProtoMeks always require a roll
                     int elevation = (null == prevStep) ? entity.getElevation() : prevStep.getElevation();
-                    if (entity.hasETypeFlag(Entity.ETYPE_LAND_AIR_MEK)) {
+                    if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_LAND_AIR_MEK)) {
                         addReport(gameManager.landAirMek((LandAirMek) entity, entity.getPosition(), elevation,
                                 entity.delta_distance));
-                    } else if (entity.hasETypeFlag(Entity.ETYPE_PROTOMEK)) {
+                    } else if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK)) {
                         gameManager.getMainPhaseReport()
                                 .addAll(gameManager.landGliderPM((ProtoMek) entity, entity.getPosition(),
                                         elevation, entity.delta_distance));
@@ -1058,8 +1058,8 @@ class MovePathHandler extends AbstractTWRuleHandler {
                                     violation instanceof Mek));
                         }
                     }
-                } else if (!entity.hasETypeFlag(Entity.ETYPE_LAND_AIR_MEK)
-                        && !entity.hasETypeFlag(Entity.ETYPE_PROTOMEK)) {
+                } else if (!entity.hasETypeFlag(EntityTypeConstants.ETYPE_LAND_AIR_MEK)
+                        && !entity.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK)) {
 
                     // we didn't land, so we go to elevation 1 above the terrain
                     // features
@@ -1460,7 +1460,7 @@ class MovePathHandler extends AbstractTWRuleHandler {
                         addReport(gameManager.checkDropBAFromConverting(entity, rider, curPos, curFacing,
                                 false, false, false));
                     }
-                } else if ((entity.getEntityType() & Entity.ETYPE_LAND_AIR_MEK) != 0) {
+                } else if ((entity.getEntityType() & EntityTypeConstants.ETYPE_LAND_AIR_MEK) != 0) {
                     // External units on LAMs, including swarmers, fall automatically and take
                     // damage,
                     // and the LAM itself may take one or more criticals.

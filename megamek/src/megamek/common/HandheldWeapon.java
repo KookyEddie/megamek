@@ -256,7 +256,7 @@ public class HandheldWeapon extends Entity {
 
     @Override
     public long getEntityType() {
-        return Entity.ETYPE_HANDHELD_WEAPON;
+        return EntityTypeConstants.ETYPE_HANDHELD_WEAPON;
     }
 
     @Override

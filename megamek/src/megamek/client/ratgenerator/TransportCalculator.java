@@ -61,11 +61,11 @@ public class TransportCalculator {
         List<Entity> allUnits = new ArrayList<>();
         fd.addAllEntities(allUnits);
         for (Entity en : allUnits) {
-            if (en.hasETypeFlag(Entity.ETYPE_MEK)) {
+            if (en.hasETypeFlag(EntityTypeConstants.ETYPE_MEK)) {
                 unitCounts.merge(UnitType.MEK, 1, Integer::sum);
-            } else if (en.hasETypeFlag(Entity.ETYPE_PROTOMEK)) {
+            } else if (en.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK)) {
                 unitCounts.merge(UnitType.PROTOMEK, 1, Integer::sum);
-            } else if (en.hasETypeFlag(Entity.ETYPE_TANK)) {
+            } else if (en.hasETypeFlag(EntityTypeConstants.ETYPE_TANK)) {
                 if (en.getWeight() > 100) {
                     unitCounts.merge(UnitType.NAVAL, 1, Integer::sum);
                 } else if (en.getWeight() > 50) {
@@ -73,16 +73,16 @@ public class TransportCalculator {
                 } else {
                     unitCounts.merge(UnitType.VTOL, 1, Integer::sum);
                 }
-            } else if (en.hasETypeFlag(Entity.ETYPE_BATTLEARMOR)) {
+            } else if (en.hasETypeFlag(EntityTypeConstants.ETYPE_BATTLEARMOR)) {
                 unitCounts.merge(UnitType.BATTLE_ARMOR, 1, Integer::sum);
-            } else if (en.hasETypeFlag(Entity.ETYPE_INFANTRY)) {
+            } else if (en.hasETypeFlag(EntityTypeConstants.ETYPE_INFANTRY)) {
                 // Here we need to count the transport weight of the platoon rather than just the number
                 unitCounts.merge(UnitType.INFANTRY,
                       InfantryTransporter.PlatoonType.getPlatoonType(en).getWeight(),
                       Integer::sum);
-            } else if (en.hasETypeFlag(Entity.ETYPE_DROPSHIP)) {
+            } else if (en.hasETypeFlag(EntityTypeConstants.ETYPE_DROPSHIP)) {
                 unitCounts.merge(UnitType.DROPSHIP, 1, Integer::sum);
-            } else if (en.hasETypeFlag(Entity.ETYPE_SMALL_CRAFT)) {
+            } else if (en.hasETypeFlag(EntityTypeConstants.ETYPE_SMALL_CRAFT)) {
                 unitCounts.merge(UnitType.SMALL_CRAFT, 1, Integer::sum);
             } else if (en.isFighter()) {
                 unitCounts.merge(UnitType.AEROSPACEFIGHTER, 1, Integer::sum);

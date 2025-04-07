@@ -1185,7 +1185,7 @@ public class Jumpship extends Aero {
 
     @Override
     public long getEntityType() {
-        return Entity.ETYPE_AERO | Entity.ETYPE_JUMPSHIP;
+        return EntityTypeConstants.ETYPE_AERO | EntityTypeConstants.ETYPE_JUMPSHIP;
     }
 
     /*

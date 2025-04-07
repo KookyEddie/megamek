@@ -67,20 +67,20 @@ public class InfantryFireControl extends FireControl {
 
         // some preliminary computations
         // whether the target is an infantry platoon
-        boolean targetIsPlatoon = target.hasETypeFlag(Entity.ETYPE_INFANTRY) && !((Infantry) target).isSquad();
+        boolean targetIsPlatoon = target.hasETypeFlag(EntityTypeConstants.ETYPE_INFANTRY) && !((Infantry) target).isSquad();
         // whether the target is infantry (and not battle armor)
-        boolean targetIsActualInfantry = target.hasETypeFlag(Entity.ETYPE_INFANTRY)
-                && !target.hasETypeFlag(Entity.ETYPE_BATTLEARMOR);
-        boolean shooterIsActualInfantry = shooter.hasETypeFlag(Entity.ETYPE_INFANTRY)
-                && !shooter.hasETypeFlag(Entity.ETYPE_BATTLEARMOR);
+        boolean targetIsActualInfantry = target.hasETypeFlag(EntityTypeConstants.ETYPE_INFANTRY)
+                && !target.hasETypeFlag(EntityTypeConstants.ETYPE_BATTLEARMOR);
+        boolean shooterIsActualInfantry = shooter.hasETypeFlag(EntityTypeConstants.ETYPE_INFANTRY)
+                && !shooter.hasETypeFlag(EntityTypeConstants.ETYPE_BATTLEARMOR);
         // field guns can't fire if the unit in question moved
         boolean otherWeaponsMayShoot = !shooterIsActualInfantry || shooterPath.getMpUsed() == 0;
         boolean inBuilding = Compute.isInBuilding(target.getGame(), targetPath.getFinalElevation(),
                 targetPath.getFinalCoords());
         boolean inOpen = ServerHelper.infantryInOpen(target, targetHex, target.getGame(), targetIsPlatoon, false,
                 false);
-        boolean nonInfantryVsMechanized = !shooter.hasETypeFlag(Entity.ETYPE_INFANTRY)
-                && target.hasETypeFlag(Entity.ETYPE_INFANTRY) && ((Infantry) target).isMechanized();
+        boolean nonInfantryVsMechanized = !shooter.hasETypeFlag(EntityTypeConstants.ETYPE_INFANTRY)
+                && target.hasETypeFlag(EntityTypeConstants.ETYPE_INFANTRY) && ((Infantry) target).isMechanized();
 
         // cycle through my weapons
         for (final WeaponMounted weapon : shooter.getWeaponList()) {

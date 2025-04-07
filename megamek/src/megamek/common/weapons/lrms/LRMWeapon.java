@@ -19,10 +19,7 @@
  */
 package megamek.common.weapons.lrms;
 
-import megamek.common.AmmoType;
-import megamek.common.Entity;
-import megamek.common.Game;
-import megamek.common.ToHitData;
+import megamek.common.*;
 import megamek.common.actions.WeaponAttackAction;
 import megamek.common.options.IGameOptions;
 import megamek.common.options.OptionsConstants;
@@ -64,7 +61,7 @@ public abstract class LRMWeapon extends MissileWeapon {
 
     @Override
     public double getTonnage(Entity entity, int location, double size) {
-        if ((null != entity) && entity.hasETypeFlag(Entity.ETYPE_PROTOMEK)) {
+        if ((null != entity) && entity.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK)) {
             return getRackSize() * 0.2;
         } else {
             return super.getTonnage(entity, location, size);

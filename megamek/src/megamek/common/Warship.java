@@ -156,7 +156,7 @@ public class Warship extends Jumpship {
 
     @Override
     public long getEntityType() {
-        return Entity.ETYPE_AERO | Entity.ETYPE_JUMPSHIP | Entity.ETYPE_WARSHIP;
+        return EntityTypeConstants.ETYPE_AERO | EntityTypeConstants.ETYPE_JUMPSHIP | EntityTypeConstants.ETYPE_WARSHIP;
     }
 
     @Override

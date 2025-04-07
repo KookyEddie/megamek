@@ -40,13 +40,7 @@ import javax.swing.ImageIcon;
 import megamek.client.ui.swing.GUIPreferences;
 import megamek.client.ui.swing.util.PlayerColour;
 import megamek.codeUtilities.MathUtility;
-import megamek.common.Configuration;
-import megamek.common.Entity;
-import megamek.common.FighterSquadron;
-import megamek.common.GunEmplacement;
-import megamek.common.Infantry;
-import megamek.common.Tank;
-import megamek.common.VTOL;
+import megamek.common.*;
 import megamek.common.annotations.Nullable;
 import megamek.common.icons.Camouflage;
 import megamek.common.util.ImageUtil;
@@ -234,13 +228,13 @@ public class EntityImage {
         // gun emplacements don't show up as crippled when destroyed, which leads to
         // them looking pristine
         if ((entity instanceof GunEmplacement) && entity.isDestroyed()) {
-            return Entity.DMG_CRIPPLED;
+            return DamageTypeConstants.DMG_CRIPPLED;
         }
 
         // aerospace fighters where the pilot ejects look pretty dumb without any damage
         // decals so let's give them at least some damage
         if (entity.isAirborne() && entity.getCrew().isEjected()) {
-            return Math.max(Entity.DMG_HEAVY, entity.getDamageLevel(false));
+            return Math.max(DamageTypeConstants.DMG_HEAVY, entity.getDamageLevel(false));
         }
 
         int calculatedDamageLevel = entity.getDamageLevel();
@@ -249,10 +243,10 @@ public class EntityImage {
         // out of ammo or otherwise but not having taken any actual damage. In this
         // case, it looks stupid for the entity to be all shot up, so we pretend there's
         // no damage.
-        if ((calculatedDamageLevel > Entity.DMG_NONE) &&
+        if ((calculatedDamageLevel > DamageTypeConstants.DMG_NONE) &&
                 (entity.getArmorRemainingPercent() >= 1.0) &&
                 (entity.getInternalRemainingPercent() >= 1.0)) {
-            calculatedDamageLevel = Entity.DMG_NONE;
+            calculatedDamageLevel = DamageTypeConstants.DMG_NONE;
         }
 
         return calculatedDamageLevel;
@@ -640,13 +634,13 @@ public class EntityImage {
     private Image getDamageDecal(Entity entity, int pos) {
         try {
             switch (dmgLevel) {
-                case Entity.DMG_LIGHT:
+                case DamageTypeConstants.DMG_LIGHT:
                     return getIM(PATH_LIGHT, entity.getShortName(), pos);
-                case Entity.DMG_MODERATE:
+                case DamageTypeConstants.DMG_MODERATE:
                     return getIM(PATH_MODERATE, entity.getShortName(), pos);
-                case Entity.DMG_HEAVY:
+                case DamageTypeConstants.DMG_HEAVY:
                     return getIM(PATH_HEAVY, entity.getShortName(), pos);
-                case Entity.DMG_CRIPPLED:
+                case DamageTypeConstants.DMG_CRIPPLED:
                     return getIM(PATH_CRIPPLED, entity.getShortName(), pos);
                 default: // DMG_NONE:
                     return null;
@@ -664,26 +658,26 @@ public class EntityImage {
     private Image getSmokeImage(Entity entity, int pos) {
         try {
             // No smoke and fire for damage up to moderate
-            if (dmgLevel == Entity.DMG_NONE
-                    || dmgLevel == Entity.DMG_LIGHT
-                    || dmgLevel == Entity.DMG_MODERATE) {
+            if (dmgLevel == DamageTypeConstants.DMG_NONE
+                    || dmgLevel == DamageTypeConstants.DMG_LIGHT
+                    || dmgLevel == DamageTypeConstants.DMG_MODERATE) {
                 return dmgEmpty;
             }
 
             String path;
             if (pos > -1) {
                 // Multi-hex units get their own overlays
-                path = dmgLevel == Entity.DMG_HEAVY ? PATH_SMOKEMULTI : PATH_FIREMULTI;
+                path = dmgLevel == DamageTypeConstants.DMG_HEAVY ? PATH_SMOKEMULTI : PATH_FIREMULTI;
             } else {
                 // Three stacks of smoke and fire for wide and heavy units,
                 // two for slimmer and medium units and one for very slim
                 // and light units
                 if (weight > SMOKE_THREE && !isSlim) {
-                    path = dmgLevel == Entity.DMG_HEAVY ? PATH_SMOKE3 : PATH_FIRE3;
+                    path = dmgLevel == DamageTypeConstants.DMG_HEAVY ? PATH_SMOKE3 : PATH_FIRE3;
                 } else if (weight > SMOKE_TWO && !isVerySlim) {
-                    path = dmgLevel == Entity.DMG_HEAVY ? PATH_SMOKE2 : PATH_FIRE2;
+                    path = dmgLevel == DamageTypeConstants.DMG_HEAVY ? PATH_SMOKE2 : PATH_FIRE2;
                 } else {
-                    path = dmgLevel == Entity.DMG_HEAVY ? PATH_SMOKE1 : PATH_FIRE1;
+                    path = dmgLevel == DamageTypeConstants.DMG_HEAVY ? PATH_SMOKE1 : PATH_FIRE1;
                 }
             }
             // Use the same smoke image for all positions of multi-hex units (pos = 0)!

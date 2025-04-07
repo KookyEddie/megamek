@@ -793,7 +793,7 @@ public class MissileWeaponHandler extends AmmoWeaponHandler {
         // with this handler. They'll use the cluster table too.
         // Don't use this if Aero Sanity is on...
         if (entityTarget != null
-                && entityTarget.hasETypeFlag(Entity.ETYPE_DROPSHIP)
+                && entityTarget.hasETypeFlag(EntityTypeConstants.ETYPE_DROPSHIP)
                 && !game.getOptions().booleanOption(OptionsConstants.ADVAERORULES_AERO_SANITY)
                 && (waa.isAirToAir(game) || (waa.isAirToGround(game) && !ae.usesWeaponBays()))) {
             nDamPerHit = attackValue;

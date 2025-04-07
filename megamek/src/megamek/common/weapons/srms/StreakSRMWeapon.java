@@ -13,11 +13,7 @@
  */
 package megamek.common.weapons.srms;
 
-import megamek.common.AmmoType;
-import megamek.common.Entity;
-import megamek.common.Game;
-import megamek.common.Mounted;
-import megamek.common.ToHitData;
+import megamek.common.*;
 import megamek.common.actions.WeaponAttackAction;
 import megamek.common.weapons.AttackHandler;
 import megamek.common.weapons.StreakHandler;
@@ -37,7 +33,7 @@ public abstract class StreakSRMWeapon extends SRMWeapon {
 
     @Override
     public double getTonnage(Entity entity, int location, double size) {
-        if ((null != entity) && entity.hasETypeFlag(Entity.ETYPE_PROTOMEK)) {
+        if ((null != entity) && entity.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK)) {
             return getRackSize() * 0.5;
         } else {
             return super.getTonnage(entity, location, size);

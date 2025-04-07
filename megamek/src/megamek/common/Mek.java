@@ -518,7 +518,7 @@ public abstract class Mek extends Entity {
 
     @Override
     public void load(Entity unit, boolean checkElev, int bayNumber) {
-        if (unit.hasETypeFlag(Entity.ETYPE_PROTOMEK)) {
+        if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK)) {
             boolean rear = bayNumber > 0;
             for (Transporter t : getTransports()) {
                 if ((t instanceof ProtoMekClampMount)
@@ -2897,7 +2897,7 @@ public abstract class Mek extends Entity {
     // From IO pg 50
     public static TechAdvancement getTechAdvancement(long etype, boolean primitive, boolean industrial,
             int weightClass) {
-        if ((etype & ETYPE_TRIPOD_MEK) != 0) {
+        if ((etype & EntityTypeConstants.ETYPE_TRIPOD_MEK) != 0) {
             if (weightClass != EntityWeightClass.WEIGHT_SUPER_HEAVY) {
                 return new TechAdvancement(TECH_BASE_IS)
                         .setISAdvancement(2585, 2602).setISApproximate(true).setPrototypeFactions(F_TH)
@@ -5972,7 +5972,7 @@ public abstract class Mek extends Entity {
             first = false;
         }
 
-        if ((getEntityType() & ETYPE_QUADVEE) != 0
+        if ((getEntityType() & EntityTypeConstants.ETYPE_QUADVEE) != 0
                 && hasSystem(QuadVee.SYSTEM_CONVERSION_GEAR, loc)
                 && (getDamagedCriticals(CriticalSlot.TYPE_SYSTEM,
                         QuadVee.SYSTEM_CONVERSION_GEAR, loc) > 0)) {
@@ -5983,7 +5983,7 @@ public abstract class Mek extends Entity {
             first = false;
         }
 
-        if ((getEntityType() & ETYPE_LAND_AIR_MEK) != 0
+        if ((getEntityType() & EntityTypeConstants.ETYPE_LAND_AIR_MEK) != 0
                 && hasSystem(LandAirMek.LAM_AVIONICS, loc)
                 && (getDamagedCriticals(CriticalSlot.TYPE_SYSTEM,
                         LandAirMek.LAM_AVIONICS, loc) > 0)) {
@@ -5994,7 +5994,7 @@ public abstract class Mek extends Entity {
             first = false;
         }
 
-        if ((getEntityType() & ETYPE_LAND_AIR_MEK) != 0
+        if ((getEntityType() & EntityTypeConstants.ETYPE_LAND_AIR_MEK) != 0
                 && hasSystem(LandAirMek.LAM_LANDING_GEAR, loc)
                 && (getDamagedCriticals(CriticalSlot.TYPE_SYSTEM,
                         LandAirMek.LAM_LANDING_GEAR, loc) > 0)) {
@@ -6323,7 +6323,7 @@ public abstract class Mek extends Entity {
 
     @Override
     public long getEntityType() {
-        return Entity.ETYPE_MEK;
+        return EntityTypeConstants.ETYPE_MEK;
     }
 
     @Override

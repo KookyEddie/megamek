@@ -66,7 +66,7 @@ public class DropshuttleBay extends UnitBay {
     @Override
     public boolean canLoad(Entity unit) {
 
-        return unit.hasETypeFlag(Entity.ETYPE_DROPSHIP)
+        return unit.hasETypeFlag(EntityTypeConstants.ETYPE_DROPSHIP)
                 && (unit.getWeight() <= 5000)
                 && (currentSpace >= 1);
     }

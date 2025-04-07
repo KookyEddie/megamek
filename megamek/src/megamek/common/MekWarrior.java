@@ -137,7 +137,7 @@ public class MekWarrior extends EjectedCrew {
 
     @Override
     public long getEntityType() {
-        return Entity.ETYPE_INFANTRY | Entity.ETYPE_MEKWARRIOR;
+        return EntityTypeConstants.ETYPE_INFANTRY | EntityTypeConstants.ETYPE_MEKWARRIOR;
     }
 
     @Override

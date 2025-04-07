@@ -427,10 +427,10 @@ public class CapitalMissileBearingsOnlyHandler extends AmmoBayWeaponHandler {
         for (Iterator<Entity> enemies = game.getAllEnemyEntities(ae); enemies.hasNext(); ) {
             Entity e = enemies.next();
             // Narrow the list to small craft and larger
-            if (((e.getEntityType() & (Entity.ETYPE_SMALL_CRAFT)) != 0)) {
+            if (((e.getEntityType() & (EntityTypeConstants.ETYPE_SMALL_CRAFT)) != 0)) {
                 Aero a = (Aero) e;
                 targets.add(a);
-            } else if (((e.getEntityType() & (Entity.ETYPE_JUMPSHIP)) != 0)) {
+            } else if (((e.getEntityType() & (EntityTypeConstants.ETYPE_JUMPSHIP)) != 0)) {
                 Aero a = (Aero) e;
                 targets.add(a);
             }
@@ -522,8 +522,8 @@ public class CapitalMissileBearingsOnlyHandler extends AmmoBayWeaponHandler {
             // Target the closest large craft
             for (Aero a : targets) {
                 // Ignore small craft for now
-                if (((a.getEntityType() & Entity.ETYPE_SMALL_CRAFT) > 0) &&
-                          ((a.getEntityType() & Entity.ETYPE_DROPSHIP) == 0)) {
+                if (((a.getEntityType() & EntityTypeConstants.ETYPE_SMALL_CRAFT) > 0) &&
+                          ((a.getEntityType() & EntityTypeConstants.ETYPE_DROPSHIP) == 0)) {
                     continue;
                 }
                 int distance = tc.distance(a.getPosition());

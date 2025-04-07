@@ -66,24 +66,24 @@ public class TROView {
 
     public static TROView createView(Entity entity, ViewFormatting formatting) {
         TROView view;
-        if (entity.hasETypeFlag(Entity.ETYPE_MEK)) {
+        if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_MEK)) {
             view = new MekTROView((Mek) entity);
-        } else if (entity.hasETypeFlag(Entity.ETYPE_PROTOMEK)) {
+        } else if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK)) {
             view = new ProtoMekTROView((ProtoMek) entity);
-        } else if (entity.hasETypeFlag(Entity.ETYPE_SUPPORT_TANK)
-                || (entity.hasETypeFlag(Entity.ETYPE_SUPPORT_VTOL))) {
+        } else if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_SUPPORT_TANK)
+                || (entity.hasETypeFlag(EntityTypeConstants.ETYPE_SUPPORT_VTOL))) {
             view = new SupportVeeTROView((Tank) entity);
-        } else if (entity.hasETypeFlag(Entity.ETYPE_TANK)) {
+        } else if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_TANK)) {
             view = new VehicleTROView((Tank) entity);
-        } else if (entity.hasETypeFlag(Entity.ETYPE_SMALL_CRAFT)) {
+        } else if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_SMALL_CRAFT)) {
             view = new SmallCraftDropshipTROView((SmallCraft) entity);
-        } else if (entity.hasETypeFlag(Entity.ETYPE_JUMPSHIP)) {
+        } else if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_JUMPSHIP)) {
             view = new CapitalShipTROView((Jumpship) entity);
-        } else if (entity.hasETypeFlag(Entity.ETYPE_AERO)) {
+        } else if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_AERO)) {
             view = new AeroTROView((Aero) entity);
-        } else if (entity.hasETypeFlag(Entity.ETYPE_BATTLEARMOR)) {
+        } else if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_BATTLEARMOR)) {
             view = new BattleArmorTROView((BattleArmor) entity);
-        } else if (entity.hasETypeFlag(Entity.ETYPE_INFANTRY)) {
+        } else if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_INFANTRY)) {
             view = new InfantryTROView((Infantry) entity);
         } else {
             view = new TROView();
@@ -278,8 +278,8 @@ public class TROView {
     }
 
     public static String formatArmorType(Entity entity, boolean trim) {
-        if (entity.hasETypeFlag(Entity.ETYPE_SUPPORT_TANK) || entity.hasETypeFlag(Entity.ETYPE_SUPPORT_VTOL)
-                || entity.hasETypeFlag(Entity.ETYPE_FIXED_WING_SUPPORT)) {
+        if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_SUPPORT_TANK) || entity.hasETypeFlag(EntityTypeConstants.ETYPE_SUPPORT_VTOL)
+                || entity.hasETypeFlag(EntityTypeConstants.ETYPE_FIXED_WING_SUPPORT)) {
             return "BAR " + entity.getBARRating(Tank.LOC_FRONT);
         }
         if (entity.hasPatchworkArmor()) {
@@ -349,7 +349,7 @@ public class TROView {
                 for (int i = 1; i < locs.length; i++) {
                     if ((locs[i] < entity.locations())
                             && ((!provider.apply(entity, locs[i]).equals(provider.apply(entity, locs[0])))
-                                    || !entity.hasETypeFlag(Entity.ETYPE_MEK))) {
+                                    || !entity.hasETypeFlag(EntityTypeConstants.ETYPE_MEK))) {
                         val = Arrays.stream(locs).filter(l -> l < entity.locations())
                                 .mapToObj(l -> String.valueOf(provider.apply(entity, l)))
                                 .collect(Collectors.joining("/"));

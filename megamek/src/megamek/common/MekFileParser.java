@@ -244,14 +244,14 @@ public class MekFileParser {
             ent.getSensors().add(new Sensor(Sensor.TYPE_VEE_MAGSCAN));
             ent.getSensors().add(new Sensor(Sensor.TYPE_VEE_SEISMIC));
             ent.setNextSensor(ent.getSensors().firstElement());
-        } else if (ent.hasETypeFlag(Entity.ETYPE_CONV_FIGHTER)) {
+        } else if (ent.hasETypeFlag(EntityTypeConstants.ETYPE_CONV_FIGHTER)) {
             // Conventional Fighters get a combined sensor suite
             ent.getSensors().add(new Sensor(Sensor.TYPE_AERO_SENSOR));
             ent.setNextSensor(ent.getSensors().firstElement());
-        } else if (ent.hasETypeFlag(Entity.ETYPE_DROPSHIP) ||
-                         ent.hasETypeFlag(Entity.ETYPE_SPACE_STATION) ||
-                         ent.hasETypeFlag(Entity.ETYPE_JUMPSHIP) ||
-                         ent.hasETypeFlag(Entity.ETYPE_WARSHIP)) {
+        } else if (ent.hasETypeFlag(EntityTypeConstants.ETYPE_DROPSHIP) ||
+                         ent.hasETypeFlag(EntityTypeConstants.ETYPE_SPACE_STATION) ||
+                         ent.hasETypeFlag(EntityTypeConstants.ETYPE_JUMPSHIP) ||
+                         ent.hasETypeFlag(EntityTypeConstants.ETYPE_WARSHIP)) {
             // Large craft get active radar
             // And both a passive sensor suite and thermal/optical sensors, which only work
             // in space

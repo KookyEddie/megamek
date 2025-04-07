@@ -21,15 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import megamek.common.Aero;
-import megamek.common.AmmoType;
-import megamek.common.Entity;
-import megamek.common.EntityFluff;
-import megamek.common.FighterSquadron;
-import megamek.common.Messages;
-import megamek.common.MiscType;
-import megamek.common.Mounted;
-import megamek.common.WeaponType;
+import megamek.common.*;
 import megamek.common.equipment.AmmoMounted;
 import megamek.common.equipment.WeaponMounted;
 import megamek.common.verifier.EntityVerifier;
@@ -71,7 +63,7 @@ public class AeroTROView extends TROView {
                                           Justification.CENTER, Justification.CENTER, Justification.CENTER }));
         addFluff();
         setModelData("isOmni", aero.isOmni());
-        setModelData("isConventional", aero.hasETypeFlag(Entity.ETYPE_CONV_FIGHTER));
+        setModelData("isConventional", aero.hasETypeFlag(EntityTypeConstants.ETYPE_CONV_FIGHTER));
         setModelData("isSupportVehicle", aero.isSupportVehicle());
         setModelData("isVSTOL", aero.isVSTOL());
         setModelData("isFighterSquadron", aero instanceof FighterSquadron);

@@ -293,7 +293,7 @@ public class BipedMek extends MekWithArms {
 
     @Override
     public long getEntityType() {
-        return Entity.ETYPE_MEK | Entity.ETYPE_BIPED_MEK;
+        return EntityTypeConstants.ETYPE_MEK | EntityTypeConstants.ETYPE_BIPED_MEK;
     }
 
     /**

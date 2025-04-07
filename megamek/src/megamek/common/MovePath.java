@@ -1879,7 +1879,7 @@ public class MovePath implements Cloneable, Serializable {
             moved += getHexesMoved();
         }
         if ((moved >= 5)
-                || (getEntity().hasETypeFlag(Entity.ETYPE_PROTOMEK)
+                || (getEntity().hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK)
                         && moved == 4)) {
             return false;
         }

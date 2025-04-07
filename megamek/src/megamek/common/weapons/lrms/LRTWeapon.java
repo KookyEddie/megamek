@@ -23,12 +23,8 @@ import static megamek.common.MountedHelper.isArtemisIV;
 import static megamek.common.MountedHelper.isArtemisProto;
 import static megamek.common.MountedHelper.isArtemisV;
 
-import megamek.common.AmmoType;
+import megamek.common.*;
 import megamek.common.alphaStrike.AlphaStrikeElement;
-import megamek.common.Entity;
-import megamek.common.Game;
-import megamek.common.Mounted;
-import megamek.common.ToHitData;
 import megamek.common.actions.WeaponAttackAction;
 import megamek.common.options.IGameOptions;
 import megamek.common.options.OptionsConstants;
@@ -58,7 +54,7 @@ public abstract class LRTWeapon extends MissileWeapon {
 
     @Override
     public double getTonnage(Entity entity, int location, double size) {
-        if ((entity != null) && entity.hasETypeFlag(Entity.ETYPE_PROTOMEK)) {
+        if ((entity != null) && entity.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK)) {
             return getRackSize() * 0.2;
         } else {
             return super.getTonnage(entity, location, size);

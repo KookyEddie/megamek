@@ -821,9 +821,9 @@ public class MiscType extends EquipmentType {
         } else if (hasFlag(MiscType.F_SRCS) || hasFlag(F_SASRCS)) {
             if (entity.getWeight() >= 10) {
                 double pct = 0.05;
-                if (entity.hasETypeFlag(Entity.ETYPE_DROPSHIP) || entity.hasETypeFlag(Entity.ETYPE_SPACE_STATION)) {
+                if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_DROPSHIP) || entity.hasETypeFlag(EntityTypeConstants.ETYPE_SPACE_STATION)) {
                     pct = 0.07;
-                } else if (entity.hasETypeFlag(Entity.ETYPE_JUMPSHIP)) {
+                } else if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_JUMPSHIP)) {
                     pct = 0.1;
                 }
                 if (getSubType() == S_IMPROVED) {
@@ -832,7 +832,7 @@ public class MiscType extends EquipmentType {
                     pct += 0.03;
                 }
                 // JumpShip is based on non-drive weight and rounded to ton
-                if (entity.hasETypeFlag(Entity.ETYPE_JUMPSHIP)) {
+                if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_JUMPSHIP)) {
                     return RoundWeight.nextTon((entity.getWeight() - ((Jumpship) entity).getJumpDriveWeight()) * pct);
                 }
                 return defaultRounding.round(entity.getWeight() * pct, entity);
@@ -844,11 +844,11 @@ public class MiscType extends EquipmentType {
             }
         } else if (hasFlag(MiscType.F_CASPAR)) {
             double pct = 0.05; // Value for small craft
-            if (entity.hasETypeFlag(Entity.ETYPE_DROPSHIP)) {
+            if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_DROPSHIP)) {
                 pct = 0.04;
-            } else if (entity.hasETypeFlag(Entity.ETYPE_SPACE_STATION)) {
+            } else if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_SPACE_STATION)) {
                 pct = 0.08;
-            } else if (entity.hasETypeFlag(Entity.ETYPE_WARSHIP)) {
+            } else if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_WARSHIP)) {
                 pct = 0.06;
             }
             if (getSubType() == S_IMPROVED) {
@@ -859,18 +859,18 @@ public class MiscType extends EquipmentType {
                     pct += 0.04;
                 }
             }
-            if (entity.hasETypeFlag(Entity.ETYPE_JUMPSHIP)) {
+            if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_JUMPSHIP)) {
                 return RoundWeight.nextTon(entity.getWeight() * pct);
             } else {
                 return defaultRounding.round(entity.getWeight() * pct, entity);
             }
         } else if (hasFlag(MiscType.F_CASPARII)) {
             double pct = 0.06; // Value for small craft
-            if (entity.hasETypeFlag(Entity.ETYPE_DROPSHIP)) {
+            if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_DROPSHIP)) {
                 pct = 0.08;
-            } else if (entity.hasETypeFlag(Entity.ETYPE_SPACE_STATION)) {
+            } else if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_SPACE_STATION)) {
                 pct = 0.1;
-            } else if (entity.hasETypeFlag(Entity.ETYPE_WARSHIP)) {
+            } else if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_WARSHIP)) {
                 pct = 0.12;
             }
             if (getSubType() == S_IMPROVED) {
@@ -881,7 +881,7 @@ public class MiscType extends EquipmentType {
                     pct += 0.04;
                 }
             }
-            if (entity.hasETypeFlag(Entity.ETYPE_JUMPSHIP)) {
+            if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_JUMPSHIP)) {
                 return RoundWeight.nextTon(entity.getWeight() * pct);
             } else {
                 return defaultRounding.round(entity.getWeight() * pct, entity);

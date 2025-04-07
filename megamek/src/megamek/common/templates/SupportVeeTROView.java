@@ -74,7 +74,7 @@ public class SupportVeeTROView extends TROView {
         addTransportBays(tank);
         final TestSupportVehicle testTank = new TestSupportVehicle(tank, verifier.tankOption, null);
         setModelData("isOmni", tank.isOmni());
-        setModelData("isVTOL", tank.hasETypeFlag(Entity.ETYPE_VTOL));
+        setModelData("isVTOL", tank.hasETypeFlag(EntityTypeConstants.ETYPE_VTOL));
         setModelData("isSuperheavy", tank.isSuperHeavy());
         setModelData("isSupport", tank.isSupportVehicle());
         setModelData("hasTurret", !tank.hasNoTurret());
@@ -118,7 +118,7 @@ public class SupportVeeTROView extends TROView {
             { LargeSupportTank.LOC_TURRET }, { LargeSupportTank.LOC_TURRET_2 } };
 
     private void addArmorAndStructure() {
-        if (tank.hasETypeFlag(Entity.ETYPE_LARGE_SUPPORT_TANK)) {
+        if (tank.hasETypeFlag(EntityTypeConstants.ETYPE_LARGE_SUPPORT_TANK)) {
             setModelData("structureValues",
                     addArmorStructureEntries(tank, Entity::getOInternal, LARGE_SUPPORT_ARMOR_LOCS));
             setModelData("armorValues",

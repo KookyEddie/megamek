@@ -76,7 +76,7 @@ public class TripodMek extends MekWithArms {
 
     @Override
     public long getEntityType() {
-        return Entity.ETYPE_MEK | Entity.ETYPE_TRIPOD_MEK;
+        return EntityTypeConstants.ETYPE_MEK | EntityTypeConstants.ETYPE_TRIPOD_MEK;
     }
 
     @Override

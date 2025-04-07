@@ -26,16 +26,11 @@ import static org.mockito.Mockito.when;
 import java.io.File;
 import java.util.Vector;
 
+import megamek.common.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
-
-import megamek.common.Bay;
-import megamek.common.Entity;
-import megamek.common.Jumpship;
-import megamek.common.NavalRepairFacility;
-import megamek.common.SpaceStation;
 
 class TestAdvancedAerospaceTest {
 
@@ -57,7 +52,7 @@ class TestAdvancedAerospaceTest {
         Jumpship js = mock(Jumpship.class);
         when(js.getTransportBays()).thenReturn(bays);
         when(js.hasETypeFlag(ArgumentMatchers.anyLong()))
-                .thenAnswer(inv -> ((Entity.ETYPE_AERO | Entity.ETYPE_JUMPSHIP) & (Long) inv.getArguments()[0]) != 0);
+                .thenAnswer(inv -> ((EntityTypeConstants.ETYPE_AERO | EntityTypeConstants.ETYPE_JUMPSHIP) & (Long) inv.getArguments()[0]) != 0);
         return js;
     }
 
@@ -65,7 +60,7 @@ class TestAdvancedAerospaceTest {
         SpaceStation ss = mock(SpaceStation.class);
         when(ss.getTransportBays()).thenReturn(bays);
         when(ss.hasETypeFlag(ArgumentMatchers.anyLong()))
-                .thenAnswer(inv -> ((Entity.ETYPE_AERO | Entity.ETYPE_JUMPSHIP | Entity.ETYPE_SPACE_STATION)
+                .thenAnswer(inv -> ((EntityTypeConstants.ETYPE_AERO | EntityTypeConstants.ETYPE_JUMPSHIP | EntityTypeConstants.ETYPE_SPACE_STATION)
                         & (Long) inv.getArguments()[0]) != 0);
         return ss;
     }

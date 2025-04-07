@@ -555,7 +555,7 @@ public class UnitEditorDialog extends JDialog {
                     .forEach(e -> addToPanel.accept(e, Messages.getString("UnitEditorDialog.landingGear")));
         }
 
-        final boolean tripod = entity.hasETypeFlag(Entity.ETYPE_TRIPOD_MEK);
+        final boolean tripod = entity.hasETypeFlag(EntityTypeConstants.ETYPE_TRIPOD_MEK);
         if (tripod) {
             actuatorCrits = new CheckCritPanel[5][4];
         } else if (entity instanceof QuadVee) {

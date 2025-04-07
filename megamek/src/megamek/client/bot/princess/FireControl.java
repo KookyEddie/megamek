@@ -2408,7 +2408,7 @@ public class FireControl {
 
         // conventional fighters can drop bombs
         if (Entity.DOES_NOT_TRACK_HEAT == shooter.getHeatCapacity()
-                && ((shooter.getEntityType() & Entity.ETYPE_INFANTRY) == 0)) {
+                && ((shooter.getEntityType() & EntityTypeConstants.ETYPE_INFANTRY) == 0)) {
             return alphaStrike; // No need to worry about heat if the unit doesn't track it.
         }
 
@@ -3117,7 +3117,7 @@ public class FireControl {
                     }
                 }
                 // On his last legs
-                if (Entity.DMG_HEAVY <= targetEntity.getDamageLevel()) {
+                if (DamageTypeConstants.DMG_HEAVY <= targetEntity.getDamageLevel()) {
                     msg.append("\n\tTarget is heavily damaged... ");
                     preferredAmmo = getClusterAmmo(validAmmo, weaponType, range);
                     if (null != preferredAmmo) {
@@ -3582,7 +3582,7 @@ public class FireControl {
         // two left, two right if he has "extended torso twist" quirk
         // vehicles and turrets can turn any direction unless he has no turret
         final List<Integer> validFacingChanges = new ArrayList<>();
-        if (((Entity.ETYPE_MEK & shooter.getEntityType()) > 0)
+        if (((EntityTypeConstants.ETYPE_MEK & shooter.getEntityType()) > 0)
                 && !shooter.hasQuirk(OptionsConstants.QUIRK_NEG_NO_TWIST)
                 && !shooter.hasFallen()) {
             validFacingChanges.add(1);
@@ -3620,7 +3620,7 @@ public class FireControl {
 
         // apparently, only tank type units can unjam weapons/clear turrets
         // unconscious crews can't do this
-        if (!shooter.hasETypeFlag(Entity.ETYPE_TANK) || !shooter.getCrew().isActive()) {
+        if (!shooter.hasETypeFlag(EntityTypeConstants.ETYPE_TANK) || !shooter.getCrew().isActive()) {
             return unjamVector;
         }
 

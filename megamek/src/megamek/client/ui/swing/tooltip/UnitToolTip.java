@@ -1467,19 +1467,19 @@ public final class UnitToolTip {
         }
 
         switch (entity.getDamageLevel()) {
-            case Entity.DMG_CRIPPLED:
+            case DamageTypeConstants.DMG_CRIPPLED:
                 String msg_crippled = Messages.getString("BoardView1.Tooltip.Crippled");
                 result = useHtml ? UIUtil.tag("FONT", attr,  msg_crippled) : msg_crippled;
                 break;
-            case Entity.DMG_HEAVY:
+            case DamageTypeConstants.DMG_HEAVY:
                 String msg_heavydmg = Messages.getString("BoardView1.Tooltip.HeavyDmg");
                 result = useHtml ? UIUtil.tag("FONT", attr,  msg_heavydmg) : msg_heavydmg;
                 break;
-            case Entity.DMG_MODERATE:
+            case DamageTypeConstants.DMG_MODERATE:
                 String msg_moderatedmg = Messages.getString("BoardView1.Tooltip.ModerateDmg");
                 result = msg_moderatedmg;
                 break;
-            case Entity.DMG_LIGHT:
+            case DamageTypeConstants.DMG_LIGHT:
                 String msg_lightdmg = Messages.getString("BoardView1.Tooltip.LightDmg");
                 result = msg_lightdmg;
                 break;

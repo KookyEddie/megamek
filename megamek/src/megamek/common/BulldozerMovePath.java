@@ -196,7 +196,7 @@ public class BulldozerMovePath extends MovePath {
         }
 
         EntityMovementMode movementMode = entity.getMovementMode();
-        boolean isTracked = movementMode == EntityMovementMode.TRACKED && !entity.hasETypeFlag(Entity.ETYPE_QUADVEE);
+        boolean isTracked = movementMode == EntityMovementMode.TRACKED && !entity.hasETypeFlag(EntityTypeConstants.ETYPE_QUADVEE);
         boolean isHovercraft = movementMode == EntityMovementMode.HOVER;
         boolean isMek = movementMode == EntityMovementMode.BIPED || movementMode == EntityMovementMode.TRIPOD ||
                 movementMode == EntityMovementMode.QUAD;

@@ -12,7 +12,6 @@
  * details.
  */
 package megamek.common;
-import megamek.common.InfantryTransporter.PlatoonType;
 
 /**
  * Represents a volume of space set aside for carrying infantry platoons aboard large spacecraft
@@ -83,7 +82,7 @@ public final class InfantryBay extends Bay implements InfantryTransporter {
      */
     @Override public boolean canLoad(Entity unit) {
         // Only infantry
-        boolean result = unit.hasETypeFlag(Entity.ETYPE_INFANTRY);
+        boolean result = unit.hasETypeFlag(EntityTypeConstants.ETYPE_INFANTRY);
 
         // We must have enough space for the new troops.
         // POSSIBLE BUG: we may have to take the Math.ceil() of the weight.

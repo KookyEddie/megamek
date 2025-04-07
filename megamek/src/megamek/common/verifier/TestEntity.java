@@ -107,23 +107,23 @@ public abstract class TestEntity implements TestEntityOption {
                 Configuration.unitsDir(), EntityVerifier.CONFIG_FILENAME));
         TestEntity testEntity = null;
 
-        if (unit.hasETypeFlag(Entity.ETYPE_MEK)) {
+        if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_MEK)) {
             testEntity = new TestMek((Mek) unit, entityVerifier.mekOption, null);
-        } else if (unit.hasETypeFlag(Entity.ETYPE_PROTOMEK)) {
+        } else if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK)) {
             testEntity = new TestProtoMek((ProtoMek) unit, entityVerifier.protomekOption, null);
         } else if (unit.isSupportVehicle()) {
             testEntity = new TestSupportVehicle(unit, entityVerifier.tankOption, null);
-        } else if (unit.hasETypeFlag(Entity.ETYPE_TANK) && !unit.hasETypeFlag(Entity.ETYPE_GUN_EMPLACEMENT)) {
+        } else if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_TANK) && !unit.hasETypeFlag(EntityTypeConstants.ETYPE_GUN_EMPLACEMENT)) {
             testEntity = new TestTank((Tank) unit, entityVerifier.tankOption, null);
-        } else if (unit.hasETypeFlag(Entity.ETYPE_SMALL_CRAFT)) {
+        } else if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_SMALL_CRAFT)) {
             testEntity = new TestSmallCraft((SmallCraft) unit, entityVerifier.aeroOption, null);
-        } else if (unit.hasETypeFlag(Entity.ETYPE_JUMPSHIP)) {
+        } else if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_JUMPSHIP)) {
             testEntity = new TestAdvancedAerospace((Jumpship) unit, entityVerifier.aeroOption, null);
-        } else if (unit.hasETypeFlag(Entity.ETYPE_AERO)) {
+        } else if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_AERO)) {
             testEntity = new TestAero((Aero) unit, entityVerifier.aeroOption, null);
-        } else if (unit.hasETypeFlag(Entity.ETYPE_BATTLEARMOR)) {
+        } else if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_BATTLEARMOR)) {
             testEntity = new TestBattleArmor((BattleArmor) unit, entityVerifier.baOption, null);
-        } else if (unit.hasETypeFlag(Entity.ETYPE_INFANTRY)) {
+        } else if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_INFANTRY)) {
             testEntity = new TestInfantry((Infantry) unit, entityVerifier.infOption, null);
         }
         return testEntity;
@@ -344,20 +344,20 @@ public abstract class TestEntity implements TestEntityOption {
      */
     public static List<ArmorType> legalArmorsFor(long etype, boolean industrial, boolean primitive,
             EntityMovementMode movementMode, ITechManager techManager) {
-        if ((etype & Entity.ETYPE_BATTLEARMOR) != 0) {
+        if ((etype & EntityTypeConstants.ETYPE_BATTLEARMOR) != 0) {
             return TestBattleArmor.legalArmorsFor(techManager);
-        } else if ((etype & Entity.ETYPE_SMALL_CRAFT) != 0) {
+        } else if ((etype & EntityTypeConstants.ETYPE_SMALL_CRAFT) != 0) {
             return TestSmallCraft.legalArmorsFor(techManager);
-        } else if ((etype & Entity.ETYPE_JUMPSHIP) != 0) {
+        } else if ((etype & EntityTypeConstants.ETYPE_JUMPSHIP) != 0) {
             return TestAdvancedAerospace.legalArmorsFor(techManager, primitive);
         } else if ((etype
-                & (Entity.ETYPE_FIXED_WING_SUPPORT | Entity.ETYPE_SUPPORT_TANK | Entity.ETYPE_SUPPORT_VTOL)) != 0) {
+                & (EntityTypeConstants.ETYPE_FIXED_WING_SUPPORT | EntityTypeConstants.ETYPE_SUPPORT_TANK | EntityTypeConstants.ETYPE_SUPPORT_VTOL)) != 0) {
             return TestSupportVehicle.legalArmorsFor(techManager);
-        } else if ((etype & Entity.ETYPE_AERO) != 0) {
+        } else if ((etype & EntityTypeConstants.ETYPE_AERO) != 0) {
             return TestAero.legalArmorsFor(techManager);
-        } else if ((etype & Entity.ETYPE_TANK) != 0) {
+        } else if ((etype & EntityTypeConstants.ETYPE_TANK) != 0) {
             return TestTank.legalArmorsFor(movementMode, techManager);
-        } else if ((etype & Entity.ETYPE_MEK) != 0) {
+        } else if ((etype & EntityTypeConstants.ETYPE_MEK) != 0) {
             return TestMek.legalArmorsFor(etype, industrial, techManager);
         } else {
             return Collections.emptyList();
@@ -365,13 +365,13 @@ public abstract class TestEntity implements TestEntityOption {
     }
 
     public static List<EquipmentType> validJumpJets(long entitytype, boolean industrial) {
-        if ((entitytype & Entity.ETYPE_MEK) != 0) {
+        if ((entitytype & EntityTypeConstants.ETYPE_MEK) != 0) {
             return TestMek.MekJumpJets.allJJs(industrial);
-        } else if ((entitytype & Entity.ETYPE_TANK) != 0) {
+        } else if ((entitytype & EntityTypeConstants.ETYPE_TANK) != 0) {
             return Collections.singletonList(EquipmentType.get(EquipmentTypeLookup.VEHICLE_JUMP_JET));
-        } else if ((entitytype & Entity.ETYPE_BATTLEARMOR) != 0) {
+        } else if ((entitytype & EntityTypeConstants.ETYPE_BATTLEARMOR) != 0) {
             return TestBattleArmor.BAMotiveSystems.allSystems();
-        } else if ((entitytype & Entity.ETYPE_PROTOMEK) != 0) {
+        } else if ((entitytype & EntityTypeConstants.ETYPE_PROTOMEK) != 0) {
             // Until we have a TestProtomek
             return Arrays.asList(new EquipmentType[] {
                     EquipmentType.get(EquipmentTypeLookup.PROTOMEK_JUMP_JET),
@@ -428,11 +428,11 @@ public abstract class TestEntity implements TestEntityOption {
      * @see #getSystemWideLocation(Entity)
      */
     public static boolean eqRequiresLocation(Entity entity, EquipmentType eq) {
-        if (entity.hasETypeFlag(Entity.ETYPE_AERO)) {
+        if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_AERO)) {
             return TestAero.eqRequiresLocation(eq, entity.isFighter());
-        } else if (entity.hasETypeFlag(Entity.ETYPE_PROTOMEK)) {
+        } else if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK)) {
             return TestProtoMek.requiresSlot(eq);
-        } else if (entity.hasETypeFlag(Entity.ETYPE_TANK)) {
+        } else if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_TANK)) {
             return !TestTank.isBodyEquipment(eq);
         }
         return true;
@@ -450,15 +450,15 @@ public abstract class TestEntity implements TestEntityOption {
      *         location.
      */
     public static int getSystemWideLocation(Entity entity) {
-        if (entity.hasETypeFlag(Entity.ETYPE_JUMPSHIP)) {
+        if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_JUMPSHIP)) {
             return Jumpship.LOC_HULL;
-        } else if (entity.hasETypeFlag(Entity.ETYPE_SMALL_CRAFT)) {
+        } else if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_SMALL_CRAFT)) {
             return SmallCraft.LOC_HULL;
-        } else if (entity.hasETypeFlag(Entity.ETYPE_AERO)) {
+        } else if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_AERO)) {
             return Aero.LOC_FUSELAGE;
-        } else if (entity.hasETypeFlag(Entity.ETYPE_TANK)) {
+        } else if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_TANK)) {
             return Tank.LOC_BODY;
-        } else if (entity.hasETypeFlag(Entity.ETYPE_PROTOMEK)) {
+        } else if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK)) {
             return ProtoMek.LOC_BODY;
         }
         return Entity.LOC_NONE;
@@ -1045,7 +1045,7 @@ public abstract class TestEntity implements TestEntityOption {
      * @return the number of armor points available for the armor tonnage
      */
     public static double getRawArmorPoints(Entity unit, double armorTons) {
-        if (unit.hasETypeFlag(Entity.ETYPE_PROTOMEK)) {
+        if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK)) {
             return Math.round(armorTons / ArmorType.forEntity(unit).getWeightPerPoint());
         } else if (unit.isSupportVehicle()) {
             return Math.floor(armorTons / TestSupportVehicle.armorWeightPerPoint(unit));
@@ -1103,27 +1103,27 @@ public abstract class TestEntity implements TestEntityOption {
 
     public static int getMaximumArmorPoints(Entity unit) {
         int points = 0;
-        if (unit.hasETypeFlag(Entity.ETYPE_MEK)) {
+        if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_MEK)) {
             int headPoints = 3;
             if (unit.getWeightClass() == EntityWeightClass.WEIGHT_SUPER_HEAVY) {
                 headPoints = 4;
             }
             points = (unit.getTotalInternal() * 2) + headPoints;
-        } else if (unit.hasETypeFlag(Entity.ETYPE_PROTOMEK)) {
+        } else if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK)) {
             points = TestProtoMek.maxArmorFactor((ProtoMek) unit);
         } else if (unit.isSupportVehicle()) {
             points = TestSupportVehicle.maxArmorFactor(unit);
-        } else if (unit.hasETypeFlag(Entity.ETYPE_TANK)) {
+        } else if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_TANK)) {
             points = (int) Math.floor((unit.getWeight() * 3.5) + 40);
-        } else if (unit.hasETypeFlag(Entity.ETYPE_BATTLEARMOR)) {
+        } else if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_BATTLEARMOR)) {
             points = (unit.getWeightClass() * 4) + 2;
-        } else if (unit.hasETypeFlag(Entity.ETYPE_JUMPSHIP)) {
+        } else if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_JUMPSHIP)) {
             points = TestAdvancedAerospace.maxArmorPoints((Jumpship) unit);
-        } else if (unit.hasETypeFlag(Entity.ETYPE_SMALL_CRAFT)) {
+        } else if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_SMALL_CRAFT)) {
             points = TestSmallCraft.maxArmorPoints((SmallCraft) unit);
-        } else if (unit.hasETypeFlag(Entity.ETYPE_CONV_FIGHTER)) {
+        } else if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_CONV_FIGHTER)) {
             points = (int) Math.floor(unit.getWeight());
-        } else if (unit.hasETypeFlag(Entity.ETYPE_AERO)) {
+        } else if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_AERO)) {
             points = (int) Math.floor(unit.getWeight() * 8);
         }
         return points;
@@ -1221,7 +1221,7 @@ public abstract class TestEntity implements TestEntityOption {
         // Check cockpit TL
         ITechnology cockpit = null;
         String cockpitName = null;
-        if (getEntity().hasETypeFlag(Entity.ETYPE_AERO)) {
+        if (getEntity().hasETypeFlag(EntityTypeConstants.ETYPE_AERO)) {
             cockpit = ((Aero) getEntity()).getCockpitTechAdvancement();
             cockpitName = ((Aero) getEntity()).getCockpitTypeString();
         } else if (getEntity() instanceof Mek) {
@@ -1942,8 +1942,8 @@ public abstract class TestEntity implements TestEntityOption {
     }
 
     public static boolean usesKgStandard(Entity entity) {
-        return entity.hasETypeFlag(Entity.ETYPE_BATTLEARMOR)
-                || entity.hasETypeFlag(Entity.ETYPE_PROTOMEK)
+        return entity.hasETypeFlag(EntityTypeConstants.ETYPE_BATTLEARMOR)
+                || entity.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK)
                 || (EntityWeightClass.getWeightClass(entity.getWeight(),
                         entity) == EntityWeightClass.WEIGHT_SMALL_SUPPORT);
     }

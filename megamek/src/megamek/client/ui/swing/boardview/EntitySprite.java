@@ -883,10 +883,10 @@ class EntitySprite extends Sprite {
 
     private @Nullable Color getDamageColor() {
         return switch (entity.getDamageLevel()) {
-            case Entity.DMG_CRIPPLED -> Color.black;
-            case Entity.DMG_HEAVY -> GUIP.getWarningColor();
-            case Entity.DMG_MODERATE -> GUIP.getCautionColor();
-            case Entity.DMG_LIGHT -> Color.green;
+            case DamageTypeConstants.DMG_CRIPPLED -> Color.black;
+            case DamageTypeConstants.DMG_HEAVY -> GUIP.getWarningColor();
+            case DamageTypeConstants.DMG_MODERATE -> GUIP.getCautionColor();
+            case DamageTypeConstants.DMG_LIGHT -> Color.green;
             default -> null;
         };
     }

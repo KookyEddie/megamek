@@ -527,7 +527,7 @@ public class TechConstants {
      */
     public static int getCockpitTechLevel(int cockpitType, long entityType,
             boolean isClan, int year) {
-        if ((entityType & Entity.ETYPE_MEK) != 0) {
+        if ((entityType & EntityTypeConstants.ETYPE_MEK) != 0) {
             switch (cockpitType) {
                 case Mek.COCKPIT_STANDARD:
                     if (isClan) {
@@ -757,7 +757,7 @@ public class TechConstants {
                     }
 
             }
-        } else if ((entityType & Entity.ETYPE_AERO) != 0) {
+        } else if ((entityType & EntityTypeConstants.ETYPE_AERO) != 0) {
             switch (cockpitType) {
                 case Aero.COCKPIT_PRIMITIVE:
                      if (isClan) {

@@ -19,11 +19,7 @@
  */
 package megamek.common.weapons.srms;
 
-import megamek.common.AmmoType;
-import megamek.common.Entity;
-import megamek.common.Game;
-import megamek.common.Mounted;
-import megamek.common.ToHitData;
+import megamek.common.*;
 import megamek.common.actions.WeaponAttackAction;
 import megamek.common.weapons.AttackHandler;
 import megamek.common.weapons.MissileMineClearanceHandler;
@@ -56,7 +52,7 @@ public abstract class SRMWeapon extends MissileWeapon {
 
     @Override
     public double getTonnage(Entity entity, int location, double size) {
-        if ((null != entity) && entity.hasETypeFlag(Entity.ETYPE_PROTOMEK)) {
+        if ((null != entity) && entity.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK)) {
             return getRackSize() * 0.25;
         } else {
             return super.getTonnage(entity, location, size);

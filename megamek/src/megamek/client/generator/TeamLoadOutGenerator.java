@@ -442,7 +442,7 @@ public class TeamLoadOutGenerator {
     }
 
     private static long checkForFliers(ArrayList<Entity> el) {
-        return el.stream().filter(e -> e.isAero() || e.hasETypeFlag(Entity.ETYPE_VTOL)).count();
+        return el.stream().filter(e -> e.isAero() || e.hasETypeFlag(EntityTypeConstants.ETYPE_VTOL)).count();
     }
 
     private static long checkForInfantry(ArrayList<Entity> el) {

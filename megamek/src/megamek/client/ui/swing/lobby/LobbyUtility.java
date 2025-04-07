@@ -49,7 +49,6 @@ import megamek.client.ui.swing.util.UIUtil;
 import megamek.common.*;
 import megamek.common.force.Force;
 import megamek.common.loaders.EntityLoadingException;
-import megamek.common.options.GameOptions;
 import megamek.common.options.OptionsConstants;
 import megamek.logging.MMLogger;
 
@@ -344,8 +343,8 @@ public class LobbyUtility {
                 hasEnoughCargoCapacity = loadSize <= capacity;
                 errorMessage = Messages.getString("LoadingBay.baytoomany",
                         (int) bay.getUnusedSlots(), bay.getDefaultSlotDescription());
-            } else if (loader.hasETypeFlag(Entity.ETYPE_MEK)
-                    && soleProtoMek.hasETypeFlag(Entity.ETYPE_PROTOMEK)) {
+            } else if (loader.hasETypeFlag(EntityTypeConstants.ETYPE_MEK)
+                    && soleProtoMek.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK)) {
                 // We're also using bay number to distinguish between front and rear locations
                 // for ProtoMek mag clamp systems
                 hasEnoughCargoCapacity = entities.size() == 1;
@@ -363,13 +362,13 @@ public class LobbyUtility {
                 long entityType = e.getEntityType();
                 long loaderType = loader.getEntityType();
                 double unitSize;
-                if ((entityType & Entity.ETYPE_MEK) != 0) {
-                    entityType = Entity.ETYPE_MEK;
+                if ((entityType & EntityTypeConstants.ETYPE_MEK) != 0) {
+                    entityType = EntityTypeConstants.ETYPE_MEK;
                     unitSize = 1;
-                } else if ((entityType & Entity.ETYPE_INFANTRY) != 0) {
-                    entityType = Entity.ETYPE_INFANTRY;
+                } else if ((entityType & EntityTypeConstants.ETYPE_INFANTRY) != 0) {
+                    entityType = EntityTypeConstants.ETYPE_INFANTRY;
                     boolean useCount = true;
-                    if ((loaderType & Entity.ETYPE_TANK) != 0) {
+                    if ((loaderType & EntityTypeConstants.ETYPE_TANK) != 0) {
                         // This is a super hack... When getting
                         // capacities, troopspace gives unused space in
                         // terms of tons, and BattleArmorHandles gives
@@ -404,25 +403,25 @@ public class LobbyUtility {
                     } else {
                         unitSize = e.getWeight();
                     }
-                } else if ((entityType & Entity.ETYPE_PROTOMEK) != 0) {
-                    entityType = Entity.ETYPE_PROTOMEK;
+                } else if ((entityType & EntityTypeConstants.ETYPE_PROTOMEK) != 0) {
+                    entityType = EntityTypeConstants.ETYPE_PROTOMEK;
                     unitSize = 1;
                     // Loading using mag clamps; user can specify front or rear.
                     // Make use of bayNumber field
-                    if ((loaderType & Entity.ETYPE_MEK) != 0) {
+                    if ((loaderType & EntityTypeConstants.ETYPE_MEK) != 0) {
                         bayNumber = loadRear ? 1 : 0;
                     }
-                } else if ((entityType & Entity.ETYPE_DROPSHIP) != 0) {
-                    entityType = Entity.ETYPE_DROPSHIP;
+                } else if ((entityType & EntityTypeConstants.ETYPE_DROPSHIP) != 0) {
+                    entityType = EntityTypeConstants.ETYPE_DROPSHIP;
                     unitSize = 1;
-                } else if ((entityType & Entity.ETYPE_JUMPSHIP) != 0) {
-                    entityType = Entity.ETYPE_JUMPSHIP;
+                } else if ((entityType & EntityTypeConstants.ETYPE_JUMPSHIP) != 0) {
+                    entityType = EntityTypeConstants.ETYPE_JUMPSHIP;
                     unitSize = 1;
-                } else if ((entityType & Entity.ETYPE_AERO) != 0) {
-                    entityType = Entity.ETYPE_AERO;
+                } else if ((entityType & EntityTypeConstants.ETYPE_AERO) != 0) {
+                    entityType = EntityTypeConstants.ETYPE_AERO;
                     unitSize = 1;
-                } else if ((entityType & Entity.ETYPE_TANK) != 0) {
-                    entityType = Entity.ETYPE_TANK;
+                } else if ((entityType & EntityTypeConstants.ETYPE_TANK) != 0) {
+                    entityType = EntityTypeConstants.ETYPE_TANK;
                     unitSize = 1;
                 } else {
                     unitSize = 1;
@@ -450,7 +449,7 @@ public class LobbyUtility {
                     hasEnoughCargoCapacity = false;
                     capacity = currCapacity;
                     String messageName;
-                    if (typeId == Entity.ETYPE_INFANTRY) {
+                    if (typeId == EntityTypeConstants.ETYPE_INFANTRY) {
                         messageName = "LoadingBay.nonbaytoomanyInf";
                     } else {
                         messageName = "LoadingBay.nonbaytoomany";

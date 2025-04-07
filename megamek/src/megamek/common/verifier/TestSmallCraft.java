@@ -150,12 +150,12 @@ public class TestSmallCraft extends TestAero {
         double engineTonnage = calculateEngineTonnage(sc.isClan(),
               sc.getWeight(),
               sc.getOriginalWalkMP(),
-              sc.hasETypeFlag(Entity.ETYPE_DROPSHIP),
+              sc.hasETypeFlag(EntityTypeConstants.ETYPE_DROPSHIP),
               sc.getOriginalBuildYear());
         if (sc.isSpheroid()) {
             if (sc.isPrimitive()) {
                 return (int) Math.floor(Math.sqrt(engineTonnage * 1.3));
-            } else if ((sc.getDesignType() == SmallCraft.MILITARY) && sc.hasETypeFlag(Entity.ETYPE_DROPSHIP)) {
+            } else if ((sc.getDesignType() == SmallCraft.MILITARY) && sc.hasETypeFlag(EntityTypeConstants.ETYPE_DROPSHIP)) {
                 return (int) Math.floor(Math.sqrt(engineTonnage * 6.8));
             } else {
                 return (int) Math.floor(Math.sqrt(engineTonnage * 1.6));
@@ -163,7 +163,7 @@ public class TestSmallCraft extends TestAero {
         } else {
             if (sc.isPrimitive()) {
                 return (int) Math.floor(engineTonnage / 75.0);
-            } else if ((sc.getDesignType() == SmallCraft.MILITARY) && sc.hasETypeFlag(Entity.ETYPE_DROPSHIP)) {
+            } else if ((sc.getDesignType() == SmallCraft.MILITARY) && sc.hasETypeFlag(EntityTypeConstants.ETYPE_DROPSHIP)) {
                 return (int) Math.floor(engineTonnage / 20.0);
             } else {
                 return (int) Math.floor(engineTonnage / 60.0);
@@ -248,7 +248,7 @@ public class TestSmallCraft extends TestAero {
      */
     public static int minimumBaseCrew(SmallCraft sc) {
         int crew = 3;
-        if (sc.hasETypeFlag(Entity.ETYPE_DROPSHIP)) {
+        if (sc.hasETypeFlag(EntityTypeConstants.ETYPE_DROPSHIP)) {
             crew += (int) Math.ceil(sc.getWeight() / 5000);
             if (sc.getDesignType() == SmallCraft.MILITARY) {
                 crew++;
@@ -281,7 +281,7 @@ public class TestSmallCraft extends TestAero {
         // Non primitives use the multiplier for 2500+ even if they were built before that date
         int year = smallCraft.isPrimitive() ? smallCraft.getOriginalBuildYear() : 2500;
         // Small craft round up to the half ton and drop-ships to the full ton
-        if (smallCraft.hasETypeFlag(Entity.ETYPE_DROPSHIP)) {
+        if (smallCraft.hasETypeFlag(EntityTypeConstants.ETYPE_DROPSHIP)) {
             return ceil(smallCraft.getWeight() * dropshipControlMultiplier(year), Ceil.TON);
         } else {
             return ceil(smallCraft.getWeight() * smallCraftControlMultiplier(year), Ceil.HALFTON);
@@ -293,7 +293,7 @@ public class TestSmallCraft extends TestAero {
         return calculateEngineTonnage(smallCraft.isClan(),
               smallCraft.getWeight(),
               smallCraft.getOriginalWalkMP(),
-              smallCraft.hasETypeFlag(Entity.ETYPE_DROPSHIP),
+              smallCraft.hasETypeFlag(EntityTypeConstants.ETYPE_DROPSHIP),
               smallCraft.getOriginalBuildYear());
     }
 
@@ -564,7 +564,7 @@ public class TestSmallCraft extends TestAero {
         Map<EquipmentType, Integer> leftAft = new HashMap<>();
         Map<EquipmentType, Integer> rightFwd = new HashMap<>();
         Map<EquipmentType, Integer> rightAft = new HashMap<>();
-        MiscTypeFlag typeFlag = smallCraft.hasETypeFlag(Entity.ETYPE_DROPSHIP) ?
+        MiscTypeFlag typeFlag = smallCraft.hasETypeFlag(EntityTypeConstants.ETYPE_DROPSHIP) ?
                                       MiscType.F_DS_EQUIPMENT :
                                       MiscType.F_SC_EQUIPMENT;
         for (Mounted<?> m : smallCraft.getEquipment()) {
@@ -574,7 +574,7 @@ public class TestSmallCraft extends TestAero {
                     illegal = true;
                 }
             } else if ((m.getType() instanceof AmmoType) &&
-                             (smallCraft.hasETypeFlag(Entity.ETYPE_DROPSHIP)) &&
+                             (smallCraft.hasETypeFlag(EntityTypeConstants.ETYPE_DROPSHIP)) &&
                              (((AmmoType) m.getType()).getAmmoType() == AmmoType.T_COOLANT_POD)) {
                 buff.append("Cannot mount ").append(m.getType().getName()).append("\n");
                 illegal = true;
@@ -798,7 +798,7 @@ public class TestSmallCraft extends TestAero {
 
     @Override
     public String getName() {
-        if (smallCraft.hasETypeFlag(Entity.ETYPE_DROPSHIP)) {
+        if (smallCraft.hasETypeFlag(EntityTypeConstants.ETYPE_DROPSHIP)) {
             return "DropShip: " + smallCraft.getDisplayName();
         } else {
             return "Small Craft: " + smallCraft.getDisplayName();

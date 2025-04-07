@@ -104,7 +104,7 @@ public class TeleMissileAttackAction extends AbstractAttackAction {
      */
     protected int getLargeCraftHeat(Entity e) {
         int totalHeat = 0;
-        if (e.hasETypeFlag(Entity.ETYPE_DROPSHIP) || e.hasETypeFlag(Entity.ETYPE_JUMPSHIP)) {
+        if (e.hasETypeFlag(EntityTypeConstants.ETYPE_DROPSHIP) || e.hasETypeFlag(EntityTypeConstants.ETYPE_JUMPSHIP)) {
             if (e.usesWeaponBays()) {
                 for (Enumeration<AttackHandler> i = e.getGame().getAttacks(); i.hasMoreElements(); ) {
                     AttackHandler ah = i.nextElement();

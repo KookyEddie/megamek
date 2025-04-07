@@ -213,35 +213,35 @@ class BayDataTest {
 
     @Test
     void cargoBayLegalForMek() {
-        Entity entity = createEntity(Entity.ETYPE_MEK);
+        Entity entity = createEntity(EntityTypeConstants.ETYPE_MEK);
 
         assertTrue(BayData.CARGO.isLegalFor(entity));
     }
 
     @Test
     void livestockBayIllegalForMek() {
-        Entity entity = createEntity(Entity.ETYPE_MEK);
+        Entity entity = createEntity(EntityTypeConstants.ETYPE_MEK);
 
         assertFalse(BayData.LIVESTOCK_CARGO.isLegalFor(entity));
     }
 
     @Test
     void cargoBayLegalForTank() {
-        Entity entity = createEntity(Entity.ETYPE_TANK);
+        Entity entity = createEntity(EntityTypeConstants.ETYPE_TANK);
 
         assertTrue(BayData.CARGO.isLegalFor(entity));
     }
 
     @Test
     void livestockBayLegalForTank() {
-        Entity entity = createEntity(Entity.ETYPE_TANK);
+        Entity entity = createEntity(EntityTypeConstants.ETYPE_TANK);
 
         assertTrue(BayData.LIVESTOCK_CARGO.isLegalFor(entity));
     }
 
     @Test
     void bayIllegalForInfantry() {
-        Entity entity = createEntity(Entity.ETYPE_INFANTRY);
+        Entity entity = createEntity(EntityTypeConstants.ETYPE_INFANTRY);
 
         assertFalse(BayData.CARGO.isLegalFor(entity));
     }

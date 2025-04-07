@@ -386,7 +386,7 @@ public class LargeSupportTank extends SupportTank {
 
     @Override
     public long getEntityType() {
-        return Entity.ETYPE_TANK | Entity.ETYPE_SUPPORT_TANK | Entity.ETYPE_LARGE_SUPPORT_TANK;
+        return EntityTypeConstants.ETYPE_TANK | EntityTypeConstants.ETYPE_SUPPORT_TANK | EntityTypeConstants.ETYPE_LARGE_SUPPORT_TANK;
     }
 
     @Override

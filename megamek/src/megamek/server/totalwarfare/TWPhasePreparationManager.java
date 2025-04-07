@@ -22,15 +22,7 @@ import java.util.Vector;
 import java.util.stream.Collectors;
 
 import megamek.MegaMek;
-import megamek.common.Aero;
-import megamek.common.Entity;
-import megamek.common.EntitySelector;
-import megamek.common.FighterSquadron;
-import megamek.common.GameTurn;
-import megamek.common.IAero;
-import megamek.common.MapSettings;
-import megamek.common.Player;
-import megamek.common.Report;
+import megamek.common.*;
 import megamek.common.enums.GamePhase;
 import megamek.common.options.OptionsConstants;
 import megamek.common.util.EmailService;
@@ -268,7 +260,7 @@ public class TWPhasePreparationManager {
                         // for JS/WS/SS?
                         // Do we ever need to save capital fighter armor to the final MUL or
                         // entityStatus?
-                        if (!entity.hasETypeFlag(Entity.ETYPE_JUMPSHIP)) {
+                        if (!entity.hasETypeFlag(EntityTypeConstants.ETYPE_JUMPSHIP)) {
                             scale = 1;
                         }
                         if (scale > 1) {

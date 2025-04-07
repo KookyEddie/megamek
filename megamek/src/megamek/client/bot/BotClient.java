@@ -833,7 +833,7 @@ public abstract class BotClient extends Client {
             coord.fitness += (total_damage / 10);
 
             // Mek
-            if (deployed_ent.hasETypeFlag(Entity.ETYPE_MEK)) {
+            if (deployed_ent.hasETypeFlag(EntityTypeConstants.ETYPE_MEK)) {
                 // -> Trees are good, when they're tall enough
                 // -> Water isn't that great below depth 1 -> this saves actual
                 // ground space for infantry/vehicles (minor)
@@ -855,7 +855,7 @@ public abstract class BotClient extends Client {
 
             // Infantry
 
-            if (deployed_ent.hasETypeFlag(Entity.ETYPE_INFANTRY)) {
+            if (deployed_ent.hasETypeFlag(EntityTypeConstants.ETYPE_INFANTRY)) {
                 // -> Trees and buildings make good cover, esp for conventional
                 // infantry
                 // rough is nice, too
@@ -908,8 +908,8 @@ public abstract class BotClient extends Client {
             }
 
             // some criteria for deploying non-vtol tanks
-            if (deployed_ent.hasETypeFlag(Entity.ETYPE_TANK) &&
-                    !deployed_ent.hasETypeFlag(Entity.ETYPE_VTOL)) {
+            if (deployed_ent.hasETypeFlag(EntityTypeConstants.ETYPE_TANK) &&
+                    !deployed_ent.hasETypeFlag(EntityTypeConstants.ETYPE_VTOL)) {
                 // Tracked vehicle
                 // -> Trees increase fitness
                 if (deployed_ent.getMovementMode() == EntityMovementMode.TRACKED) {

@@ -323,7 +323,7 @@ public class FixedWingSupport extends ConvFighter {
 
     @Override
     public long getEntityType() {
-        return Entity.ETYPE_AERO | Entity.ETYPE_CONV_FIGHTER | Entity.ETYPE_FIXED_WING_SUPPORT;
+        return EntityTypeConstants.ETYPE_AERO | EntityTypeConstants.ETYPE_CONV_FIGHTER | EntityTypeConstants.ETYPE_FIXED_WING_SUPPORT;
     }
 
     @Override

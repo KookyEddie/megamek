@@ -57,8 +57,8 @@ public class MekTROView extends TROView {
         addFluff();
         mek.setConversionMode(0);
         setModelData("isOmni", mek.isOmni());
-        setModelData("isQuad", mek.hasETypeFlag(Entity.ETYPE_QUAD_MEK));
-        setModelData("isTripod", mek.hasETypeFlag(Entity.ETYPE_TRIPOD_MEK));
+        setModelData("isQuad", mek.hasETypeFlag(EntityTypeConstants.ETYPE_QUAD_MEK));
+        setModelData("isTripod", mek.hasETypeFlag(EntityTypeConstants.ETYPE_TRIPOD_MEK));
         final TestMek testMek = new TestMek(mek, verifier.mekOption, null);
         setModelData("structureName", mek.getStructureType() == EquipmentType.T_STRUCTURE_STANDARD ? ""
                 : EquipmentType.getStructureTypeName(mek.getStructureType()));
@@ -99,7 +99,7 @@ public class MekTROView extends TROView {
         if (mek.isOmni()) {
             addFixedOmni(mek);
         }
-        if (mek.hasETypeFlag(Entity.ETYPE_LAND_AIR_MEK)) {
+        if (mek.hasETypeFlag(EntityTypeConstants.ETYPE_LAND_AIR_MEK)) {
             final LandAirMek lam = (LandAirMek) mek;
             final int mode = lam.getConversionMode();
             setModelData("lamConversionMass", testMek.getWeightMisc());
@@ -114,7 +114,7 @@ public class MekTROView extends TROView {
             setModelData("safeThrust", lam.getWalkMP());
             setModelData("maxThrust", lam.getRunMP());
             lam.setConversionMode(mode);
-        } else if (mek.hasETypeFlag(Entity.ETYPE_QUADVEE)) {
+        } else if (mek.hasETypeFlag(EntityTypeConstants.ETYPE_QUADVEE)) {
             final QuadVee qv = (QuadVee) mek;
             final int mode = qv.getConversionMode();
             qv.setConversionMode(QuadVee.CONV_MODE_VEHICLE);
@@ -171,13 +171,13 @@ public class MekTROView extends TROView {
         if (mek.isSuperHeavy()) {
             chassisDesc += Messages.getString("TROView.chassisSuperheavy");
         }
-        if (mek.hasETypeFlag(Entity.ETYPE_QUADVEE)) {
+        if (mek.hasETypeFlag(EntityTypeConstants.ETYPE_QUADVEE)) {
             chassisDesc += Messages.getString("TROView.chassisQuadVee");
-        } else if (mek.hasETypeFlag(Entity.ETYPE_QUAD_MEK)) {
+        } else if (mek.hasETypeFlag(EntityTypeConstants.ETYPE_QUAD_MEK)) {
             chassisDesc += Messages.getString("TROView.chassisQuad");
-        } else if (mek.hasETypeFlag(Entity.ETYPE_TRIPOD_MEK)) {
+        } else if (mek.hasETypeFlag(EntityTypeConstants.ETYPE_TRIPOD_MEK)) {
             chassisDesc += Messages.getString("TROView.chassisTripod");
-        } else if (mek.hasETypeFlag(Entity.ETYPE_LAND_AIR_MEK)) {
+        } else if (mek.hasETypeFlag(EntityTypeConstants.ETYPE_LAND_AIR_MEK)) {
             chassisDesc += Messages.getString("TROView.chassisLAM");
         } else {
             chassisDesc += Messages.getString("TROView.chassisBiped");

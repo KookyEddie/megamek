@@ -18,15 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import megamek.common.Entity;
-import megamek.common.EntityFluff;
-import megamek.common.GunEmplacement;
-import megamek.common.Messages;
-import megamek.common.Mounted;
-import megamek.common.SuperHeavyTank;
-import megamek.common.Tank;
-import megamek.common.Transporter;
-import megamek.common.VTOL;
+import megamek.common.*;
 import megamek.common.verifier.EntityVerifier;
 import megamek.common.verifier.TestTank;
 
@@ -73,7 +65,7 @@ public class VehicleTROView extends TROView {
                         Justification.CENTER, Justification.CENTER, Justification.CENTER, Justification.CENTER }));
         addFluff();
         setModelData("isOmni", tank.isOmni());
-        setModelData("isVTOL", tank.hasETypeFlag(Entity.ETYPE_VTOL));
+        setModelData("isVTOL", tank.hasETypeFlag(EntityTypeConstants.ETYPE_VTOL));
         setModelData("isSuperheavy", tank.isSuperHeavy());
         setModelData("isSupport", tank.isSupportVehicle());
         setModelData("hasTurret", !tank.hasNoTurret());
@@ -139,7 +131,7 @@ public class VehicleTROView extends TROView {
             { SuperHeavyTank.LOC_TURRET }, { SuperHeavyTank.LOC_TURRET_2 } };
 
     private void addArmorAndStructure() {
-        if (tank.hasETypeFlag(Entity.ETYPE_SUPER_HEAVY_TANK)) {
+        if (tank.hasETypeFlag(EntityTypeConstants.ETYPE_SUPER_HEAVY_TANK)) {
             setModelData("structureValues",
                     addArmorStructureEntries(tank, Entity::getOInternal, SH_TANK_ARMOR_LOCS));
             setModelData("armorValues",

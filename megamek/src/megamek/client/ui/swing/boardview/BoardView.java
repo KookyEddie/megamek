@@ -558,7 +558,7 @@ public final class BoardView extends AbstractBoardView
                     default:
                 }
                 for (Entity entity : game.getEntitiesVector()) {
-                    if ((entity.getDamageLevel() != Entity.DMG_NONE) &&
+                    if ((entity.getDamageLevel() != DamageTypeConstants.DMG_NONE) &&
                               ((entity.damageThisRound != 0) || (entity instanceof GunEmplacement))) {
                         tileManager.reloadImage(entity);
                     }

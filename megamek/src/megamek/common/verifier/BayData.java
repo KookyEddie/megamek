@@ -257,16 +257,16 @@ public enum BayData {
     public boolean isLegalFor(Entity en) {
         //TODO: Container cargo bays aren't implemented, but when added they can be carried by
         // industrial but not battlemeks.
-        if (en.hasETypeFlag(Entity.ETYPE_MEK)) {
+        if (en.hasETypeFlag(EntityTypeConstants.ETYPE_MEK)) {
             return isCargoBay() && (this != LIVESTOCK_CARGO);
         } else if ((this == DROPSHUTTLE)
                 || (this == REPAIR_UNPRESSURIZED)
                 || (this == REPAIR_PRESSURIZED)
                 || (this == REPAIR_REINFORCED)) {
-            return en.hasETypeFlag(Entity.ETYPE_JUMPSHIP);
+            return en.hasETypeFlag(EntityTypeConstants.ETYPE_JUMPSHIP);
         } else {
-            return en.hasETypeFlag(Entity.ETYPE_TANK)
-                    || en.hasETypeFlag(Entity.ETYPE_AERO);
+            return en.hasETypeFlag(EntityTypeConstants.ETYPE_TANK)
+                    || en.hasETypeFlag(EntityTypeConstants.ETYPE_AERO);
         }
     }
 

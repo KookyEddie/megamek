@@ -369,7 +369,7 @@ public class BoardEdgePathFinder {
      */
     public MovePath findPathToEdge(Entity entity, int destinationRegion) {
         MovePath startPath = new MovePath(entity.getGame(), entity);
-        if (entity.hasETypeFlag(Entity.ETYPE_INFANTRY)) {
+        if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_INFANTRY)) {
             startPath.addStep(MoveStepType.CLIMB_MODE_OFF);
         } else {
             startPath.addStep(MoveStepType.CLIMB_MODE_ON);
@@ -590,7 +590,7 @@ public class BoardEdgePathFinder {
         // quadvees are not considered "tracked" for the purposes of this exercise
         // because they can transform
         boolean isTracked = entity.getMovementMode() == EntityMovementMode.TRACKED
-                && !entity.hasETypeFlag(Entity.ETYPE_QUADVEE);
+                && !entity.hasETypeFlag(EntityTypeConstants.ETYPE_QUADVEE);
         boolean isHovercraft = entity.getMovementMode() == EntityMovementMode.HOVER;
         boolean isWheeled = entity.getMovementMode() == EntityMovementMode.WHEELED;
         boolean isAmphibious = movePath.getCachedEntityState().hasWorkingMisc(MiscType.F_AMPHIBIOUS) ||
@@ -720,7 +720,7 @@ public class BoardEdgePathFinder {
 
         int hexElevation = hex.getLevel();
 
-        if (entity.hasETypeFlag(Entity.ETYPE_MEK) &&
+        if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_MEK) &&
                 (hex.containsTerrain(Terrains.BLDG_CF) || hex.containsTerrain(Terrains.FUEL_TANK_CF))) {
             hexElevation = hex.ceiling();
         } else if (entity.isNaval() && hex.containsTerrain(Terrains.BRIDGE)) {

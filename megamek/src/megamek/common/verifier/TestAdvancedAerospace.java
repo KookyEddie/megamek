@@ -75,10 +75,10 @@ public class TestAdvancedAerospace extends TestAero {
      */
     public static double maxArmorWeight(Jumpship vessel) {
         // max armor tonnage is based on SI weight
-        if (vessel.hasETypeFlag(Entity.ETYPE_WARSHIP)) {
+        if (vessel.hasETypeFlag(EntityTypeConstants.ETYPE_WARSHIP)) {
             // SI weight (SI/1000) / 50
             return floor(vessel.getOSI() * vessel.getWeight() / 50000.0, Ceil.HALFTON);
-        } else if (vessel.hasETypeFlag(Entity.ETYPE_SPACE_STATION)) {
+        } else if (vessel.hasETypeFlag(EntityTypeConstants.ETYPE_SPACE_STATION)) {
             // SI weight (SI/100) / 3 + 60
             return floor(vessel.getOSI() * vessel.getWeight() / 300.0 + 60, Ceil.HALFTON);
         } else {
@@ -104,9 +104,9 @@ public class TestAdvancedAerospace extends TestAero {
     public static double[] extraSlotCost(Jumpship vessel) {
         int slotsPerArc = 12;
         int arcs = vessel.locations();
-        if (vessel.hasETypeFlag(Entity.ETYPE_WARSHIP)) {
+        if (vessel.hasETypeFlag(EntityTypeConstants.ETYPE_WARSHIP)) {
             slotsPerArc = 20;
-        } else if (vessel.hasETypeFlag(Entity.ETYPE_SPACE_STATION)) {
+        } else if (vessel.hasETypeFlag(EntityTypeConstants.ETYPE_SPACE_STATION)) {
             slotsPerArc = 20;
         }
         int[] weaponsPerArc = new int[arcs];
@@ -245,7 +245,7 @@ public class TestAdvancedAerospace extends TestAero {
         // weight breakdown gives the largest category as 250-1000 m. I went with the
         // larger
         // size here.
-        if (vessel.hasETypeFlag(Entity.ETYPE_SPACE_STATION)) {
+        if (vessel.hasETypeFlag(EntityTypeConstants.ETYPE_SPACE_STATION)) {
             return 1500;
         }
         return 250;
@@ -256,7 +256,7 @@ public class TestAdvancedAerospace extends TestAero {
      */
     public static int minimumBaseCrew(Jumpship vessel) {
         int crew;
-        if (vessel.hasETypeFlag(Entity.ETYPE_WARSHIP) || vessel.hasETypeFlag(Entity.ETYPE_SPACE_STATION)) {
+        if (vessel.hasETypeFlag(EntityTypeConstants.ETYPE_WARSHIP) || vessel.hasETypeFlag(EntityTypeConstants.ETYPE_SPACE_STATION)) {
             crew = 45 + (int) Math.ceil(vessel.getWeight() / 5000);
         } else {
             crew = 6 + (int) Math.ceil(vessel.getWeight() / 20000);
@@ -310,7 +310,7 @@ public class TestAdvancedAerospace extends TestAero {
     public double getWeightControls() {
         if (vessel.isPrimitive()) {
             return ceil(vessel.getWeight() * primitiveControlMultiplier(vessel.getOriginalBuildYear()), Ceil.TON);
-        } else if (vessel.hasETypeFlag(Entity.ETYPE_SPACE_STATION)) {
+        } else if (vessel.hasETypeFlag(EntityTypeConstants.ETYPE_SPACE_STATION)) {
             return ceil(vessel.getWeight() * 0.001, Ceil.TON);
         } else {
             return ceil(vessel.getWeight() * 0.0025, Ceil.TON);
@@ -372,7 +372,7 @@ public class TestAdvancedAerospace extends TestAero {
             } else {
                 return Math.ceil(vessel.getWeight() / 20000) + 30;
             }
-        } else if (vessel.hasETypeFlag(Entity.ETYPE_WARSHIP)) {
+        } else if (vessel.hasETypeFlag(EntityTypeConstants.ETYPE_WARSHIP)) {
             return Math.ceil(vessel.getWeight() / 20000) + 30;
         } else {
             // Space stations with energy collection sail use jumpship formula.
@@ -697,9 +697,9 @@ public class TestAdvancedAerospace extends TestAero {
         Map<Integer, Integer> massDriversPerArc = new HashMap<>();
 
         MiscTypeFlag typeFlag = MiscType.F_JS_EQUIPMENT;
-        if (vessel.hasETypeFlag(Entity.ETYPE_WARSHIP)) {
+        if (vessel.hasETypeFlag(EntityTypeConstants.ETYPE_WARSHIP)) {
             typeFlag = MiscType.F_WS_EQUIPMENT;
-        } else if (vessel.hasETypeFlag(Entity.ETYPE_SPACE_STATION)) {
+        } else if (vessel.hasETypeFlag(EntityTypeConstants.ETYPE_SPACE_STATION)) {
             typeFlag = MiscType.F_SS_EQUIPMENT;
         }
         for (Mounted<?> m : vessel.getEquipment()) {
@@ -710,8 +710,8 @@ public class TestAdvancedAerospace extends TestAero {
                 }
             } else if (m.getType() instanceof WeaponType) {
                 if (m.getType().hasFlag(WeaponType.F_MASS_DRIVER) &&
-                          !vessel.hasETypeFlag(Entity.ETYPE_WARSHIP) &&
-                          !vessel.hasETypeFlag(Entity.ETYPE_SPACE_STATION)) {
+                          !vessel.hasETypeFlag(EntityTypeConstants.ETYPE_WARSHIP) &&
+                          !vessel.hasETypeFlag(EntityTypeConstants.ETYPE_SPACE_STATION)) {
                     buff.append("A mass driver may not be mounted on a Jumpship.\n");
                     illegal = true;
                 }
@@ -820,7 +820,7 @@ public class TestAdvancedAerospace extends TestAero {
         }
 
         for (Map.Entry<Integer, Integer> entry : massDriversPerArc.entrySet()) {
-            if (vessel.hasETypeFlag(Entity.ETYPE_WARSHIP) &&
+            if (vessel.hasETypeFlag(EntityTypeConstants.ETYPE_WARSHIP) &&
                       (entry.getKey() != Warship.LOC_NOSE) &&
                       (entry.getValue() > 0)) {
                 buff.append("A warship may only mount a mass driver in the nose firing arc.\n");
@@ -904,7 +904,7 @@ public class TestAdvancedAerospace extends TestAero {
             illegal = true;
         }
         int maxSize = Jumpship.GRAV_DECK_LARGE_MAX;
-        if (vessel.hasETypeFlag(Entity.ETYPE_SPACE_STATION)) {
+        if (vessel.hasETypeFlag(EntityTypeConstants.ETYPE_SPACE_STATION)) {
             maxSize = Jumpship.GRAV_DECK_HUGE_MAX;
         }
         for (Integer dia : vessel.getGravDecks()) {
@@ -945,7 +945,7 @@ public class TestAdvancedAerospace extends TestAero {
                 }
             }
         }
-        if ((repairCount > 1) && !vessel.hasETypeFlag(Entity.ETYPE_SPACE_STATION)) {
+        if ((repairCount > 1) && !vessel.hasETypeFlag(EntityTypeConstants.ETYPE_SPACE_STATION)) {
             buffer.append("Only a space station may mount multiple naval repair facilities.\n");
             legal = false;
         }
@@ -1064,9 +1064,9 @@ public class TestAdvancedAerospace extends TestAero {
 
     @Override
     public String getName() {
-        if (vessel.hasETypeFlag(Entity.ETYPE_WARSHIP)) {
+        if (vessel.hasETypeFlag(EntityTypeConstants.ETYPE_WARSHIP)) {
             return "Warship: " + vessel.getDisplayName();
-        } else if (vessel.hasETypeFlag(Entity.ETYPE_SPACE_STATION)) {
+        } else if (vessel.hasETypeFlag(EntityTypeConstants.ETYPE_SPACE_STATION)) {
             return "Space Station: " + vessel.getDisplayName();
         } else {
             return "Jumpship: " + vessel.getDisplayName();

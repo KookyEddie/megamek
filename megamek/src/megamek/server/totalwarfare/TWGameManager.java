@@ -1125,14 +1125,14 @@ public class TWGameManager extends AbstractGameManager {
         for (Iterator<Entity> e = game.getEntities(); e.hasNext(); ) {
             final Entity entity = e.next();
             // Decrement ASEW effects
-            if ((entity.getEntityType() & Entity.ETYPE_DROPSHIP) == Entity.ETYPE_DROPSHIP) {
+            if ((entity.getEntityType() & EntityTypeConstants.ETYPE_DROPSHIP) == EntityTypeConstants.ETYPE_DROPSHIP) {
                 Dropship d = (Dropship) entity;
                 for (int loc = 0; loc < d.locations(); loc++) {
                     if (d.getASEWAffected(loc) > 0) {
                         d.setASEWAffected(loc, d.getASEWAffected(loc) - 1);
                     }
                 }
-            } else if ((entity.getEntityType() & Entity.ETYPE_JUMPSHIP) != 0) {
+            } else if ((entity.getEntityType() & EntityTypeConstants.ETYPE_JUMPSHIP) != 0) {
                 Jumpship j = (Jumpship) entity;
                 for (int loc = 0; loc < j.locations(); loc++) {
                     if (j.getASEWAffected(loc) > 0) {
@@ -1681,12 +1681,12 @@ public class TWGameManager extends AbstractGameManager {
             bvcPlayer.bvFled = ServerReportsHelper.getFledBV(player, game);
             bvcPlayer.unitsCount = ServerReportsHelper.getUnitCount(player, game);
             bvcPlayer.unitsInitialCount = player.getInitialEntityCount();
-            bvcPlayer.unitsLightDamageCount = ServerReportsHelper.getUnitDamageCount(player, Entity.DMG_LIGHT, game);
+            bvcPlayer.unitsLightDamageCount = ServerReportsHelper.getUnitDamageCount(player, DamageTypeConstants.DMG_LIGHT, game);
             bvcPlayer.unitsModerateDamageCount = ServerReportsHelper.getUnitDamageCount(player,
-                  Entity.DMG_MODERATE,
+                  DamageTypeConstants.DMG_MODERATE,
                   game);
-            bvcPlayer.unitsHeavyDamageCount = ServerReportsHelper.getUnitDamageCount(player, Entity.DMG_HEAVY, game);
-            bvcPlayer.unitsCrippledCount = ServerReportsHelper.getUnitDamageCount(player, Entity.DMG_CRIPPLED, game);
+            bvcPlayer.unitsHeavyDamageCount = ServerReportsHelper.getUnitDamageCount(player, DamageTypeConstants.DMG_HEAVY, game);
+            bvcPlayer.unitsCrippledCount = ServerReportsHelper.getUnitDamageCount(player, DamageTypeConstants.DMG_CRIPPLED, game);
             bvcPlayer.unitsDestroyedCount = ServerReportsHelper.getUnitDestroyedCount(player, game);
             bvcPlayer.unitsCrewEjectedCount = ServerReportsHelper.getUnitCrewEjectedCount(player, game);
             bvcPlayer.unitsCrewTrappedCount = ServerReportsHelper.getUnitCrewTrappedCount(player, game);
@@ -3158,8 +3158,8 @@ public class TWGameManager extends AbstractGameManager {
         // its turn
         // unless it's the last unit in the Point to act.
         int remainingProtos = 0;
-        if (unit.hasETypeFlag(Entity.ETYPE_PROTOMEK)) {
-            remainingProtos = game.getSelectedEntityCount(en -> en.hasETypeFlag(Entity.ETYPE_PROTOMEK) &&
+        if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK)) {
+            remainingProtos = game.getSelectedEntityCount(en -> en.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK) &&
                                                                       en.getId() != unit.getId() &&
                                                                       en.isSelectableThisTurn() &&
                                                                       en.getOwnerId() == unit.getOwnerId() &&
@@ -6020,7 +6020,7 @@ public class TWGameManager extends AbstractGameManager {
                 // the slot and marking it as hit so it can't absorb future damage.
                 Mounted<?> supercharger = entity.getSuperCharger();
                 if ((null != supercharger) && supercharger.curMode().equals("Armed")) {
-                    if (entity.hasETypeFlag(Entity.ETYPE_MEK)) {
+                    if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_MEK)) {
                         final int loc = supercharger.getLocation();
                         for (int slot = 0; slot < entity.getNumberOfCriticals(loc); slot++) {
                             final CriticalSlot crit = entity.getCritical(loc, slot);
@@ -6123,7 +6123,7 @@ public class TWGameManager extends AbstractGameManager {
             }
             if (infDamage) {
                 reports.addAll(doEntityFall(rider, curPos, 2, prd));
-                if (rider.getEntityType() == Entity.ETYPE_INFANTRY) {
+                if (rider.getEntityType() == EntityTypeConstants.ETYPE_INFANTRY) {
                     int extra = Compute.d6();
                     reports.addAll(damageEntity(rider, new HitData(Infantry.LOC_INFANTRY), extra));
                 }
@@ -6135,7 +6135,7 @@ public class TWGameManager extends AbstractGameManager {
                 r.addDesc(carrier);
                 reports.addElement(r);
                 int mod = 0;
-                if (rider.getEntityType() == Entity.ETYPE_INFANTRY) {
+                if (rider.getEntityType() == EntityTypeConstants.ETYPE_INFANTRY) {
                     mod = -2;
                 }
                 HitData hit = carrier.rollHitLocation(ToHitData.HIT_NORMAL, ToHitData.SIDE_FRONT);
@@ -8214,7 +8214,7 @@ public class TWGameManager extends AbstractGameManager {
     public Vector<Report> doSetLocationsExposure(Entity entity, Hex hex, boolean isJump, int elevation) {
         Vector<Report> vPhaseReport = new Vector<>();
         PlanetaryConditions conditions = game.getPlanetaryConditions();
-        boolean aeroSpaceborne = (entity.getEntityType() & Entity.ETYPE_AERO) == 0 && entity.isSpaceborne();
+        boolean aeroSpaceborne = (entity.getEntityType() & EntityTypeConstants.ETYPE_AERO) == 0 && entity.isSpaceborne();
         if (hex == null) {
             return vPhaseReport;
         }
@@ -10693,7 +10693,7 @@ public class TWGameManager extends AbstractGameManager {
                 r.addDesc(ent);
                 // Ghost target mod is +3 per errata
                 int target = ent.getCrew().getPiloting() + 3;
-                if (ent.hasETypeFlag(Entity.ETYPE_PROTOMEK)) {
+                if (ent.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK)) {
                     target = ent.getCrew().getGunnery() + 3;
                 }
                 r.add(target);
@@ -16768,11 +16768,11 @@ public class TWGameManager extends AbstractGameManager {
                     // Telemissiles cannot target fighters or other telemissiles
                     // Fighters don't have a distinctive Etype flag, so we have to do
                     // this by exclusion.
-                    if (!(te.hasETypeFlag(Entity.ETYPE_DROPSHIP) ||
-                                te.hasETypeFlag(Entity.ETYPE_SMALL_CRAFT) ||
-                                te.hasETypeFlag(Entity.ETYPE_JUMPSHIP) ||
-                                te.hasETypeFlag(Entity.ETYPE_WARSHIP) ||
-                                te.hasETypeFlag(Entity.ETYPE_SPACE_STATION))) {
+                    if (!(te.hasETypeFlag(EntityTypeConstants.ETYPE_DROPSHIP) ||
+                                te.hasETypeFlag(EntityTypeConstants.ETYPE_SMALL_CRAFT) ||
+                                te.hasETypeFlag(EntityTypeConstants.ETYPE_JUMPSHIP) ||
+                                te.hasETypeFlag(EntityTypeConstants.ETYPE_WARSHIP) ||
+                                te.hasETypeFlag(EntityTypeConstants.ETYPE_SPACE_STATION))) {
                         continue;
                     }
                     if (te.isEnemyOf(entity)) {
@@ -20147,7 +20147,7 @@ public class TWGameManager extends AbstractGameManager {
         int passengerDamage = damage;
         int avoidRoll = Compute.d6();
         HitData passHit = passenger.getTrooperAtLocation(hit, te);
-        if (passenger.hasETypeFlag(Entity.ETYPE_PROTOMEK)) {
+        if (passenger.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK)) {
             passengerDamage -= damage / 2;
             passHit = passenger.rollHitLocation(ToHitData.HIT_SPECIAL_PROTO, ToHitData.SIDE_FRONT);
         } else if (avoidRoll < 5) {
@@ -20231,7 +20231,7 @@ public class TWGameManager extends AbstractGameManager {
             r.addDesc(passenger);
             vDesc.addElement(r);
         } // End nLoc-has-exterior-passenger
-        if (passenger.hasETypeFlag(Entity.ETYPE_PROTOMEK) &&
+        if (passenger.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK) &&
                   (passengerDamage > 0) &&
                   !passenger.isDoomed() &&
                   !passenger.isDestroyed()) {

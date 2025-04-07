@@ -53,7 +53,6 @@ import megamek.common.*;
 import megamek.common.force.Force;
 import megamek.common.force.Forces;
 import megamek.common.icons.Camouflage;
-import megamek.common.options.GameOptions;
 import megamek.common.options.OptionsConstants;
 import megamek.common.preference.PreferenceManager;
 import megamek.logging.MMLogger;
@@ -358,7 +357,7 @@ class LobbyMekPopup {
                                 "<HTML>" + e.getShortNameRaw() + idString(game, e.getId()) + " (Free Collars: "
                                         + ((Jumpship) e).getFreeDockingCollars() + ")",
                                 LMP_LOAD + "|" + e.getId() + ":-1" + enToken(entities), enabled, listener)));
-            } else if (entities.stream().noneMatch(e -> e.hasETypeFlag(Entity.ETYPE_PROTOMEK))) {
+            } else if (entities.stream().noneMatch(e -> e.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK))) {
                 // Standard loading, not ProtoMeks, not DropShip -> JumpShip
                 game.getEntitiesVector().stream()
                         .filter(e -> !e.isCapitalFighter(true))
@@ -403,17 +402,17 @@ class LobbyMekPopup {
     private static JMenu protoMenu(ClientGUI cg, boolean enabled, ActionListener listener,
             Collection<Entity> entities) {
         JMenu menu = new JMenu("Load ProtoMek");
-        if (!(enabled || entities.stream().allMatch(e -> e.hasETypeFlag(Entity.ETYPE_PROTOMEK)))) {
+        if (!(enabled || entities.stream().allMatch(e -> e.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK)))) {
             return menu;
         }
 
         Game game = cg.getClient().getGame();
-        Entity entity = entities.stream().filter(e -> e.hasETypeFlag(Entity.ETYPE_PROTOMEK)).findAny().get();
+        Entity entity = entities.stream().filter(e -> e.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK)).findAny().get();
         List<Entity> loaders = game.getEntitiesVector();
 
         // Handle front and rear Magnetic Clamp Mounts
         for (Entity loader : loaders) {
-            if (!loader.hasETypeFlag(Entity.ETYPE_MEK)) {
+            if (!loader.hasETypeFlag(EntityTypeConstants.ETYPE_MEK)) {
                 continue;
             }
             Transporter front = null;

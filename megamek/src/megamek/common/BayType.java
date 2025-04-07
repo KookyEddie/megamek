@@ -32,34 +32,34 @@ public enum BayType implements ITechnologyDelegator {
     REFRIGERATED_CARGO(BayType.CATEGORY_CARGO, 1.0, 0.87, 0, 250, e -> false, RefrigeratedCargoBay.techAdvancement()),
     INSULATED_CARGO(BayType.CATEGORY_CARGO, 1.0, 0.87, 0, 200, e -> false, RefrigeratedCargoBay.techAdvancement()),
     LIVESTOCK_CARGO(BayType.CATEGORY_CARGO, 1.0, 0.83, 0, 2500, e -> false, LivestockCargoBay.techAdvancement()),
-    INFANTRY_FOOT(BayType.CATEGORY_INFANTRY, 5.0, 1.0, 28, 15000, e -> e.hasETypeFlag(Entity.ETYPE_INFANTRY)
-            && !e.hasETypeFlag(Entity.ETYPE_BATTLEARMOR)
+    INFANTRY_FOOT(BayType.CATEGORY_INFANTRY, 5.0, 1.0, 28, 15000, e -> e.hasETypeFlag(EntityTypeConstants.ETYPE_INFANTRY)
+            && !e.hasETypeFlag(EntityTypeConstants.ETYPE_BATTLEARMOR)
             && (e.getMovementMode() == EntityMovementMode.INF_LEG), InfantryBay.techAdvancement()),
-    INFANTRY_JUMP(BayType.CATEGORY_INFANTRY, 6.0, 1.0, 21, 15000, e -> e.hasETypeFlag(Entity.ETYPE_INFANTRY)
-            && !e.hasETypeFlag(Entity.ETYPE_BATTLEARMOR)
+    INFANTRY_JUMP(BayType.CATEGORY_INFANTRY, 6.0, 1.0, 21, 15000, e -> e.hasETypeFlag(EntityTypeConstants.ETYPE_INFANTRY)
+            && !e.hasETypeFlag(EntityTypeConstants.ETYPE_BATTLEARMOR)
             && (e.getMovementMode() == EntityMovementMode.INF_JUMP), InfantryBay.techAdvancement()),
-    INFANTRY_MOTORIZED(BayType.CATEGORY_INFANTRY, 7.0, 1.0, 28, 15000, e -> e.hasETypeFlag(Entity.ETYPE_INFANTRY)
+    INFANTRY_MOTORIZED(BayType.CATEGORY_INFANTRY, 7.0, 1.0, 28, 15000, e -> e.hasETypeFlag(EntityTypeConstants.ETYPE_INFANTRY)
             && (e.getMovementMode() == EntityMovementMode.INF_MOTORIZED), InfantryBay.techAdvancement()),
-    INFANTRY_MECHANIZED(BayType.CATEGORY_INFANTRY, 8.0, 1.0, 5, 15000, e -> e.hasETypeFlag(Entity.ETYPE_INFANTRY)
+    INFANTRY_MECHANIZED(BayType.CATEGORY_INFANTRY, 8.0, 1.0, 5, 15000, e -> e.hasETypeFlag(EntityTypeConstants.ETYPE_INFANTRY)
             && ((Infantry) e).isMechanized(), InfantryBay.techAdvancement()),
-    BATTLEARMOR_IS(BayType.CATEGORY_INFANTRY, 8.0, 1.0, 6, 15000, e -> e.hasETypeFlag(Entity.ETYPE_BATTLEARMOR)
+    BATTLEARMOR_IS(BayType.CATEGORY_INFANTRY, 8.0, 1.0, 6, 15000, e -> e.hasETypeFlag(EntityTypeConstants.ETYPE_BATTLEARMOR)
             && (((BattleArmor) e).getSquadSize() <= 4), BattleArmorBay.techAdvancement()),
-    BATTLEARMOR_CLAN(BayType.CATEGORY_INFANTRY, 10.0, 1.0, 6, 15000, e -> e.hasETypeFlag(Entity.ETYPE_BATTLEARMOR)
+    BATTLEARMOR_CLAN(BayType.CATEGORY_INFANTRY, 10.0, 1.0, 6, 15000, e -> e.hasETypeFlag(EntityTypeConstants.ETYPE_BATTLEARMOR)
             && (((BattleArmor) e).getSquadSize() <= 5), BattleArmorBay.techAdvancement()),
-    BATTLEARMOR_CS(BayType.CATEGORY_INFANTRY, 12.0, 1.0, 6, 15000, e -> e.hasETypeFlag(Entity.ETYPE_BATTLEARMOR),
+    BATTLEARMOR_CS(BayType.CATEGORY_INFANTRY, 12.0, 1.0, 6, 15000, e -> e.hasETypeFlag(EntityTypeConstants.ETYPE_BATTLEARMOR),
             BattleArmorBay.techAdvancement()),
     MEK(BayType.CATEGORY_NON_INFANTRY, 150.0, 1.0, 2, 20000,
-            e -> e.hasETypeFlag(Entity.ETYPE_MEK), MekBay.techAdvancement()),
+            e -> e.hasETypeFlag(EntityTypeConstants.ETYPE_MEK), MekBay.techAdvancement()),
     FIGHTER(BayType.CATEGORY_NON_INFANTRY, 150.0, 1.0, 2, 20000, Entity::isFighter, ASFBay.techAdvancement()),
-    PROTOMEK(BayType.CATEGORY_NON_INFANTRY, 50.0, 5.0, 6, 10000, e -> e.hasETypeFlag(Entity.ETYPE_PROTOMEK),
+    PROTOMEK(BayType.CATEGORY_NON_INFANTRY, 50.0, 5.0, 6, 10000, e -> e.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK),
             ProtoMekBay.techAdvancement()),
-    SMALL_CRAFT(BayType.CATEGORY_NON_INFANTRY, 200.0, 1.0, 5, 20000, e -> e.hasETypeFlag(Entity.ETYPE_AERO)
+    SMALL_CRAFT(BayType.CATEGORY_NON_INFANTRY, 200.0, 1.0, 5, 20000, e -> e.hasETypeFlag(EntityTypeConstants.ETYPE_AERO)
             && (e.getWeight() <= 200.0), SmallCraftBay.techAdvancement()),
-    VEHICLE_LIGHT(BayType.CATEGORY_NON_INFANTRY, 50.0, 1.0, 5, 10000, e -> e.hasETypeFlag(Entity.ETYPE_TANK)
+    VEHICLE_LIGHT(BayType.CATEGORY_NON_INFANTRY, 50.0, 1.0, 5, 10000, e -> e.hasETypeFlag(EntityTypeConstants.ETYPE_TANK)
             && (e.getWeight() <= 50.0), LightVehicleBay.techAdvancement()),
-    VEHICLE_HEAVY(BayType.CATEGORY_NON_INFANTRY, 100.0, 1.0, 8, 10000, e -> e.hasETypeFlag(Entity.ETYPE_TANK)
+    VEHICLE_HEAVY(BayType.CATEGORY_NON_INFANTRY, 100.0, 1.0, 8, 10000, e -> e.hasETypeFlag(EntityTypeConstants.ETYPE_TANK)
             && (e.getWeight() <= 100.0), HeavyVehicleBay.techAdvancement()),
-    VEHICLE_SH(BayType.CATEGORY_NON_INFANTRY, 200.0, 1.0, 15, 20000, e -> e.hasETypeFlag(Entity.ETYPE_TANK)
+    VEHICLE_SH(BayType.CATEGORY_NON_INFANTRY, 200.0, 1.0, 15, 20000, e -> e.hasETypeFlag(EntityTypeConstants.ETYPE_TANK)
             && (e.getWeight() <= 200.0), SuperHeavyVehicleBay.techAdvancement());
 
     public static final int CATEGORY_CARGO = 0;

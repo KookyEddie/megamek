@@ -869,7 +869,7 @@ public class Tank extends Entity {
         // due to 0 MP...
         if (isTrailer() &&
                   (getTractor() != Entity.NONE) &&
-                  game.getEntity(getTractor()).hasETypeFlag(Entity.ETYPE_TANK)) {
+                  game.getEntity(getTractor()).hasETypeFlag(EntityTypeConstants.ETYPE_TANK)) {
             Tank Tractor = (Tank) game.getEntity(getTractor());
             m_bImmobile = Tractor.m_bImmobile;
             m_bImmobileHit = Tractor.m_bImmobileHit;
@@ -2959,7 +2959,7 @@ public class Tank extends Entity {
 
     @Override
     public long getEntityType() {
-        return Entity.ETYPE_TANK;
+        return EntityTypeConstants.ETYPE_TANK;
     }
 
     @Override

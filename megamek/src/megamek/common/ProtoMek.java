@@ -1318,7 +1318,7 @@ public class ProtoMek extends Entity {
 
     @Override
     public long getEntityType() {
-        return Entity.ETYPE_PROTOMEK;
+        return EntityTypeConstants.ETYPE_PROTOMEK;
     }
 
     @Override

@@ -23,7 +23,6 @@ import megamek.client.bot.BotLogger;
 import megamek.client.bot.princess.UnitBehavior.BehaviorType;
 import megamek.client.ui.Messages;
 import megamek.client.ui.SharedUtility;
-import megamek.codeUtilities.StringUtility;
 import megamek.common.*;
 import megamek.common.annotations.Nullable;
 import megamek.common.options.OptionsConstants;
@@ -33,7 +32,6 @@ import org.apache.logging.log4j.Level;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
-import java.text.NumberFormat;
 import java.util.*;
 
 import static megamek.client.ui.SharedUtility.predictLeapDamage;
@@ -497,7 +495,7 @@ public abstract class PathRanker implements IPathRanker {
      */
     private boolean willBuildingCollapse(MovePath path, Game game) {
         // airborne aircraft cannot collapse buildings
-        if (path.getEntity().isAero() || path.getEntity().hasETypeFlag(Entity.ETYPE_VTOL)) {
+        if (path.getEntity().isAero() || path.getEntity().hasETypeFlag(EntityTypeConstants.ETYPE_VTOL)) {
             return false;
         }
 

@@ -73,7 +73,7 @@ public class DestructionAwareDestinationPathfinder extends BoardEdgePathFinder {
             return null;
             // can't "climb into" anything while jumping
         } else {
-            if (entity.hasETypeFlag(Entity.ETYPE_INFANTRY)) {
+            if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_INFANTRY)) {
                 startPath.addStep(MoveStepType.CLIMB_MODE_OFF);
             } else {
                 startPath.addStep(MoveStepType.CLIMB_MODE_ON);

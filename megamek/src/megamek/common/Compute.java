@@ -5062,7 +5062,7 @@ public class Compute {
             visualRange = 0;
             // For squadrons. Default to the passive thermal/optical value used by component
             // fighters
-            if (entity.hasETypeFlag(Entity.ETYPE_FIGHTER_SQUADRON)) {
+            if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_FIGHTER_SQUADRON)) {
                 visualRange = Sensor.ASF_OPTICAL_FIRING_SOLUTION_RANGE;
             }
             if (entity.getActiveSensor() != null) {
@@ -5413,7 +5413,7 @@ public class Compute {
 
         // Dropships using radar in an atmosphere need a range that's a bit more
         // sensible
-        if (e.hasETypeFlag(Entity.ETYPE_DROPSHIP) && !e.isSpaceborne()) {
+        if (e.hasETypeFlag(EntityTypeConstants.ETYPE_DROPSHIP) && !e.isSpaceborne()) {
             if (e.getActiveSensor().getType() == Sensor.TYPE_SPACECRAFT_RADAR) {
                 range = Sensor.LC_RADAR_GROUND_RANGE;
             }

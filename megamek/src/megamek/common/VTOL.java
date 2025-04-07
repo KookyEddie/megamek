@@ -692,7 +692,7 @@ public class VTOL extends Tank implements IBomber {
 
     @Override
     public long getEntityType() {
-        return Entity.ETYPE_TANK | Entity.ETYPE_VTOL;
+        return EntityTypeConstants.ETYPE_TANK | EntityTypeConstants.ETYPE_VTOL;
     }
 
     public static TechAdvancement getChinTurretTA() {

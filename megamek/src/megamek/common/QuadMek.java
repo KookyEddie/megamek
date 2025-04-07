@@ -839,7 +839,7 @@ public class QuadMek extends Mek {
 
     @Override
     public long getEntityType() {
-        return Entity.ETYPE_MEK | Entity.ETYPE_QUAD_MEK;
+        return EntityTypeConstants.ETYPE_MEK | EntityTypeConstants.ETYPE_QUAD_MEK;
     }
 
     @Override

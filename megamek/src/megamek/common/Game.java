@@ -1521,7 +1521,7 @@ public final class Game extends AbstractGame implements Serializable, PlanetaryC
         // Only build the list if the coords are on the board.
         if (getBoard().contains(c)) {
             for (Entity entity : getEntitiesVector(c, true)) {
-                if (entity.hasETypeFlag(Entity.ETYPE_GUN_EMPLACEMENT)) {
+                if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_GUN_EMPLACEMENT)) {
                     vector.addElement((GunEmplacement) entity);
                 }
             }
@@ -1544,7 +1544,7 @@ public final class Game extends AbstractGame implements Serializable, PlanetaryC
         Hex hex = getBoard().getHex(c);
 
         for (Entity entity : getEntitiesVector(c, true)) {
-            if (entity.hasETypeFlag(Entity.ETYPE_GUN_EMPLACEMENT) && entity.getElevation() == hex.ceiling()) {
+            if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_GUN_EMPLACEMENT) && entity.getElevation() == hex.ceiling()) {
                 return true;
             }
         }

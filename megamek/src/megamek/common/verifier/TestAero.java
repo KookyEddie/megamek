@@ -28,7 +28,6 @@ import megamek.common.equipment.WeaponMounted;
 import megamek.common.options.OptionsConstants;
 import megamek.common.util.StringUtil;
 import megamek.common.weapons.bayweapons.BayWeapon;
-import megamek.common.weapons.capitalweapons.ScreenLauncherWeapon;
 import megamek.common.weapons.flamers.VehicleFlamerWeapon;
 import megamek.common.weapons.infantry.InfantryWeapon;
 import megamek.common.weapons.lasers.CLChemicalLaserWeapon;
@@ -71,11 +70,11 @@ public class TestAero extends TestEntity {
      * of master fire control systems.
      */
     public static int slotsPerArc(Aero aero) {
-        if (aero.hasETypeFlag(Entity.ETYPE_WARSHIP)
-                || aero.hasETypeFlag(Entity.ETYPE_SPACE_STATION)) {
+        if (aero.hasETypeFlag(EntityTypeConstants.ETYPE_WARSHIP)
+                || aero.hasETypeFlag(EntityTypeConstants.ETYPE_SPACE_STATION)) {
             return 20;
-        } else if (aero.hasETypeFlag(Entity.ETYPE_JUMPSHIP)
-                || aero.hasETypeFlag(Entity.ETYPE_SMALL_CRAFT)) {
+        } else if (aero.hasETypeFlag(EntityTypeConstants.ETYPE_JUMPSHIP)
+                || aero.hasETypeFlag(EntityTypeConstants.ETYPE_SMALL_CRAFT)) {
             return 12;
         } else {
             return 5;
@@ -89,15 +88,15 @@ public class TestAero extends TestEntity {
      *         a maximum of zero.
      */
     public static int maxBayDoors(Aero aero) {
-        if (aero.hasETypeFlag(Entity.ETYPE_WARSHIP)) {
+        if (aero.hasETypeFlag(EntityTypeConstants.ETYPE_WARSHIP)) {
             return 8 + (int) Math.ceil(aero.getWeight() / 100000);
-        } else if (aero.hasETypeFlag(Entity.ETYPE_SPACE_STATION)) {
+        } else if (aero.hasETypeFlag(EntityTypeConstants.ETYPE_SPACE_STATION)) {
             return 8 + (int) Math.ceil(aero.getWeight() / 75000);
-        } else if (aero.hasETypeFlag(Entity.ETYPE_JUMPSHIP)
-                || (aero.hasETypeFlag(Entity.ETYPE_DROPSHIP))
-                || (aero.hasETypeFlag(Entity.ETYPE_FIXED_WING_SUPPORT))) {
+        } else if (aero.hasETypeFlag(EntityTypeConstants.ETYPE_JUMPSHIP)
+                || (aero.hasETypeFlag(EntityTypeConstants.ETYPE_DROPSHIP))
+                || (aero.hasETypeFlag(EntityTypeConstants.ETYPE_FIXED_WING_SUPPORT))) {
             return 7 + (int) Math.ceil(aero.getWeight() / 50000);
-        } else if (aero.hasETypeFlag(Entity.ETYPE_SMALL_CRAFT)) {
+        } else if (aero.hasETypeFlag(EntityTypeConstants.ETYPE_SMALL_CRAFT)) {
             return aero.isSpheroid() ? 4 : 2;
         } else {
             return 0;
@@ -162,11 +161,11 @@ public class TestAero extends TestEntity {
      */
     public static int maxArmorPoints(Entity aero, double tonnage) {
         long eType = aero.getEntityType();
-        if (aero.hasETypeFlag(Entity.ETYPE_SMALL_CRAFT)) {
+        if (aero.hasETypeFlag(EntityTypeConstants.ETYPE_SMALL_CRAFT)) {
             return TestSmallCraft.maxArmorPoints((SmallCraft) aero);
-        } else if (aero.hasETypeFlag(Entity.ETYPE_CONV_FIGHTER)) {
+        } else if (aero.hasETypeFlag(EntityTypeConstants.ETYPE_CONV_FIGHTER)) {
             return (int) (tonnage * 1);
-        } else if (aero.hasETypeFlag(Entity.ETYPE_AERO)) {
+        } else if (aero.hasETypeFlag(EntityTypeConstants.ETYPE_AERO)) {
             return (int) (tonnage * 8);
         } else {
             return 0;
@@ -224,7 +223,7 @@ public class TestAero extends TestEntity {
         }
 
         // Large engines take up extra space in the aft in conventional fighters
-        if (((a.getEntityType() & Entity.ETYPE_CONV_FIGHTER) != 0)
+        if (((a.getEntityType() & EntityTypeConstants.ETYPE_CONV_FIGHTER) != 0)
                 && a.hasEngine() && (a.getEngine().hasFlag(Engine.LARGE_ENGINE))) {
             availSpace[Aero.LOC_AFT] -= 1; // same for ICE and fusion
         }
@@ -238,7 +237,7 @@ public class TestAero extends TestEntity {
         if (eq instanceof MiscType) {
             // Equipment that takes up a slot on fighters and small craft, but not large
             // craft.
-            if (!en.hasETypeFlag(Entity.ETYPE_DROPSHIP) && !en.hasETypeFlag(Entity.ETYPE_JUMPSHIP)
+            if (!en.hasETypeFlag(EntityTypeConstants.ETYPE_DROPSHIP) && !en.hasETypeFlag(EntityTypeConstants.ETYPE_JUMPSHIP)
                     && (eq.hasFlag(MiscType.F_BAP)
                             || eq.hasFlag(MiscType.F_WATCHDOG)
                             || eq.hasFlag(MiscType.F_ECM)
@@ -272,9 +271,9 @@ public class TestAero extends TestEntity {
      */
     public static int calculateEngineRating(Aero unit, int tonnage, int desiredSafeThrust) {
         int rating;
-        if (unit.hasETypeFlag(Entity.ETYPE_CONV_FIGHTER)) {
+        if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_CONV_FIGHTER)) {
             rating = (tonnage * desiredSafeThrust);
-        } else if (unit.hasETypeFlag(Entity.ETYPE_AEROSPACEFIGHTER)) {
+        } else if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_AEROSPACEFIGHTER)) {
             rating = (tonnage * (desiredSafeThrust - 2));
         } else {
             rating = 0;
@@ -292,9 +291,9 @@ public class TestAero extends TestEntity {
     }
 
     public static int weightFreeHeatSinks(final Aero aero) {
-        if (aero.hasETypeFlag(Entity.ETYPE_SMALL_CRAFT)) {
+        if (aero.hasETypeFlag(EntityTypeConstants.ETYPE_SMALL_CRAFT)) {
             return TestSmallCraft.weightFreeHeatSinks((SmallCraft) aero);
-        } else if (aero.hasETypeFlag(Entity.ETYPE_JUMPSHIP)) {
+        } else if (aero.hasETypeFlag(EntityTypeConstants.ETYPE_JUMPSHIP)) {
             return TestAdvancedAerospace.weightFreeHeatSinks((Jumpship) aero);
         } else if (aero.hasEngine()) {
             return aero.getEngine().getWeightFreeEngineHeatSinks();
@@ -376,7 +375,7 @@ public class TestAero extends TestEntity {
     @Override
     public double getWeightMisc() {
         // VSTOL equipment weighs extra for conventional fighters
-        if ((aero.hasETypeFlag(Entity.ETYPE_CONV_FIGHTER)) && aero.isVSTOL()) {
+        if ((aero.hasETypeFlag(EntityTypeConstants.ETYPE_CONV_FIGHTER)) && aero.isVSTOL()) {
             // Weight = tonnage * 0.05 rounded up to nearest half ton
             return Math.ceil(0.05 * aero.getWeight() * 2) / 2.0;
         }
@@ -386,7 +385,7 @@ public class TestAero extends TestEntity {
     @Override
     public double getWeightPowerAmp() {
         // Conventional Fighters with ICE engines may need a power amp
-        if ((aero.hasETypeFlag(Entity.ETYPE_CONV_FIGHTER)) && aero.hasEngine()
+        if ((aero.hasETypeFlag(EntityTypeConstants.ETYPE_CONV_FIGHTER)) && aero.hasEngine()
                 && (aero.getEngine().getEngineType() == Engine.COMBUSTION_ENGINE)) {
             double weight = 0;
             for (Mounted<?> m : aero.getWeaponList()) {
@@ -415,7 +414,7 @@ public class TestAero extends TestEntity {
         double wt = super.getWeightEngine();
         // Conventional fighters with fusion engines require extra shielding.
         // Per TacOps fission engines require extra shielding as well.
-        if (getEntity().hasETypeFlag(Entity.ETYPE_CONV_FIGHTER)
+        if (getEntity().hasETypeFlag(EntityTypeConstants.ETYPE_CONV_FIGHTER)
                 && (null != getEntity().getEngine())
                 && (getEntity().getEngine().isFusion() || getEntity().getEngine().hasFlag(Engine.FISSION))) {
             wt = ceil(wt * 1.5, Ceil.HALFTON);
@@ -428,7 +427,7 @@ public class TestAero extends TestEntity {
         // Controls for Aerospace Fighters and Conventional Fighters consists
         // of the cockpit and the fuel
         double weight;
-        if (aero.hasETypeFlag(Entity.ETYPE_CONV_FIGHTER)) {
+        if (aero.hasETypeFlag(EntityTypeConstants.ETYPE_CONV_FIGHTER)) {
             // Weight = tonnage * 0.1 rounded to nearest half ton
             weight = Math.round(0.1 * aero.getWeight() * 2) / 2.0;
         } else {
@@ -450,7 +449,7 @@ public class TestAero extends TestEntity {
 
     @Override
     public int getCountHeatSinks() {
-        if (aero.hasETypeFlag(Entity.ETYPE_CONV_FIGHTER)) {
+        if (aero.hasETypeFlag(EntityTypeConstants.ETYPE_CONV_FIGHTER)) {
             return heatNeutralHSRequirement();
         }
         return aero.getHeatSinks();
@@ -458,7 +457,7 @@ public class TestAero extends TestEntity {
 
     @Override
     public double getWeightHeatSinks() {
-        if (aero.hasETypeFlag(Entity.ETYPE_CONV_FIGHTER)) {
+        if (aero.hasETypeFlag(EntityTypeConstants.ETYPE_CONV_FIGHTER)) {
             int required = heatNeutralHSRequirement();
             return Math.max(0, required - engine.getWeightFreeEngineHeatSinks());
         } else {
@@ -540,7 +539,7 @@ public class TestAero extends TestEntity {
      * @return
      */
     public boolean correctControlSystems(StringBuffer buff) {
-        if ((aero.hasETypeFlag(Entity.ETYPE_CONV_FIGHTER)) &&
+        if ((aero.hasETypeFlag(EntityTypeConstants.ETYPE_CONV_FIGHTER)) &&
                 aero.getCockpitType() != Aero.COCKPIT_STANDARD) {
             buff.append(
                     "Conventional fighters may only have standard cockpits!");
@@ -722,7 +721,7 @@ public class TestAero extends TestEntity {
             correct = false;
         }
         if ((getCountHeatSinks() < engine.getWeightFreeEngineHeatSinks())
-                && !aero.hasETypeFlag(Entity.ETYPE_CONV_FIGHTER)) {
+                && !aero.hasETypeFlag(EntityTypeConstants.ETYPE_CONV_FIGHTER)) {
             buff.append("Heat Sinks:\n");
             buff.append(" Engine    "
                     + engine.integralHeatSinkCapacity(false) + "\n");
@@ -885,28 +884,28 @@ public class TestAero extends TestEntity {
 
         // small craft only; lacks aero weapon flag
         if (weapon.getAmmoType() == AmmoType.T_C3_REMOTE_SENSOR) {
-            return en.hasETypeFlag(Entity.ETYPE_SMALL_CRAFT)
-                    && !en.hasETypeFlag(Entity.ETYPE_DROPSHIP);
+            return en.hasETypeFlag(EntityTypeConstants.ETYPE_SMALL_CRAFT)
+                    && !en.hasETypeFlag(EntityTypeConstants.ETYPE_DROPSHIP);
         }
 
         if (weapon.hasFlag(WeaponType.F_ARTILLERY) && !weapon.hasFlag(WeaponType.F_BA_WEAPON)) {
             return (weapon.getAmmoType() == AmmoType.T_ARROW_IV)
-                    || en.hasETypeFlag(Entity.ETYPE_SMALL_CRAFT)
-                    || en.hasETypeFlag(Entity.ETYPE_JUMPSHIP);
+                    || en.hasETypeFlag(EntityTypeConstants.ETYPE_SMALL_CRAFT)
+                    || en.hasETypeFlag(EntityTypeConstants.ETYPE_JUMPSHIP);
         }
 
         if (weapon.isSubCapital() || (weapon.isCapital() && (weapon.hasFlag(WeaponType.F_MISSILE)))
                 || (weapon.getAtClass() == WeaponType.CLASS_SCREEN)) {
-            return en.hasETypeFlag(Entity.ETYPE_DROPSHIP)
-                    || en.hasETypeFlag(Entity.ETYPE_JUMPSHIP);
+            return en.hasETypeFlag(EntityTypeConstants.ETYPE_DROPSHIP)
+                    || en.hasETypeFlag(EntityTypeConstants.ETYPE_JUMPSHIP);
         }
 
         if (weapon.hasFlag(WeaponType.F_VGL)) {
-            return !en.hasETypeFlag(Entity.ETYPE_JUMPSHIP);
+            return !en.hasETypeFlag(EntityTypeConstants.ETYPE_JUMPSHIP);
         }
 
         if (weapon.isCapital()) {
-            return en.hasETypeFlag(Entity.ETYPE_JUMPSHIP);
+            return en.hasETypeFlag(EntityTypeConstants.ETYPE_JUMPSHIP);
         }
 
         if (weapon instanceof BayWeapon) {
@@ -1068,7 +1067,7 @@ public class TestAero extends TestEntity {
 
     @Override
     public String getName() {
-        if (aero.hasETypeFlag(Entity.ETYPE_CONV_FIGHTER)) {
+        if (aero.hasETypeFlag(EntityTypeConstants.ETYPE_CONV_FIGHTER)) {
             return "Conventional Fighter: " + aero.getDisplayName();
         } else {
             return "Aerospace Fighter: " + aero.getDisplayName();
@@ -1081,19 +1080,19 @@ public class TestAero extends TestEntity {
     @Override
     public double getWeightStructure() {
         double tonnage = 0;
-        if (aero.hasETypeFlag(Entity.ETYPE_SMALL_CRAFT)) {
+        if (aero.hasETypeFlag(EntityTypeConstants.ETYPE_SMALL_CRAFT)) {
             tonnage = aero.getSI() * aero.getWeight();
             if (aero.isSpheroid()) {
                 tonnage /= 500;
             } else {
                 tonnage /= 200;
             }
-        } else if (aero.hasETypeFlag(Entity.ETYPE_SPACE_STATION)) {
+        } else if (aero.hasETypeFlag(EntityTypeConstants.ETYPE_SPACE_STATION)) {
             tonnage = aero.getWeight() / 100;
-        } else if (aero.hasETypeFlag(Entity.ETYPE_WARSHIP)) {
+        } else if (aero.hasETypeFlag(EntityTypeConstants.ETYPE_WARSHIP)) {
             // SI * weight / 1000, rounded up to half ton
             tonnage = aero.getSI() * aero.getWeight() / 1000;
-        } else if (aero.hasETypeFlag(Entity.ETYPE_JUMPSHIP)) {
+        } else if (aero.hasETypeFlag(EntityTypeConstants.ETYPE_JUMPSHIP)) {
             tonnage = aero.getWeight() / 150;
         } else {
             // Fighters do not allocate weight to structure
@@ -1112,27 +1111,27 @@ public class TestAero extends TestEntity {
      * @return The maximum tonnage for the type of unit.
      */
     public static int getMaxTonnage(Aero aero, int faction) {
-        if (aero.hasETypeFlag(Entity.ETYPE_SPACE_STATION)) {
+        if (aero.hasETypeFlag(EntityTypeConstants.ETYPE_SPACE_STATION)) {
             return 2500000;
-        } else if (aero.hasETypeFlag(Entity.ETYPE_WARSHIP)) {
+        } else if (aero.hasETypeFlag(EntityTypeConstants.ETYPE_WARSHIP)) {
             if (((Jumpship) aero).getDriveCoreType() == Jumpship.DRIVE_CORE_SUBCOMPACT) {
                 return 25000;
             }
             return 2500000;
-        } else if (aero.hasETypeFlag(Entity.ETYPE_JUMPSHIP)) {
+        } else if (aero.hasETypeFlag(EntityTypeConstants.ETYPE_JUMPSHIP)) {
             if (aero.isPrimitive()) {
                 return getPrimitiveJumpshipMaxTonnage(aero, faction);
             }
             return 500000;
-        } else if (aero.hasETypeFlag(Entity.ETYPE_DROPSHIP)) {
+        } else if (aero.hasETypeFlag(EntityTypeConstants.ETYPE_DROPSHIP)) {
             if (aero.isPrimitive()) {
                 return getPrimitiveDropshipMaxTonnage(aero);
             }
             return aero.isSpheroid() ? 100000 : 35000;
-        } else if (aero.hasETypeFlag(Entity.ETYPE_SMALL_CRAFT)
-                || aero.hasETypeFlag(Entity.ETYPE_FIXED_WING_SUPPORT)) {
+        } else if (aero.hasETypeFlag(EntityTypeConstants.ETYPE_SMALL_CRAFT)
+                || aero.hasETypeFlag(EntityTypeConstants.ETYPE_FIXED_WING_SUPPORT)) {
             return 200;
-        } else if (aero.hasETypeFlag(Entity.ETYPE_CONV_FIGHTER)) {
+        } else if (aero.hasETypeFlag(EntityTypeConstants.ETYPE_CONV_FIGHTER)) {
             return 50;
         } else {
             return 100;
@@ -1223,9 +1222,9 @@ public class TestAero extends TestEntity {
      *         requirements.
      */
     public static int minimumBaseCrew(Aero aero) {
-        if (aero.hasETypeFlag(Entity.ETYPE_SMALL_CRAFT)) {
+        if (aero.hasETypeFlag(EntityTypeConstants.ETYPE_SMALL_CRAFT)) {
             return TestSmallCraft.minimumBaseCrew((SmallCraft) aero);
-        } else if (aero.hasETypeFlag(Entity.ETYPE_JUMPSHIP)) {
+        } else if (aero.hasETypeFlag(EntityTypeConstants.ETYPE_JUMPSHIP)) {
             return TestAdvancedAerospace.minimumBaseCrew((Jumpship) aero);
         } else {
             return 1;

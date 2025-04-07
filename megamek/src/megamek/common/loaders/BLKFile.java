@@ -724,7 +724,7 @@ public class BLKFile {
                 blk.writeBlockData("SafeThrust", t.getOriginalWalkMP());
             } else {
                 blk.writeBlockData("cruiseMP", t.getOriginalWalkMP());
-                if (t.hasETypeFlag(Entity.ETYPE_PROTOMEK)) {
+                if (t.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK)) {
                     blk.writeBlockData("jumpingMP", t.getOriginalJumpMP());
                     blk.writeBlockData("interface_cockpit",
                             String.valueOf(((ProtoMek) t).hasInterfaceCockpit()));
@@ -737,7 +737,7 @@ public class BLKFile {
             if (t instanceof Aero) {
                 if (t.isFighter()) {
                     blk.writeBlockData("cockpit_type", ((Aero) t).getCockpitType());
-                    if (t.hasETypeFlag(Entity.ETYPE_CONV_FIGHTER) && ((Aero) t).isVSTOL()) {
+                    if (t.hasETypeFlag(EntityTypeConstants.ETYPE_CONV_FIGHTER) && ((Aero) t).isVSTOL()) {
                         blk.writeBlockData("vstol", 1);
                     }
                 } else if ((t instanceof Dropship) && t.isPrimitive()) {
@@ -825,8 +825,8 @@ public class BLKFile {
             }
 
             int[] armor_array;
-            if (t.hasETypeFlag(Entity.ETYPE_AERO)) {
-                if (t.hasETypeFlag(Entity.ETYPE_JUMPSHIP)) {
+            if (t.hasETypeFlag(EntityTypeConstants.ETYPE_AERO)) {
+                if (t.hasETypeFlag(EntityTypeConstants.ETYPE_JUMPSHIP)) {
                     armor_array = new int[6];
                 } else {
                     armor_array = new int[4];
@@ -928,7 +928,7 @@ public class BLKFile {
 
         }
 
-        if (t.hasETypeFlag(Entity.ETYPE_SMALL_CRAFT) || t.hasETypeFlag(Entity.ETYPE_JUMPSHIP)) {
+        if (t.hasETypeFlag(EntityTypeConstants.ETYPE_SMALL_CRAFT) || t.hasETypeFlag(EntityTypeConstants.ETYPE_JUMPSHIP)) {
             blk.writeBlockData("structural_integrity", ((Aero) t).getOSI());
         }
 

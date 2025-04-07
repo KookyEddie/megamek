@@ -32,7 +32,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -132,23 +131,23 @@ public class BulkUnitFileTest {
             "data/mekfiles/UnitVerifierOptions.xml"));
         TestEntity testEntity = null;
 
-        if (unit.hasETypeFlag(Entity.ETYPE_MEK)) {
+        if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_MEK)) {
             testEntity = new TestMek((Mek) unit, entityVerifier.mekOption, null);
-        } else if (unit.hasETypeFlag(Entity.ETYPE_PROTOMEK)) {
+        } else if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK)) {
             testEntity = new TestProtoMek((ProtoMek) unit, entityVerifier.protomekOption, null);
         } else if (unit.isSupportVehicle()) {
             testEntity = new TestSupportVehicle(unit, entityVerifier.tankOption, null);
-        } else if (unit.hasETypeFlag(Entity.ETYPE_TANK)) {
+        } else if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_TANK)) {
             testEntity = new TestTank((Tank) unit, entityVerifier.tankOption, null);
-        } else if (unit.hasETypeFlag(Entity.ETYPE_SMALL_CRAFT)) {
+        } else if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_SMALL_CRAFT)) {
             testEntity = new TestSmallCraft((SmallCraft) unit, entityVerifier.aeroOption, null);
-        } else if (unit.hasETypeFlag(Entity.ETYPE_JUMPSHIP)) {
+        } else if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_JUMPSHIP)) {
             testEntity = new TestAdvancedAerospace((Jumpship) unit, entityVerifier.aeroOption, null);
-        } else if (unit.hasETypeFlag(Entity.ETYPE_AERO)) {
+        } else if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_AERO)) {
             testEntity = new TestAero((Aero) unit, entityVerifier.aeroOption, null);
-        } else if (unit.hasETypeFlag(Entity.ETYPE_BATTLEARMOR)) {
+        } else if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_BATTLEARMOR)) {
             testEntity = new TestBattleArmor((BattleArmor) unit, entityVerifier.baOption, null);
-        } else if (unit.hasETypeFlag(Entity.ETYPE_INFANTRY)) {
+        } else if (unit.hasETypeFlag(EntityTypeConstants.ETYPE_INFANTRY)) {
             testEntity = new TestInfantry((Infantry) unit, entityVerifier.infOption, null);
         }
         return testEntity;

@@ -715,7 +715,7 @@ public class FighterSquadron extends AeroSpaceFighter {
 
     @Override
     public long getEntityType() {
-        return super.getEntityType() | Entity.ETYPE_FIGHTER_SQUADRON;
+        return super.getEntityType() | EntityTypeConstants.ETYPE_FIGHTER_SQUADRON;
     }
 
     @Override

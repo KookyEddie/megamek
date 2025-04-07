@@ -1040,13 +1040,13 @@ class FireControlTest {
         mockTarget = mock(BipedMek.class);
         when(((Entity) mockTarget).getArmorType(anyInt())).thenReturn(EquipmentType.T_ARMOR_STANDARD);
         when(mockTarget.getPosition()).thenReturn(new Coords(10, 15));
-        when(((Entity) mockTarget).getDamageLevel()).thenReturn(Entity.DMG_HEAVY);
+        when(((Entity) mockTarget).getDamageLevel()).thenReturn(DamageTypeConstants.DMG_HEAVY);
         when(mockWeaponLB10X.getLinkedAmmo()).thenReturn(mockAmmoLB10XCluster);
         assertEquals(mockAmmoLB10XCluster,
                 testFireControl.getPreferredAmmo(mockShooter, mockTarget, mockWeaponLB10X));
 
         // Test a hot target.
-        when(((Entity) mockTarget).getDamageLevel()).thenReturn(Entity.DMG_LIGHT);
+        when(((Entity) mockTarget).getDamageLevel()).thenReturn(DamageTypeConstants.DMG_LIGHT);
         when(((Entity) mockTarget).getHeat()).thenReturn(12);
 
         when(mockWeaponMML5.getLinkedAmmo()).thenReturn(mockAmmoInferno5);

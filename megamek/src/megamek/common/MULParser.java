@@ -1912,8 +1912,8 @@ public class MULParser {
                             // Handled by the next if test.
                         }
                         if (capacity.equals(VALUE_NA)) {
-                            if (entity.hasETypeFlag(Entity.ETYPE_BATTLEARMOR)
-                                    || entity.hasETypeFlag(Entity.ETYPE_PROTOMEK)) {
+                            if (entity.hasETypeFlag(EntityTypeConstants.ETYPE_BATTLEARMOR)
+                                    || entity.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK)) {
                                 ((AmmoMounted) mounted).setAmmoCapacity(mounted.getOriginalShots()
                                         * ((AmmoType) mounted.getType()).getKgPerShot() * 1000);
                             } else {

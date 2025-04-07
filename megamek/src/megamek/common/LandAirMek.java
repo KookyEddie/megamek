@@ -2113,7 +2113,7 @@ public class LandAirMek extends BipedMek implements IAero, IBomber {
 
     @Override
     public long getEntityType() {
-        return Entity.ETYPE_MEK | Entity.ETYPE_BIPED_MEK | Entity.ETYPE_LAND_AIR_MEK;
+        return EntityTypeConstants.ETYPE_MEK | EntityTypeConstants.ETYPE_BIPED_MEK | EntityTypeConstants.ETYPE_LAND_AIR_MEK;
     }
 
     /**

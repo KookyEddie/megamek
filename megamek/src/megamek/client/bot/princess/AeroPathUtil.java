@@ -25,14 +25,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import megamek.client.commands.ClientCommand;
-import megamek.common.Coords;
-import megamek.common.Dropship;
-import megamek.common.Entity;
-import megamek.common.Game;
-import megamek.common.IAero;
-import megamek.common.MovePath;
+import megamek.common.*;
 import megamek.common.MovePath.MoveStepType;
-import megamek.common.UnitType;
 import megamek.logging.MMLogger;
 
 /**
@@ -320,7 +314,7 @@ public class AeroPathUtil {
         }
 
         // Then determine if we need to protect part of the ship
-        if (mover.getDamageLevel() == Entity.DMG_NONE) {
+        if (mover.getDamageLevel() == DamageTypeConstants.DMG_NONE) {
             dir = enemyDir;
             logger.debug("Being hale and hearty, we will aim toward the %s", ClientCommand.getDirection(dir));
         } else {

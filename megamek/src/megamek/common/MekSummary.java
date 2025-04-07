@@ -284,15 +284,15 @@ public class MekSummary implements Serializable, ASCardDisplayable {
     @Deprecated(since = "0.50.05", forRemoval = true)
     public static String determineETypeName(MekSummary ms) {
         return switch (ms.getUnitType()) {
-            case "BattleArmor", "Infantry" -> Entity.getEntityMajorTypeName(Entity.ETYPE_INFANTRY);
-            case "VTOL" -> Entity.getEntityMajorTypeName(Entity.ETYPE_VTOL);
-            case "Naval", "Gun Emplacement", "Tank" -> Entity.getEntityMajorTypeName(Entity.ETYPE_TANK);
-            case "Mek" -> Entity.getEntityMajorTypeName(Entity.ETYPE_MEK);
-            case "ProtoMek" -> Entity.getEntityMajorTypeName(Entity.ETYPE_PROTOMEK);
+            case "BattleArmor", "Infantry" -> Entity.getEntityMajorTypeName(EntityTypeConstants.ETYPE_INFANTRY);
+            case "VTOL" -> Entity.getEntityMajorTypeName(EntityTypeConstants.ETYPE_VTOL);
+            case "Naval", "Gun Emplacement", "Tank" -> Entity.getEntityMajorTypeName(EntityTypeConstants.ETYPE_TANK);
+            case "Mek" -> Entity.getEntityMajorTypeName(EntityTypeConstants.ETYPE_MEK);
+            case "ProtoMek" -> Entity.getEntityMajorTypeName(EntityTypeConstants.ETYPE_PROTOMEK);
             case "Space Station", "Jumpship", "Dropship", "Small Craft", "Aero" ->
-                  Entity.getEntityMajorTypeName(Entity.ETYPE_AERO);
+                  Entity.getEntityMajorTypeName(EntityTypeConstants.ETYPE_AERO);
             case "Conventional Fighter", "AeroSpaceFighter" ->
-                  Entity.getEntityMajorTypeName(Entity.ETYPE_AEROSPACEFIGHTER);
+                  Entity.getEntityMajorTypeName(EntityTypeConstants.ETYPE_AEROSPACEFIGHTER);
             default -> Entity.getEntityMajorTypeName(-1);
         };
     }

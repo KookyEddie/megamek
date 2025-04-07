@@ -1869,7 +1869,7 @@ public class Infantry extends Entity {
 
     @Override
     public long getEntityType() {
-        return Entity.ETYPE_INFANTRY;
+        return EntityTypeConstants.ETYPE_INFANTRY;
     }
 
     @Override

@@ -129,7 +129,7 @@ public class ConvFighter extends AeroSpaceFighter {
 
     @Override
     public long getEntityType() {
-        return Entity.ETYPE_AERO | Entity.ETYPE_CONV_FIGHTER;
+        return EntityTypeConstants.ETYPE_AERO | EntityTypeConstants.ETYPE_CONV_FIGHTER;
     }
 
     @Override

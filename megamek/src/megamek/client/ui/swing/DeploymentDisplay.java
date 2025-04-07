@@ -724,7 +724,7 @@ public class DeploymentDisplay extends StatusBarPhaseDisplay {
                         // We need to update the entity here so that the server knows about our target
                         // bay
                         client.sendUpdateEntity(other);
-                    } else if (other.hasETypeFlag(Entity.ETYPE_PROTOMEK)) {
+                    } else if (other.hasETypeFlag(EntityTypeConstants.ETYPE_PROTOMEK)) {
                         bayChoices = new ArrayList<>();
                         for (Transporter t : ce().getTransports()) {
                             if ((t instanceof ProtoMekClampMount) && t.canLoad(other)) {

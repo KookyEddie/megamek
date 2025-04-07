@@ -21,7 +21,7 @@ package megamek.client.ui.advancedsearch;
 import java.util.*;
 import java.util.stream.IntStream;
 
-import megamek.common.Entity;
+import megamek.common.EntityTypeConstants;
 import megamek.common.MekSummary;
 import megamek.common.Messages;
 import megamek.common.annotations.Nullable;
@@ -769,79 +769,79 @@ public class MekSearchFilter {
         long entityTypes = 0;
 
         if (f.filterMek == 1) {
-            entityTypes = entityTypes | Entity.ETYPE_MEK;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_MEK;
         }
         if (f.filterBipedMek == 1) {
-            entityTypes = entityTypes | Entity.ETYPE_BIPED_MEK;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_BIPED_MEK;
         }
         if (f.filterProtomek == 1) {
-            entityTypes = entityTypes | Entity.ETYPE_PROTOMEK;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_PROTOMEK;
         }
         if (f.filterLAM == 1) {
-            entityTypes = entityTypes | Entity.ETYPE_LAND_AIR_MEK;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_LAND_AIR_MEK;
         }
         if (f.filterTripod == 1) {
-            entityTypes = entityTypes | Entity.ETYPE_TRIPOD_MEK;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_TRIPOD_MEK;
         }
         if (f.filterQuad == 1) {
-            entityTypes = entityTypes | Entity.ETYPE_QUAD_MEK;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_QUAD_MEK;
         }
         if (f.filterQuadVee == 1) {
-            entityTypes = entityTypes | Entity.ETYPE_QUADVEE;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_QUADVEE;
         }
         if (f.filterAero == 1) {
-            entityTypes = entityTypes | Entity.ETYPE_AERO;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_AERO;
         }
         if (f.filterFixedWingSupport == 1) {
-            entityTypes = entityTypes | Entity.ETYPE_FIXED_WING_SUPPORT;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_FIXED_WING_SUPPORT;
         }
         if (f.filterConvFighter == 1) {
-            entityTypes = entityTypes | Entity.ETYPE_CONV_FIGHTER;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_CONV_FIGHTER;
         }
         if (f.filterSmallCraft == 1) {
-            entityTypes = entityTypes | Entity.ETYPE_SMALL_CRAFT;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_SMALL_CRAFT;
         }
         if (f.filterDropship == 1) {
-            entityTypes = entityTypes | Entity.ETYPE_DROPSHIP;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_DROPSHIP;
         }
         if (f.filterJumpship == 1) {
-            entityTypes = entityTypes | Entity.ETYPE_JUMPSHIP;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_JUMPSHIP;
         }
         if (f.filterWarship == 1) {
-            entityTypes = entityTypes | Entity.ETYPE_WARSHIP;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_WARSHIP;
         }
         if (f.filterSpaceStation == 1) {
-            entityTypes = entityTypes | Entity.ETYPE_SPACE_STATION;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_SPACE_STATION;
         }
         if (f.filterInfantry == 1) {
-            entityTypes = entityTypes | Entity.ETYPE_INFANTRY;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_INFANTRY;
         }
         if (f.filterBattleArmor == 1) {
-            entityTypes = entityTypes | Entity.ETYPE_BATTLEARMOR;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_BATTLEARMOR;
         }
         if (f.filterTank == 1) {
-            entityTypes = entityTypes | Entity.ETYPE_TANK;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_TANK;
         }
         if (f.filterVTOL == 1) {
-            entityTypes = entityTypes | Entity.ETYPE_VTOL;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_VTOL;
         }
         if (f.filterSupportVTOL == 1) {
-            entityTypes = entityTypes | Entity.ETYPE_SUPPORT_VTOL;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_SUPPORT_VTOL;
         }
         if (f.filterGunEmplacement == 1) {
-            entityTypes = entityTypes | Entity.ETYPE_GUN_EMPLACEMENT;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_GUN_EMPLACEMENT;
         }
         if (f.filterSupportTank == 1) {
-            entityTypes = entityTypes | Entity.ETYPE_SUPPORT_TANK;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_SUPPORT_TANK;
         }
         if (f.filterLargeSupportTank == 1) {
-            entityTypes = entityTypes | Entity.ETYPE_LARGE_SUPPORT_TANK;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_LARGE_SUPPORT_TANK;
         }
         if (f.filterSuperHeavyTank == 1) {
-            entityTypes = entityTypes | Entity.ETYPE_SUPER_HEAVY_TANK;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_SUPER_HEAVY_TANK;
         }
         if (f.iAerospaceFighter == 1) {
-            entityTypes = entityTypes | Entity.ETYPE_AEROSPACEFIGHTER;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_AEROSPACEFIGHTER;
         }
 
         if ((!((entityType & entityTypes) > 0) && (entityTypes != 0))) {
@@ -851,79 +851,79 @@ public class MekSearchFilter {
         entityTypes = 0;
 
         if (f.filterMek == 2) {
-            entityTypes = entityTypes | Entity.ETYPE_MEK;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_MEK;
         }
         if (f.filterBipedMek == 2) {
-            entityTypes = entityTypes | Entity.ETYPE_BIPED_MEK;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_BIPED_MEK;
         }
         if (f.filterProtomek == 2) {
-            entityTypes = entityTypes | Entity.ETYPE_PROTOMEK;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_PROTOMEK;
         }
         if (f.filterLAM == 2) {
-            entityTypes = entityTypes | Entity.ETYPE_LAND_AIR_MEK;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_LAND_AIR_MEK;
         }
         if (f.filterTripod == 2) {
-            entityTypes = entityTypes | Entity.ETYPE_TRIPOD_MEK;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_TRIPOD_MEK;
         }
         if (f.filterQuad == 2) {
-            entityTypes = entityTypes | Entity.ETYPE_QUAD_MEK;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_QUAD_MEK;
         }
         if (f.filterQuadVee == 2) {
-            entityTypes = entityTypes | Entity.ETYPE_QUADVEE;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_QUADVEE;
         }
         if (f.filterAero == 2) {
-            entityTypes = entityTypes | Entity.ETYPE_AERO;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_AERO;
         }
         if (f.filterFixedWingSupport == 2) {
-            entityTypes = entityTypes | Entity.ETYPE_FIXED_WING_SUPPORT;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_FIXED_WING_SUPPORT;
         }
         if (f.filterConvFighter == 2) {
-            entityTypes = entityTypes | Entity.ETYPE_CONV_FIGHTER;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_CONV_FIGHTER;
         }
         if (f.filterSmallCraft == 2) {
-            entityTypes = entityTypes | Entity.ETYPE_SMALL_CRAFT;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_SMALL_CRAFT;
         }
         if (f.filterDropship == 2) {
-            entityTypes = entityTypes | Entity.ETYPE_DROPSHIP;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_DROPSHIP;
         }
         if (f.filterJumpship == 2) {
-            entityTypes = entityTypes | Entity.ETYPE_JUMPSHIP;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_JUMPSHIP;
         }
         if (f.filterWarship == 2) {
-            entityTypes = entityTypes | Entity.ETYPE_WARSHIP;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_WARSHIP;
         }
         if (f.filterSpaceStation == 2) {
-            entityTypes = entityTypes | Entity.ETYPE_SPACE_STATION;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_SPACE_STATION;
         }
         if (f.filterInfantry == 2) {
-            entityTypes = entityTypes | Entity.ETYPE_INFANTRY;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_INFANTRY;
         }
         if (f.filterBattleArmor == 2) {
-            entityTypes = entityTypes | Entity.ETYPE_BATTLEARMOR;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_BATTLEARMOR;
         }
         if (f.filterTank == 2) {
-            entityTypes = entityTypes | Entity.ETYPE_TANK;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_TANK;
         }
         if (f.filterVTOL == 2) {
-            entityTypes = entityTypes | Entity.ETYPE_VTOL;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_VTOL;
         }
         if (f.filterSupportVTOL == 2) {
-            entityTypes = entityTypes | Entity.ETYPE_SUPPORT_VTOL;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_SUPPORT_VTOL;
         }
         if (f.filterGunEmplacement == 2) {
-            entityTypes = entityTypes | Entity.ETYPE_GUN_EMPLACEMENT;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_GUN_EMPLACEMENT;
         }
         if (f.filterSupportTank == 2) {
-            entityTypes = entityTypes | Entity.ETYPE_SUPPORT_TANK;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_SUPPORT_TANK;
         }
         if (f.filterLargeSupportTank == 2) {
-            entityTypes = entityTypes | Entity.ETYPE_LARGE_SUPPORT_TANK;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_LARGE_SUPPORT_TANK;
         }
         if (f.filterSuperHeavyTank == 2) {
-            entityTypes = entityTypes | Entity.ETYPE_SUPER_HEAVY_TANK;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_SUPER_HEAVY_TANK;
         }
         if (f.iAerospaceFighter == 2) {
-            entityTypes = entityTypes | Entity.ETYPE_AEROSPACEFIGHTER;
+            entityTypes = entityTypes | EntityTypeConstants.ETYPE_AEROSPACEFIGHTER;
         }
 
         if (((entityType & entityTypes) > 0) && (entityTypes != 0)) {

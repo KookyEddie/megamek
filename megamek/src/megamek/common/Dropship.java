@@ -692,7 +692,7 @@ public class Dropship extends SmallCraft {
 
     @Override
     public long getEntityType() {
-        return Entity.ETYPE_AERO | Entity.ETYPE_SMALL_CRAFT | Entity.ETYPE_DROPSHIP;
+        return EntityTypeConstants.ETYPE_AERO | EntityTypeConstants.ETYPE_SMALL_CRAFT | EntityTypeConstants.ETYPE_DROPSHIP;
     }
 
     @Override

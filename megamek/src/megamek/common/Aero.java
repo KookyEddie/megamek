@@ -1496,11 +1496,11 @@ public abstract class Aero extends Entity implements IAero, IBomber {
         r.addDesc(this);
         vDesc.addElement(r);
 
-        if (((getEntityType() & Entity.ETYPE_DROPSHIP) == 0) ||
-                  ((getEntityType() & Entity.ETYPE_SMALL_CRAFT) == 0) ||
-                  ((getEntityType() & Entity.ETYPE_FIGHTER_SQUADRON) == 0) ||
-                  ((getEntityType() & Entity.ETYPE_JUMPSHIP) == 0) ||
-                  ((getEntityType() & Entity.ETYPE_SPACE_STATION) == 0)) {
+        if (((getEntityType() & EntityTypeConstants.ETYPE_DROPSHIP) == 0) ||
+                  ((getEntityType() & EntityTypeConstants.ETYPE_SMALL_CRAFT) == 0) ||
+                  ((getEntityType() & EntityTypeConstants.ETYPE_FIGHTER_SQUADRON) == 0) ||
+                  ((getEntityType() & EntityTypeConstants.ETYPE_JUMPSHIP) == 0) ||
+                  ((getEntityType() & EntityTypeConstants.ETYPE_SPACE_STATION) == 0)) {
             r = new Report(7036);
         } else {
             r = new Report(7030);
@@ -2999,7 +2999,7 @@ public abstract class Aero extends Entity implements IAero, IBomber {
 
     @Override
     public long getEntityType() {
-        return Entity.ETYPE_AERO;
+        return EntityTypeConstants.ETYPE_AERO;
     }
 
     @Override
@@ -3103,7 +3103,7 @@ public abstract class Aero extends Entity implements IAero, IBomber {
         // Remove everything but Radar if we're not in space
         if (!isSpaceborne()) {
             Vector<Sensor> sensorsToRemove = new Vector<>();
-            if (hasETypeFlag(Entity.ETYPE_DROPSHIP)) {
+            if (hasETypeFlag(EntityTypeConstants.ETYPE_DROPSHIP)) {
                 for (Sensor sensor : getSensors()) {
                     if (sensor.getType() == Sensor.TYPE_SPACECRAFT_ESM) {
                         hasESM = false;
@@ -3114,7 +3114,7 @@ public abstract class Aero extends Entity implements IAero, IBomber {
                         sensorsToRemove.add(sensor);
                     }
                 }
-            } else if (hasETypeFlag(Entity.ETYPE_AERO)) {
+            } else if (hasETypeFlag(EntityTypeConstants.ETYPE_AERO)) {
                 for (Sensor sensor : getSensors()) {
                     if (sensor.getType() == Sensor.TYPE_AERO_THERMAL) {
                         hasAeroThermal = false;
@@ -3130,10 +3130,10 @@ public abstract class Aero extends Entity implements IAero, IBomber {
 
         // If we are in space, add them back...
         if (isSpaceborne()) {
-            if (hasETypeFlag(Entity.ETYPE_DROPSHIP) ||
-                      hasETypeFlag(Entity.ETYPE_SPACE_STATION) ||
-                      hasETypeFlag(Entity.ETYPE_JUMPSHIP) ||
-                      hasETypeFlag(Entity.ETYPE_WARSHIP)) {
+            if (hasETypeFlag(EntityTypeConstants.ETYPE_DROPSHIP) ||
+                      hasETypeFlag(EntityTypeConstants.ETYPE_SPACE_STATION) ||
+                      hasETypeFlag(EntityTypeConstants.ETYPE_JUMPSHIP) ||
+                      hasETypeFlag(EntityTypeConstants.ETYPE_WARSHIP)) {
                 // Large craft get thermal/optical sensors
                 if (!hasSpacecraftThermal) {
                     getSensors().add(new Sensor(Sensor.TYPE_SPACECRAFT_THERMAL));
@@ -3144,7 +3144,7 @@ public abstract class Aero extends Entity implements IAero, IBomber {
                         getSensors().add(new Sensor(Sensor.TYPE_SPACECRAFT_ESM));
                     }
                 }
-            } else if (hasETypeFlag(Entity.ETYPE_AERO) || hasETypeFlag(Entity.ETYPE_SMALL_CRAFT)) {
+            } else if (hasETypeFlag(EntityTypeConstants.ETYPE_AERO) || hasETypeFlag(EntityTypeConstants.ETYPE_SMALL_CRAFT)) {
                 // ASFs and small craft get thermal/optical sensors
                 if (!hasAeroThermal) {
                     getSensors().add(new Sensor(Sensor.TYPE_AERO_THERMAL));
