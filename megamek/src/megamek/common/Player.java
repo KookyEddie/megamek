@@ -492,14 +492,7 @@ public final class Player extends TurnOrdered {
             if (unit instanceof Entity) {
                 Entity entity = (Entity) unit;
                 boolean useCommandInit = game.getOptions().booleanOption(OptionsConstants.RPG_COMMAND_INIT);
-                boolean checkThisTurn = ((null != entity.getOwner()) &&
-                                               entity.getOwner().equals(this) &&
-                                               !entity.isDestroyed() &&
-                                               entity.getCrew().isActive() &&
-                                               !entity.isCaptured() &&
-                                               !(entity instanceof MekWarrior)) &&
-                                              ((entity.isDeployed() && !entity.isOffBoard()) ||
-                                                     (entity.getDeployRound() == (game.getCurrentRound() + 1)));
+                boolean checkThisTurn = checkThisTurn(entity);
                 if (checkThisTurn) {
                     int bonus = 0;
                     if (useCommandInit) {
@@ -520,6 +513,17 @@ public final class Player extends TurnOrdered {
             }
         }
         return commandb;
+    }
+
+    private boolean checkThisTurn(Entity entity){
+        return ((null != entity.getOwner()) &&
+               entity.getOwner().equals(this) &&
+               !entity.isDestroyed() &&
+               entity.getCrew().isActive() &&
+               !entity.isCaptured() &&
+               !(entity instanceof MekWarrior)) &&
+              ((entity.isDeployed() && !entity.isOffBoard()) ||
+                     (entity.getDeployRound() == (game.getCurrentRound() + 1)));
     }
 
     public String getColorForPlayer() {
@@ -577,7 +581,6 @@ public final class Player extends TurnOrdered {
         var copy = new Player(id, name);
 
         copy.email = email;
-
         copy.game = game;
         copy.team = team;
 
@@ -591,9 +594,7 @@ public final class Player extends TurnOrdered {
         copy.singleBlind = singleBlind;
 
         copy.deploymentConfig = deploymentConfig.copy();
-
         copy.minefieldManager = minefieldManager.copy();
-
         copy.artyAutoHitHexes = new Vector<>(artyAutoHitHexes);
 
         copy.initialEntityCount = initialEntityCount;
@@ -604,7 +605,6 @@ public final class Player extends TurnOrdered {
 
         copy.camouflage = camouflage;
         copy.colour = colour;
-
         copy.admitsDefeat = admitsDefeat;
 
         return copy;
