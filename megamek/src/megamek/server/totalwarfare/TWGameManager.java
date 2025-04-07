@@ -6391,7 +6391,7 @@ public class TWGameManager extends AbstractGameManager {
             // Only if this is on the board...
             if (game.getBoard().contains(mfCoord)) {
                 Minefield minefield = null;
-                Enumeration<Minefield> minefields = game.getMinefields(mfCoord).elements();
+                Enumeration<Minefield> minefields = game.gameMinefield.getMinefields(mfCoord).elements();
                 // Check if there already are Thunder minefields in the hex.
                 while (minefields.hasMoreElements()) {
                     Minefield mf = minefields.nextElement();
@@ -6436,7 +6436,7 @@ public class TWGameManager extends AbstractGameManager {
      */
     public void deliverThunderMinefield(Coords coords, int playerId, int damage, int entityId) {
         Minefield minefield = null;
-        Enumeration<Minefield> minefields = game.getMinefields(coords).elements();
+        Enumeration<Minefield> minefields = game.gameMinefield.getMinefields(coords).elements();
         // Check if there already are Thunder minefields in the hex.
         while (minefields.hasMoreElements()) {
             Minefield mf = minefields.nextElement();
@@ -6473,7 +6473,7 @@ public class TWGameManager extends AbstractGameManager {
      */
     public void deliverThunderInfernoMinefield(Coords coords, int playerId, int damage, int entityId) {
         Minefield minefield = null;
-        Enumeration<Minefield> minefields = game.getMinefields(coords).elements();
+        Enumeration<Minefield> minefields = game.gameMinefield.getMinefields(coords).elements();
         // Check if there already are Thunder minefields in the hex.
         while (minefields.hasMoreElements()) {
             Minefield mf = minefields.nextElement();
@@ -6507,7 +6507,7 @@ public class TWGameManager extends AbstractGameManager {
         // Only if this is on the board...
         if (game.getBoard().contains(coords)) {
             Minefield minefield = null;
-            Enumeration<Minefield> minefields = game.getMinefields(coords).elements();
+            Enumeration<Minefield> minefields = game.gameMinefield.getMinefields(coords).elements();
             // Check if there already are Thunder minefields in the hex.
             while (minefields.hasMoreElements()) {
                 Minefield mf = minefields.nextElement();
@@ -6544,7 +6544,7 @@ public class TWGameManager extends AbstractGameManager {
      */
     public void deliverThunderActiveMinefield(Coords coords, int playerId, int damage, int entityId) {
         Minefield minefield = null;
-        Enumeration<Minefield> minefields = game.getMinefields(coords).elements();
+        Enumeration<Minefield> minefields = game.gameMinefield.getMinefields(coords).elements();
         // Check if there already are Thunder minefields in the hex.
         while (minefields.hasMoreElements()) {
             Minefield mf = minefields.nextElement();
@@ -6576,7 +6576,7 @@ public class TWGameManager extends AbstractGameManager {
      */
     public void deliverThunderVibraMinefield(Coords coords, int playerId, int damage, int sensitivity, int entityId) {
         Minefield minefield = null;
-        Enumeration<Minefield> minefields = game.getMinefields(coords).elements();
+        Enumeration<Minefield> minefields = game.gameMinefield.getMinefields(coords).elements();
         // Check if there already are Thunder minefields in the hex.
         while (minefields.hasMoreElements()) {
             Minefield mf = minefields.nextElement();
@@ -7351,7 +7351,7 @@ public class TWGameManager extends AbstractGameManager {
 
         Vector<Minefield> fieldsToRemove = new Vector<>();
         // loop through mines in this hex
-        for (Minefield mf : game.getMinefields(c)) {
+        for (Minefield mf : game.gameMinefield.getMinefields(c)) {
             // vibrabombs are handled differently
             if (mf.getType() == Minefield.TYPE_VIBRABOMB) {
                 continue;
@@ -7570,15 +7570,15 @@ public class TWGameManager extends AbstractGameManager {
      * detonation, resets detonation to false, and removes any mines whose density has been reduced to zero.
      */
     void resetMines() {
-        Enumeration<Coords> mineLoc = game.getMinedCoords();
+        Enumeration<Coords> mineLoc = game.gameMinefield.getMinedCoords();
         while (mineLoc.hasMoreElements()) {
             Coords c = mineLoc.nextElement();
-            Enumeration<Minefield> minefields = game.getMinefields(c).elements();
+            Enumeration<Minefield> minefields = game.gameMinefield.getMinefields(c).elements();
             while (minefields.hasMoreElements()) {
                 Minefield minefield = minefields.nextElement();
                 if (minefield.hasDetonated()) {
                     minefield.setDetonated(false);
-                    Enumeration<Minefield> otherMines = game.getMinefields(c).elements();
+                    Enumeration<Minefield> otherMines = game.gameMinefield.getMinefields(c).elements();
                     while (otherMines.hasMoreElements()) {
                         Minefield otherMine = otherMines.nextElement();
                         if (otherMine.equals(minefield)) {
@@ -7598,7 +7598,7 @@ public class TWGameManager extends AbstractGameManager {
             // cycle through a second time to see if any mines at these coords
             // need to be removed
             List<Minefield> mfRemoved = new ArrayList<>();
-            Enumeration<Minefield> mines = game.getMinefields(c).elements();
+            Enumeration<Minefield> mines = game.gameMinefield.getMinefields(c).elements();
             while (mines.hasMoreElements()) {
                 Minefield mine = mines.nextElement();
                 if (mine.getDensity() < 5) {
@@ -7710,7 +7710,7 @@ public class TWGameManager extends AbstractGameManager {
      * Clear any detonated mines at these coords
      */
     private void clearDetonatedMines(Coords c, int target) {
-        Enumeration<Minefield> minefields = game.getMinefields(c).elements();
+        Enumeration<Minefield> minefields = game.gameMinefield.getMinefields(c).elements();
         List<Minefield> mfRemoved = new ArrayList<>();
         while (minefields.hasMoreElements()) {
             Minefield minefield = minefields.nextElement();
@@ -9324,7 +9324,7 @@ public class TWGameManager extends AbstractGameManager {
     private Vector<Report> doEntityDisplacementMinefieldCheck(Entity entity, Coords src, Coords dest, int elev) {
         Vector<Report> vPhaseReport = new Vector<>();
         boolean boom = checkVibrabombs(entity, dest, true, vPhaseReport);
-        if (game.containsMinefield(dest)) {
+        if (game.gameMinefield.containsMinefield(dest)) {
             boom = enterMinefield(entity, dest, elev, true, vPhaseReport) || boom;
         }
 
@@ -23552,7 +23552,7 @@ public class TWGameManager extends AbstractGameManager {
 
         }
 
-        if (game.containsMinefield(crashPos)) {
+        if (game.gameMinefield.containsMinefield(crashPos)) {
             // may set off any minefields in the hex
             enterMinefield(en, crashPos, 0, true, vDesc, 7);
             // it may also clear any minefields that it detonated
@@ -25644,7 +25644,7 @@ public class TWGameManager extends AbstractGameManager {
         game.resetPSRs(entity);
 
         // if there is a minefield in this hex, then the mek may set it off
-        if (game.containsMinefield(fallPos) && enterMinefield(entity, fallPos, newElevation, true, vPhaseReport, 12)) {
+        if (game.gameMinefield.containsMinefield(fallPos) && enterMinefield(entity, fallPos, newElevation, true, vPhaseReport, 12)) {
             resetMines();
         }
         // if we have to, check if the building/bridge we fell on collapses -
@@ -27868,7 +27868,7 @@ public class TWGameManager extends AbstractGameManager {
      * Creates a packet containing a vector of mines.
      */
     private Packet createMineChangePacket(Coords coords) {
-        return new Packet(PacketCommand.UPDATE_MINEFIELDS, getGame().getMinefields(coords));
+        return new Packet(PacketCommand.UPDATE_MINEFIELDS, getGame().gameMinefield.getMinefields(coords));
     }
 
     /**

@@ -72,7 +72,7 @@ public class LRMHandler extends MissileWeaponHandler {
             vPhaseReport.addElement(r);
             Coords coords = target.getPosition();
 
-            Enumeration<Minefield> minefields = game.getMinefields(coords)
+            Enumeration<Minefield> minefields = game.gameMinefield.getMinefields(coords)
                     .elements();
             ArrayList<Minefield> mfRemoved = new ArrayList<>();
             while (minefields.hasMoreElements()) {

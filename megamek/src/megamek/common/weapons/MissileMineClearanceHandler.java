@@ -123,7 +123,7 @@ public class MissileMineClearanceHandler extends AmmoWeaponHandler {
         int missileDamage = (wtype instanceof LRMWeapon) ? 1 : 2;
         int mineDamage = wtype.getRackSize() * missileDamage;
         boolean updateMinefields = false;
-        for (Minefield mf : game.getMinefields(targetPos)) {
+        for (Minefield mf : game.gameMinefield.getMinefields(targetPos)) {
             int density = mf.getDensity() - mineDamage;
             if (density > 0) {
                 mf.setDensity(density);

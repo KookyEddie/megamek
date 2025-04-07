@@ -1788,7 +1788,7 @@ public final class BoardView extends AbstractBoardView
         int maxY = drawY + drawHeight;
 
         Board board = game.getBoard();
-        for (Enumeration<Coords> minedCoords = game.getMinedCoords(); minedCoords.hasMoreElements(); ) {
+        for (Enumeration<Coords> minedCoords = game.gameMinefield.getMinedCoords(); minedCoords.hasMoreElements(); ) {
             Coords coords = minedCoords.nextElement();
             // If the coords aren't visible, skip
             if ((coords.getX() < drawX) ||
@@ -1807,7 +1807,7 @@ public final class BoardView extends AbstractBoardView
                   boardPanel);
 
             graphics2D.setColor(Color.black);
-            int numberOfMinefields = game.getNbrMinefields(coords);
+            int numberOfMinefields = game.gameMinefield.getNbrMinefields(coords);
             if (numberOfMinefields > 1) {
                 drawCenteredString(Messages.getString("BoardView1.Multiple"),
                       hexLocation.x,
@@ -1815,7 +1815,7 @@ public final class BoardView extends AbstractBoardView
                       font_minefield,
                       graphics2D);
             } else if (numberOfMinefields == 1) {
-                Minefield minefield = game.getMinefields(coords).get(0);
+                Minefield minefield = game.gameMinefield.getMinefields(coords).get(0);
 
                 switch (minefield.getType()) {
                     case Minefield.TYPE_CONVENTIONAL:

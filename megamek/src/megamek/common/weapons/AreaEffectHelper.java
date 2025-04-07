@@ -316,7 +316,7 @@ public class AreaEffectHelper {
      */
     public static void clearMineFields(Coords targetPos, int targetNum, Entity ae, Vector<Report> vPhaseReport,
             Game game, TWGameManager gameManager) {
-        Enumeration<Minefield> minefields = game.getMinefields(targetPos).elements();
+        Enumeration<Minefield> minefields = game.gameMinefield.getMinefields(targetPos).elements();
         ArrayList<Minefield> mfRemoved = new ArrayList<>();
         while (minefields.hasMoreElements()) {
             Minefield mf = minefields.nextElement();

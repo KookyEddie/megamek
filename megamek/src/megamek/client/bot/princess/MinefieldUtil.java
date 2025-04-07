@@ -75,7 +75,7 @@ public class MinefieldUtil {
                 ((movingUnit.getMovementMode() == EntityMovementMode.WIGE) && (movingUnit.getElevation() == 0));
         double hoverMovementMultiplier = hoverMovement ? Compute.oddsAbove(Minefield.HOVER_WIGE_DETONATION_TARGET) : 1;
 
-        for (Minefield minefield : movingUnit.getGame().getMinefields(step.getPosition())) {
+        for (Minefield minefield : movingUnit.getGame().gameMinefield.getMinefields(step.getPosition())) {
             switch (minefield.getType()) {
                 case Minefield.TYPE_CONVENTIONAL:
                 case Minefield.TYPE_INFERNO:

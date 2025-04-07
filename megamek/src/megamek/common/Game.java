@@ -93,6 +93,11 @@ public final class Game extends AbstractGame implements Serializable, PlanetaryC
     private final Vector<GameTurn> turnVector = new Vector<>();
 
     /**
+     * The game's minefield
+     */
+    public GameMinefield gameMinefield = new GameMinefield();
+
+    /**
      * The present phase
      */
     private GamePhase phase = GamePhase.UNKNOWN;
@@ -119,7 +124,6 @@ public final class Game extends AbstractGame implements Serializable, PlanetaryC
     private int victoryPlayerId = Player.PLAYER_NONE;
     private int victoryTeam = Player.TEAM_NONE;
 
-    private final Hashtable<Coords, Vector<Minefield>> minefields = new Hashtable<>();
     private final Vector<Minefield> vibrabombs = new Vector<>();
     private Vector<AttackHandler> attacks = new Vector<>();
     private Vector<ArtilleryAttackAction> offboardArtilleryAttacks = new Vector<>();
@@ -176,39 +180,15 @@ public final class Game extends AbstractGame implements Serializable, PlanetaryC
         setBoard(0, board);
     }
 
-    public boolean containsMinefield(Coords coords) {
-        return minefields.containsKey(coords);
-    }
-
-    public Vector<Minefield> getMinefields(Coords coords) {
-        Vector<Minefield> mfs = minefields.get(coords);
-        return (mfs == null) ? new Vector<>() : mfs;
-    }
-
-    public int getNbrMinefields(Coords coords) {
-        Vector<Minefield> mfs = minefields.get(coords);
-        return (mfs == null) ? 0 : mfs.size();
-    }
-
-    /**
-     * Get the coordinates of all mined hexes in the game.
-     *
-     * @return an <code>Enumeration</code> of the <code>Coords</code> containing minefields. This will not be
-     *       <code>null</code>.
-     */
-    public Enumeration<Coords> getMinedCoords() {
-        return minefields.keys();
-    }
-
     public void addMinefield(Minefield mf) {
-        addMinefieldHelper(mf);
+        gameMinefield.addMinefieldHelper(mf);
         processGameEvent(new GameBoardChangeEvent(this));
     }
 
     public void addMinefields(Vector<Minefield> mines) {
         for (int i = 0; i < mines.size(); i++) {
             Minefield mf = mines.elementAt(i);
-            addMinefieldHelper(mf);
+            gameMinefield.addMinefieldHelper(mf);
         }
         processGameEvent(new GameBoardChangeEvent(this));
     }
@@ -217,7 +197,7 @@ public final class Game extends AbstractGame implements Serializable, PlanetaryC
         clearMinefieldsHelper();
         for (int i = 0; i < minefields.size(); i++) {
             Minefield mf = minefields.elementAt(i);
-            addMinefieldHelper(mf);
+            gameMinefield.addMinefieldHelper(mf);
         }
         processGameEvent(new GameBoardChangeEvent(this));
     }
@@ -226,50 +206,20 @@ public final class Game extends AbstractGame implements Serializable, PlanetaryC
         if (newMinefields.isEmpty()) {
             return;
         }
-        Vector<Minefield> mfs = minefields.get(newMinefields.firstElement().getCoords());
+        Vector<Minefield> mfs = gameMinefield.minefields.get(newMinefields.firstElement().getCoords());
         if (mfs != null) {
             mfs.clear();
         }
         for (int i = 0; i < newMinefields.size(); i++) {
             Minefield mf = newMinefields.elementAt(i);
-            addMinefieldHelper(mf);
+            gameMinefield.addMinefieldHelper(mf);
         }
         processGameEvent(new GameBoardChangeEvent(this));
-    }
-
-    private void addMinefieldHelper(Minefield mf) {
-        Vector<Minefield> mfs = minefields.get(mf.getCoords());
-        if (mfs == null) {
-            mfs = new Vector<>();
-            mfs.addElement(mf);
-            minefields.put(mf.getCoords(), mfs);
-            return;
-        }
-        mfs.addElement(mf);
     }
 
     public void removeMinefield(Minefield mf) {
-        removeMinefieldHelper(mf);
+        gameMinefield.removeMinefieldHelper(mf);
         processGameEvent(new GameBoardChangeEvent(this));
-    }
-
-    public void removeMinefieldHelper(Minefield mf) {
-        Vector<Minefield> mfs = minefields.get(mf.getCoords());
-        if (mfs == null) {
-            return;
-        }
-
-        Enumeration<Minefield> e = mfs.elements();
-        while (e.hasMoreElements()) {
-            Minefield minefieldTemp = e.nextElement();
-            if (minefieldTemp.equals(mf)) {
-                mfs.removeElement(minefieldTemp);
-                break;
-            }
-        }
-        if (mfs.isEmpty()) {
-            minefields.remove(mf.getCoords());
-        }
     }
 
     public void clearMinefields() {
@@ -278,7 +228,7 @@ public final class Game extends AbstractGame implements Serializable, PlanetaryC
     }
 
     private void clearMinefieldsHelper() {
-        minefields.clear();
+        gameMinefield.minefields.clear();
         vibrabombs.removeAllElements();
         getPlayersList().forEach(p -> p.minefieldManager.removeMinefields());
     }

@@ -590,7 +590,7 @@ public class ServerHelper {
         }
 
         // can't detect minefields if there aren't any to detect
-        if (!game.getMinedCoords().hasMoreElements()) {
+        if (!game.gameMinefield.getMinedCoords().hasMoreElements()) {
             return false;
         }
 
@@ -608,7 +608,7 @@ public class ServerHelper {
                     continue;
                 }
 
-                for (Minefield minefield : game.getMinefields(potentialMineCoords)) {
+                for (Minefield minefield : game.gameMinefield.getMinefields(potentialMineCoords)) {
                     // no need to roll for already revealed minefields
                     if (entity.getOwner().minefieldManager.containsMinefield(minefield)) {
                         continue;

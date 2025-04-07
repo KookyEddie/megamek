@@ -521,13 +521,13 @@ public class ArtilleryBayWeaponIndirectFireHandler extends AmmoBayWeaponHandler 
         // check to see if this is a mine clearing attack
         // According to the RAW you have to hit the right hex to hit even if the
         // scatter hex has minefields
-        if (mineClear && game.containsMinefield(targetPos) && !isFlak && !bMissed) {
+        if (mineClear && game.gameMinefield.containsMinefield(targetPos) && !isFlak && !bMissed) {
             r = new Report(3255);
             r.indent(1);
             r.subject = subjectId;
             vPhaseReport.addElement(r);
 
-            Enumeration<Minefield> minefields = game.getMinefields(targetPos).elements();
+            Enumeration<Minefield> minefields = game.gameMinefield.getMinefields(targetPos).elements();
             ArrayList<Minefield> mfRemoved = new ArrayList<>();
             while (minefields.hasMoreElements()) {
                 Minefield mf = minefields.nextElement();
@@ -543,8 +543,8 @@ public class ArtilleryBayWeaponIndirectFireHandler extends AmmoBayWeaponHandler 
         if (!bMissed) {
             // artillery may unintentionally clear minefields, but only if it wasn't
             // trying to. For a hit on the target, just do this once.
-            if (!mineClear && game.containsMinefield(targetPos)) {
-                Enumeration<Minefield> minefields = game.getMinefields(targetPos).elements();
+            if (!mineClear && game.gameMinefield.containsMinefield(targetPos)) {
+                Enumeration<Minefield> minefields = game.gameMinefield.getMinefields(targetPos).elements();
                 ArrayList<Minefield> mfRemoved = new ArrayList<>();
                 while (minefields.hasMoreElements()) {
                     Minefield mf = minefields.nextElement();
@@ -572,8 +572,8 @@ public class ArtilleryBayWeaponIndirectFireHandler extends AmmoBayWeaponHandler 
                 c = targets.get(index);
                 height = heights.get(index);
                 // Accidental mine clearance...
-                if (!mineClear && game.containsMinefield(c)) {
-                    Enumeration<Minefield> minefields = game.getMinefields(c).elements();
+                if (!mineClear && game.gameMinefield.containsMinefield(c)) {
+                    Enumeration<Minefield> minefields = game.gameMinefield.getMinefields(c).elements();
                     ArrayList<Minefield> mfRemoved = new ArrayList<>();
                     while (minefields.hasMoreElements()) {
                         Minefield mf = minefields.nextElement();

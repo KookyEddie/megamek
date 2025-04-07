@@ -138,8 +138,8 @@ public final class HexTooltip {
             result.append(table);
         }
 
-        if ((game != null) && game.containsMinefield(mcoords)) {
-            Vector<Minefield> minefields = game.getMinefields(mcoords);
+        if ((game != null) && game.gameMinefield.containsMinefield(mcoords)) {
+            Vector<Minefield> minefields = game.gameMinefield.getMinefields(mcoords);
             for (int i = 0; i < minefields.size(); i++) {
                 Minefield mf = minefields.elementAt(i);
                 Player owner = game.getPlayer(mf.getPlayerId());

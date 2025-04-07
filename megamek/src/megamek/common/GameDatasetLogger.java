@@ -347,7 +347,7 @@ public class GameDatasetLogger {
 
         try {
             // Example of also logging minefields, which might have different columns
-            var minefields = game.getMinedCoords();
+            var minefields = game.gameMinefield.getMinedCoords();
             if (minefields != null && minefields.hasMoreElements()) {
                 if (withHeader) {
                     // This is optional, or you can define a separate enum if you want a strict schema

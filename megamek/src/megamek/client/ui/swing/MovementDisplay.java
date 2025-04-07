@@ -751,7 +751,7 @@ public class MovementDisplay extends ActionPhaseDisplay {
         setRamEnabled(ce.canRam());
 
         if (isInfantry) {
-            setClearEnabled(clientgui.getClient().getGame().containsMinefield(ce.getPosition()));
+            setClearEnabled(clientgui.getClient().getGame().gameMinefield.containsMinefield(ce.getPosition()));
         } else {
             setClearEnabled(false);
         }
@@ -4916,7 +4916,7 @@ public class MovementDisplay extends ActionPhaseDisplay {
         } else if (actionCmd.equals(MoveCommand.MOVE_CLEAR.getCmd())) {
             clear();
             if (!clientgui.getClient().getGame()
-                    .containsMinefield(ce.getPosition())) {
+                       .gameMinefield.containsMinefield(ce.getPosition())) {
                 String title = Messages.getString("MovementDisplay.CantClearMinefield");
                 String body = Messages.getString("MovementDisplay.NoMinefield");
                 clientgui.doAlertDialog(title, body);
@@ -4945,7 +4945,7 @@ public class MovementDisplay extends ActionPhaseDisplay {
             }
 
             // need to choose a mine
-            List<Minefield> mfs = clientgui.getClient().getGame().getMinefields(ce.getPosition());
+            List<Minefield> mfs = clientgui.getClient().getGame().gameMinefield.getMinefields(ce.getPosition());
             String[] choices = new String[mfs.size()];
             for (int loop = 0; loop < choices.length; loop++) {
                 choices[loop] = Minefield.getDisplayableName(mfs.get(loop).getType());

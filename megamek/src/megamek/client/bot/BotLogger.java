@@ -220,7 +220,7 @@ public class BotLogger {
                 );
             }
 
-            var minefields = game.getMinedCoords();
+            var minefields = game.gameMinefield.getMinedCoords();
             if (minefields != null && minefields.hasMoreElements()) {
                 if (withHeader) {
                     append(String.join("\t", "ROUND", "PHASE", "OBJECT", "X", "Y"));

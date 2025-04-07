@@ -2708,7 +2708,7 @@ class MovePathHandler extends AbstractTWRuleHandler {
                     boom = gameManager.checkVibrabombs(entity, curPos, false, lastPos, curPos,
                             gameManager.getMainPhaseReport());
                 }
-                if (getGame().containsMinefield(curPos)) {
+                if (getGame().gameMinefield.containsMinefield(curPos)) {
                     // set the new position temporarily, because
                     // infantry otherwise would get double damage
                     // when moving from clear into mined woods
@@ -2746,9 +2746,9 @@ class MovePathHandler extends AbstractTWRuleHandler {
             // infantry discovers minefields if they end their move
             // in a minefield.
             if (!lastPos.equals(curPos) && !i.hasMoreElements() && isInfantry) {
-                if (getGame().containsMinefield(curPos)) {
+                if (getGame().gameMinefield.containsMinefield(curPos)) {
                     Player owner = entity.getOwner();
-                    for (Minefield mf : getGame().getMinefields(curPos)) {
+                    for (Minefield mf : getGame().gameMinefield.getMinefields(curPos)) {
                         if (!owner.minefieldManager.containsMinefield(mf)) {
                             r = new Report(2120);
                             r.subject = entity.getId();

@@ -253,11 +253,11 @@ public class DeployMinefieldDisplay extends StatusBarPhaseDisplay {
         }
 
         if (currentCommand == DeployMinefieldCommand.REMOVE_MINES) {
-            if (!game.containsMinefield(coords) &&
+            if (!game.gameMinefield.containsMinefield(coords) &&
             		game.getGroundObjects(coords).size() == 0) {
                 return;
             }
-            Enumeration<?> mfs = game.getMinefields(coords).elements();
+            Enumeration<?> mfs = game.gameMinefield.getMinefields(coords).elements();
             ArrayList<Minefield> mfRemoved = new ArrayList<>();
             while (mfs.hasMoreElements()) {
                 Minefield mf = (Minefield) mfs.nextElement();
@@ -315,7 +315,7 @@ public class DeployMinefieldDisplay extends StatusBarPhaseDisplay {
         } else {
         	// first check that there is not already a mine of this type
             // deployed
-            Enumeration<?> mfs = game.getMinefields(coords).elements();
+            Enumeration<?> mfs = game.gameMinefield.getMinefields(coords).elements();
             while (mfs.hasMoreElements()) {
                 Minefield mf = (Minefield) mfs.nextElement();
                 if ((deployingConventionalMinefields() && (mf.getType() == Minefield.TYPE_CONVENTIONAL))

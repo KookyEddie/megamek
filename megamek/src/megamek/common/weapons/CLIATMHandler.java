@@ -295,7 +295,7 @@ public class CLIATMHandler extends ATMHandler {
             vPhaseReport.addElement(r);
             Coords coords = target.getPosition();
 
-            Enumeration<Minefield> minefields = game.getMinefields(coords).elements();
+            Enumeration<Minefield> minefields = game.gameMinefield.getMinefields(coords).elements();
             ArrayList<Minefield> mfRemoved = new ArrayList<>();
             while (minefields.hasMoreElements()) {
                 Minefield mf = minefields.nextElement();
